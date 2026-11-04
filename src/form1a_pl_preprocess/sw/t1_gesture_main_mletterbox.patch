@@ -1,0 +1,159 @@
+--- a/t1_gesture_main.py
++++ b/t1_gesture_main.py
+@@ -51,8 +51,8 @@
+ MM2S_CONTROL, S2MM_CONTROL = 0x1008B, 0x180CB
+ VDMA_ERROR_MASK = 0x8FF0
+ SRC_BYTES = 640 * 480 * 3          # 921600
+-DST_BYTES = 320 * 320 * 3 * 4      # 1228800 fp32 CHW
+-EXPECT_VER = 0x01000001
++DST_BYTES = 320 * 320 * 3          # 307200 u8 RGB HWC (M-letterbox bit v2)
++EXPECT_VER = 0x01000002
+ 
+ REG_MAX = 7
+ STRIDES = (8, 16, 32, 64)
+@@ -62,11 +62,20 @@
+ DUMP_DIR = os.environ.get("T1_DUMP_DIR", "")
+ _dump_state = {"last": 0.0, "n": 0}
+ 
+-BIT_HASH = "5382fc78cbc8fa9da08e9ef65388fa7ac87d5210e01af2ec117e43ab2919f339"
+-HWH_HASH = "cf1b7539b1c3476d4aebe4a7e85e34ecd211d0cd97f38fa30a382d55702b5164"
+-ONNX_HASH = "dd751eb1fd3ae42fcc1d6d3d01c8aca42f9103d0bfaff46a1874fbd968324ffb"
+-NCNN_PARAM_HASH = "2c00f7ded2c78a0ed240be7cca0c00d515f5f38c4c544fb970d486af16acf737"
+-NCNN_BIN_HASH = "bb1692585c908e2deb77c8ab2cb042f90fc4d6ce11cc3bcc4f1cbd77b4b9caf0"
++# Hashes: bit/HWH are delivered AFTER this patch freezes, so they are
++# env-overridable; the deploy script exports the sha256 values it verified
++# at upload time. The ncnn hashes pin the NanoDet-mM mcontract pair
++# (2026-10-22_mcontract_nanodet_m_export_run01 manifest). ONNX is only
++# used (and only checked) by the cv2 engine.
++BIT_HASH = os.environ.get("T1_BIT_SHA", "0" * 64)
++HWH_HASH = os.environ.get("T1_HWH_SHA", "0" * 64)
++ONNX_HASH = os.environ.get("T1_ONNX_SHA", "0" * 64)
++NCNN_PARAM_HASH = os.environ.get(
++    "T1_NCNN_PARAM_SHA",
++    "2c00f7ded2c78a0ed240be7cca0c00d515f5f38c4c544fb970d486af16acf737")
++NCNN_BIN_HASH = os.environ.get(
++    "T1_NCNN_BIN_SHA",
++    "77d389232fa75c7b3e9bfcc431af1d0db8f13b6e6bbc68e10415e88657dd5bf3")
+ 
+ # gesture class index -> action steps [(sid, delta, t_ms, hold_s)]
+ # v2 BASIC map (user directive 10-19): direct single-servo control -- each
+@@ -308,8 +317,12 @@
+                 raise RuntimeError("t1 buf %#x+%x outside HP windows" % (lo, n))
+ 
+     def run(self, frame_bytes):
+-        """frame -> (blob 1x3x320x320 fp32 view, wall_seconds). The returned
+-        view aliases the PL dst buffer and is valid until the next run()."""
++        """frame -> (blob 320x320x3 u8 RGB HWC, wall_seconds). The
++        M-letterbox bit (VERSION 0x01000002) writes the letterbox result
++        as u8 RGB HWC; the per-model fp32 epilogue is applied later by
++        model_input() on the PS side (M contract: normalization
++        off-model). The returned array aliases the PL dst buffer and is
++        valid until the next run() (model_input copies)."""
+         src_view = np.frombuffer(self.src, dtype=np.uint8)
+         src_view[:] = np.frombuffer(frame_bytes, dtype=np.uint8)
+         self.src.flush()
+@@ -324,8 +337,7 @@
+             time.sleep(.001)
+         wall = time.monotonic() - t0
+         self.dst.invalidate()
+-        blob = np.frombuffer(self.dst, dtype=np.uint8).view(np.float32)
+-        return blob.reshape(1, 3, 320, 320), wall
++        return np.frombuffer(self.dst, dtype=np.uint8)             .reshape(320, 320, 3), wall
+ 
+     def close(self):
+         for name in ("src", "dst"):
+@@ -784,9 +796,9 @@
+ # Server registry ids must match c2_registry.conf on the board. Swap = table
+ # switch in t1_ncnn_server_multi (all nets preloaded at boot).
+ C2_MODELS = {
+-    0: ("NanoDet-v65", "nanodet"),
+-    1: ("YOLOv8n-v4", "yolo"),
+-    2: ("YOLO11n-v4", "yolo"),
++    0: ("NanoDet-mM", "nanodet"),
++    1: ("mcontract-v8n", "yolo"),
++    2: ("mcontract-y11n", "yolo"),
+ }
+ C2_ROTATION = [0, 1, 2]
+ 
+@@ -1094,19 +1106,26 @@
+     left = int(round(dw / 2 - 0.1))
+     pad = cv2.copyMakeBorder(rs, top, dh - top, left, dw - left,
+                              cv2.BORDER_CONSTANT, value=(114, 114, 114))
+-    return pad[:, :, ::-1].transpose(2, 0, 1)[None].astype(np.float32)
+-
+-
+-def model_input(blob_rgb, kind):
+-    """Per-model input epilogue on the unified letterbox blob (RGB 0-255).
+-    yolo = /255 (M contract, no mean/std); nanodet = RGB->BGR then
+-    (x-mean)/std (mathematically identical to the proven conv1 fold)."""
++    # PS tier (--ps-preproc fallback only): returns the SAME u8 RGB HWC
++    # format the M-letterbox PL bit produces, so both paths share the
++    # model_input() epilogue below.
++    return pad[:, :, ::-1]
++
++
++def model_input(blob_u8, kind):
++    """Per-model fp32 epilogue on the u8 RGB HWC letterbox blob
++    (320x320x3, from the PL M-letterbox bit or the PS tier above).
++    M contract: ALL normalization off-model, applied HERE before the
++    ncnn payload. UNIFIED (u8-128)/255 fp32 CHW for yolo AND nanodet:
++    the gesture7-mcontract nanodet retrain REMOVED mean/std (see
++    2026-10-22_mcontract_nanodet_m_train_run01 README); the old v65
++    mean/std BGR epilogue fed garbage (board 10-22: total silence +
++    random background fires). `kind` kept for call-site compat."""
++    f32 = np.ascontiguousarray(
++        blob_u8.transpose(2, 0, 1)[None]).astype(np.float32)
+     if kind == "nanodet":
+-        bgr = blob_rgb[:, ::-1]
+-        mean = np.array(NANODET_MEAN_BGR, np.float32).reshape(1, 3, 1, 1)
+-        std = np.array(NANODET_STD_BGR, np.float32).reshape(1, 3, 1, 1)
+-        return (bgr - mean) / std
+-    return blob_rgb / 255.0
++        pass  # mcontract nanodet: same contract as yolo now
++    return (f32 - 128.0) / 255.0
+ 
+ 
+ # ---------------- main ---------------------------------------------------------
+@@ -1173,10 +1194,11 @@
+     bit, hwh = Path(args.bit), Path(args.bit).with_suffix(".hwh")
+     sha_ok(bit, BIT_HASH)
+     sha_ok(hwh, HWH_HASH)
+-    sha_ok(args.onnx, ONNX_HASH)
+     if args.engine == "ncnn":
+         sha_ok(args.ncnn_param, NCNN_PARAM_HASH)
+         sha_ok(args.ncnn_bin, NCNN_BIN_HASH)
++    else:
++        sha_ok(args.onnx, ONNX_HASH)   # onnx is only read by the cv2 engine
+     if args.evidence is None:
+         args.evidence = Path("/home/xilinx/t1_overlay/evidence")
+     args.evidence.mkdir(parents=True, exist_ok=True)
+@@ -1223,7 +1245,8 @@
+     infer = make_engine(args)
+     if args.model != 0 and args.engine != "ncnn":
+         raise RuntimeError("multi-model (--model) needs --engine ncnn")
+-    probe = np.zeros((1, 3, 320, 320), np.float32)
++    probe = model_input(np.zeros((320, 320, 3), np.uint8),
++                        C2_MODELS[args.model][1])
+     arr = np.asarray(infer(probe, model_id=args.model))
+     grids_cache = None             # built lazily when a nanodet model goes
+     log("ENGINE_READY", engine=args.engine, model=C2_MODELS[args.model][0],
+@@ -1309,13 +1332,14 @@
+                 rejected += 1
+                 continue
+             t0 = time.monotonic()
++            lb0 = time.monotonic()
+             if args.ps_preproc:
+-                lb0 = time.monotonic()
+-                blob = model_input(letterbox_rgb(frame),
+-                                   C2_MODELS[active_id][1])
++                blob_u8 = letterbox_rgb(frame)
++            else:
++                blob_u8, pl_ms = pre.run(frame)
++            blob = model_input(blob_u8, C2_MODELS[active_id][1])
++            if args.ps_preproc:
+                 pl_ms = time.monotonic() - lb0
+-            else:
+-                blob, pl_ms = pre.run(frame)
+             raw = np.asarray(infer(blob, model_id=active_id))
+             if C2_MODELS[active_id][1] == "nanodet" and grids_cache is None:
+                 grids_cache = build_grids(320, np.asarray(raw).reshape(-1, 39)

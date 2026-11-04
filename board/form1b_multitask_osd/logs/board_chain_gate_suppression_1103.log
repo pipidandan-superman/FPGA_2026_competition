@@ -1,0 +1,119 @@
+{"event": "PL_LOADED", "t": 1667645461.58, "bit_sha256": "c910f8ce502f1175", "state": "operating"}
+{"event": "ACTION_DISABLED", "t": 1667645461.581, "reason": "three-task visual validation; all slots"}
+{"event": "ENGINE_READY", "t": 1667645467.319, "backend0": "ncnn", "backend1": "ncnn", "backend2": "split-ncnn+numpy-c2psa+ps-decode", "shapes": {"0": [238000], "1": [23100], "2": {"pre": [[1, 256, 10, 10], [1, 128, 20, 20], [1, 128, 40, 40]], "raw": [[1, 64, 2100], [1, 1, 2100], [1, 51, 2100]]}}}
+{"event": "BOARD_BLOCKS_READY", "t": 1667645477.543, "preproc": "0x1000001", "model_btn": true, "box_osd": true, "multitask_osd": true}
+{"event": "MODEL_SELECT", "t": 1667645477.57, "src": "file", "from": "NanoDet-COCO-Material", "to": "YOLO11n-Pose"}
+{"event": "TASK_EVIDENCE_SAVED", "t": 1667645481.826, "task": "pose", "file": "task2_det1"}
+{"event": "TASK_EVIDENCE_SAVED", "t": 1667645485.022, "task": "pose", "file": "task2_det2"}
+{"event": "HEARTBEAT", "t": 1667645485.024, "task": "pose", "model": "YOLO11n-Pose", "frames": 2, "rejected": 0, "inf_ms": 3078.7, "pl_ms": 51.8, "detections": 1, "top": [{"name": "person", "score": 0.9054}], "slots": [2, 0], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "TASK_EVIDENCE_SAVED", "t": 1667645488.056, "task": "pose", "file": "task2_det3"}
+{"event": "HEARTBEAT", "t": 1667645490.971, "task": "pose", "model": "YOLO11n-Pose", "frames": 4, "rejected": 0, "inf_ms": 2904.0, "pl_ms": 48.1, "detections": 1, "top": [{"name": "person", "score": 0.8901}], "slots": [0, 2], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "HEARTBEAT", "t": 1667645496.941, "task": "pose", "model": "YOLO11n-Pose", "frames": 6, "rejected": 0, "inf_ms": 3035.0, "pl_ms": 47.9, "detections": 2, "top": [{"name": "person", "score": 0.763}, {"name": "person", "score": 0.3458}], "slots": [0, 1], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "VDMA_ALIAS_RECOVERED", "t": 1667645496.942, "slots": [0, 1]}
+{"event": "HEARTBEAT", "t": 1667645502.69, "task": "pose", "model": "YOLO11n-Pose", "frames": 8, "rejected": 0, "inf_ms": 2871.4, "pl_ms": 49.9, "detections": 1, "top": [{"name": "person", "score": 0.8413}], "slots": [1, 2], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "HEARTBEAT", "t": 1667645508.563, "task": "pose", "model": "YOLO11n-Pose", "frames": 10, "rejected": 0, "inf_ms": 2946.4, "pl_ms": 49.8, "detections": 1, "top": [{"name": "person", "score": 0.9334}], "slots": [2, 0], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "HEARTBEAT", "t": 1667645514.351, "task": "pose", "model": "YOLO11n-Pose", "frames": 12, "rejected": 0, "inf_ms": 2863.1, "pl_ms": 49.9, "detections": 1, "top": [{"name": "person", "score": 0.9334}], "slots": [2, 0], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "HEARTBEAT", "t": 1667645520.271, "task": "pose", "model": "YOLO11n-Pose", "frames": 14, "rejected": 0, "inf_ms": 2994.5, "pl_ms": 49.7, "detections": 1, "top": [{"name": "person", "score": 0.9331}], "slots": [0, 1], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "HEARTBEAT", "t": 1667645526.162, "task": "pose", "model": "YOLO11n-Pose", "frames": 16, "rejected": 0, "inf_ms": 2913.5, "pl_ms": 49.9, "detections": 1, "top": [{"name": "person", "score": 0.9476}], "slots": [2, 1], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "HEARTBEAT", "t": 1667645532.081, "task": "pose", "model": "YOLO11n-Pose", "frames": 18, "rejected": 0, "inf_ms": 2983.7, "pl_ms": 49.9, "detections": 1, "top": [{"name": "person", "score": 0.9324}], "slots": [2, 0], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "HEARTBEAT", "t": 1667645537.916, "task": "pose", "model": "YOLO11n-Pose", "frames": 20, "rejected": 0, "inf_ms": 2907.3, "pl_ms": 48.3, "detections": 1, "top": [{"name": "person", "score": 0.9073}], "slots": [1, 2], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "HEARTBEAT", "t": 1667645543.828, "task": "pose", "model": "YOLO11n-Pose", "frames": 22, "rejected": 0, "inf_ms": 3012.1, "pl_ms": 49.9, "detections": 1, "top": [{"name": "person", "score": 0.9269}], "slots": [1, 2], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "MODEL_SELECT", "t": 1667645546.701, "src": "pl_btn", "from": "YOLO11n-Pose", "to": "NanoDet-COCO-Material"}
+{"event": "TASK_EVIDENCE_SAVED", "t": 1667645547.681, "task": "material", "file": "task0_det1"}
+{"event": "TASK_EVIDENCE_SAVED", "t": 1667645548.656, "task": "material", "file": "task0_det2"}
+{"event": "TASK_EVIDENCE_SAVED", "t": 1667645549.632, "task": "material", "file": "task0_det3"}
+{"event": "HEARTBEAT", "t": 1667645549.633, "task": "material", "model": "NanoDet-COCO-Material", "frames": 26, "rejected": 0, "inf_ms": 904.5, "pl_ms": 67.7, "detections": 1, "top": [{"name": "person", "score": 0.7751}], "slots": [0, 1], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "VDMA_ALIAS_RECOVERED", "t": 1667645553.315, "slots": [0, 1]}
+{"event": "HEARTBEAT", "t": 1667645555.16, "task": "material", "model": "NanoDet-COCO-Material", "frames": 32, "rejected": 0, "inf_ms": 909.5, "pl_ms": 68.6, "detections": 5, "top": [{"name": "person", "score": 0.7033}, {"name": "chair", "score": 0.4209}, {"name": "toothbrush", "score": 0.3426}], "slots": [1, 2], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "VDMA_ALIAS_RECOVERED", "t": 1667645556.167, "slots": [1, 2]}
+{"event": "VDMA_ALIAS_RECOVERED", "t": 1667645559.847, "slots": [2, 0]}
+{"event": "HEARTBEAT", "t": 1667645560.763, "task": "material", "model": "NanoDet-COCO-Material", "frames": 38, "rejected": 0, "inf_ms": 909.1, "pl_ms": 68.4, "detections": 5, "top": [{"name": "person", "score": 0.7239}, {"name": "toothbrush", "score": 0.3787}, {"name": "chair", "score": 0.3717}], "slots": [2, 0], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "VDMA_ALIAS_RECOVERED", "t": 1667645561.681, "slots": [2, 0]}
+{"event": "HEARTBEAT", "t": 1667645566.297, "task": "material", "model": "NanoDet-COCO-Material", "frames": 44, "rejected": 0, "inf_ms": 907.9, "pl_ms": 68.6, "detections": 2, "top": [{"name": "person", "score": 0.541}, {"name": "chair", "score": 0.4121}], "slots": [1, 2], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "VDMA_ALIAS_RECOVERED", "t": 1667645566.299, "slots": [1, 2]}
+{"event": "VDMA_ALIAS_RECOVERED", "t": 1667645569.23, "slots": [1, 2]}
+{"event": "HEARTBEAT", "t": 1667645572.016, "task": "material", "model": "NanoDet-COCO-Material", "frames": 50, "rejected": 0, "inf_ms": 936.8, "pl_ms": 68.3, "detections": 1, "top": [{"name": "person", "score": 0.7239}], "slots": [2, 0], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "HEARTBEAT", "t": 1667645577.466, "task": "material", "model": "NanoDet-COCO-Material", "frames": 56, "rejected": 0, "inf_ms": 898.4, "pl_ms": 70.0, "detections": 5, "top": [{"name": "person", "score": 0.7238}, {"name": "bottle", "score": 0.5392}, {"name": "bottle", "score": 0.3791}], "slots": [2, 1], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "VDMA_STALL_WARN", "t": 1667645577.467, "channel": 0, "slots": [2, 0]}
+{"event": "HEARTBEAT", "t": 1667645583.055, "task": "material", "model": "NanoDet-COCO-Material", "frames": 62, "rejected": 0, "inf_ms": 897.1, "pl_ms": 70.1, "detections": 2, "top": [{"name": "person", "score": 0.6904}, {"name": "cell_phone", "score": 0.3105}], "slots": [0, 1], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "VDMA_STALL_WARN", "t": 1667645583.964, "channel": 0, "slots": [0, 1]}
+{"event": "VDMA_ALIAS_RECOVERED", "t": 1667645583.965, "slots": [0, 1]}
+{"event": "HEARTBEAT", "t": 1667645588.494, "task": "material", "model": "NanoDet-COCO-Material", "frames": 68, "rejected": 0, "inf_ms": 898.0, "pl_ms": 70.1, "detections": 5, "top": [{"name": "person", "score": 0.5959}, {"name": "chair", "score": 0.5764}, {"name": "bottle", "score": 0.4796}], "slots": [2, 0], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "VDMA_ALIAS_RECOVERED", "t": 1667645588.496, "slots": [2, 0]}
+{"event": "VDMA_STALL_WARN", "t": 1667645592.231, "channel": 0, "slots": [2, 0]}
+{"event": "VDMA_ALIAS_RECOVERED", "t": 1667645592.232, "slots": [2, 0]}
+{"event": "HEARTBEAT", "t": 1667645594.08, "task": "material", "model": "NanoDet-COCO-Material", "frames": 74, "rejected": 0, "inf_ms": 909.8, "pl_ms": 68.3, "detections": 3, "top": [{"name": "person", "score": 0.7968}, {"name": "bottle", "score": 0.7035}, {"name": "chair", "score": 0.6308}], "slots": [2, 0], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "VDMA_ALIAS_RECOVERED", "t": 1667645595.916, "slots": [0, 1]}
+{"event": "HEARTBEAT", "t": 1667645599.684, "task": "material", "model": "NanoDet-COCO-Material", "frames": 80, "rejected": 0, "inf_ms": 908.7, "pl_ms": 68.3, "detections": 5, "top": [{"name": "person", "score": 0.7396}, {"name": "bottle", "score": 0.6412}, {"name": "chair", "score": 0.6113}], "slots": [1, 2], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "VDMA_ALIAS_RECOVERED", "t": 1667645600.601, "slots": [1, 2]}
+{"event": "HEARTBEAT", "t": 1667645605.346, "task": "material", "model": "NanoDet-COCO-Material", "frames": 86, "rejected": 0, "inf_ms": 910.1, "pl_ms": 68.4, "detections": 2, "top": [{"name": "person", "score": 0.8512}, {"name": "bottle", "score": 0.7752}], "slots": [0, 2], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "VDMA_ALIAS_RECOVERED", "t": 1667645606.264, "slots": [1, 2]}
+{"event": "MODEL_SELECT", "t": 1667645607.18, "src": "pl_btn", "from": "NanoDet-COCO-Material", "to": "YOLOv8n-Gesture7"}
+{"event": "TASK_EVIDENCE_SAVED", "t": 1667645610.481, "task": "gesture", "file": "task1_det1"}
+{"event": "HEARTBEAT", "t": 1667645610.482, "task": "gesture", "model": "YOLOv8n-Gesture7", "frames": 91, "rejected": 0, "inf_ms": 1069.0, "pl_ms": 21.3, "detections": 1, "top": [{"name": "Thumbs up", "score": 0.6006}], "slots": [2, 1], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "TASK_EVIDENCE_SAVED", "t": 1667645611.612, "task": "gesture", "file": "task1_det2"}
+{"event": "TASK_EVIDENCE_SAVED", "t": 1667645612.743, "task": "gesture", "file": "task1_det3"}
+{"event": "HEARTBEAT", "t": 1667645616.123, "task": "gesture", "model": "YOLOv8n-Gesture7", "frames": 96, "rejected": 0, "inf_ms": 1200.2, "pl_ms": 21.3, "detections": 1, "top": [{"name": "Thumbs up", "score": 0.6646}], "slots": [2, 1], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "HEARTBEAT", "t": 1667645621.425, "task": "gesture", "model": "YOLOv8n-Gesture7", "frames": 101, "rejected": 0, "inf_ms": 1053.2, "pl_ms": 21.4, "detections": 1, "top": [{"name": "Up", "score": 0.6673}], "slots": [2, 0], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "HEARTBEAT", "t": 1667645626.79, "task": "gesture", "model": "YOLOv8n-Gesture7", "frames": 106, "rejected": 0, "inf_ms": 1070.9, "pl_ms": 21.3, "detections": 2, "top": [{"name": "Up", "score": 0.6893}, {"name": "Up", "score": 0.5588}], "slots": [1, 0], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "GESTURE_SHOWN", "t": 1667645632.308, "name": "Stop", "score": 0.7059, "hold": 1.5}
+{"event": "HEARTBEAT", "t": 1667645632.309, "task": "gesture", "model": "YOLOv8n-Gesture7", "frames": 111, "rejected": 0, "inf_ms": 1089.6, "pl_ms": 21.4, "detections": 1, "top": [{"name": "Stop", "score": 0.7059}], "slots": [2, 0], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "VDMA_ALIAS_RECOVERED", "t": 1667645633.401, "slots": [2, 0]}
+{"event": "GESTURE_CLEAR", "t": 1667645634.458, "name": "Stop"}
+{"event": "HEARTBEAT", "t": 1667645637.64, "task": "gesture", "model": "YOLOv8n-Gesture7", "frames": 116, "rejected": 0, "inf_ms": 1049.0, "pl_ms": 21.4, "detections": 1, "top": [{"name": "Up", "score": 0.6884}], "slots": [0, 1], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "HEARTBEAT", "t": 1667645643.094, "task": "gesture", "model": "YOLOv8n-Gesture7", "frames": 121, "rejected": 0, "inf_ms": 1064.9, "pl_ms": 21.4, "detections": 0, "top": [], "slots": [2, 0], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "HEARTBEAT", "t": 1667645648.476, "task": "gesture", "model": "YOLOv8n-Gesture7", "frames": 126, "rejected": 0, "inf_ms": 1070.8, "pl_ms": 21.3, "detections": 1, "top": [{"name": "Up", "score": 0.6761}], "slots": [2, 1], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "HEARTBEAT", "t": 1667645654.017, "task": "gesture", "model": "YOLOv8n-Gesture7", "frames": 131, "rejected": 0, "inf_ms": 1072.7, "pl_ms": 21.3, "detections": 0, "top": [], "slots": [2, 0], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "HEARTBEAT", "t": 1667645659.355, "task": "gesture", "model": "YOLOv8n-Gesture7", "frames": 136, "rejected": 0, "inf_ms": 1046.0, "pl_ms": 21.4, "detections": 0, "top": [], "slots": [2, 0], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "HEARTBEAT", "t": 1667645664.89, "task": "gesture", "model": "YOLOv8n-Gesture7", "frames": 141, "rejected": 0, "inf_ms": 1214.7, "pl_ms": 21.3, "detections": 0, "top": [], "slots": [2, 0], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "HEARTBEAT", "t": 1667645670.269, "task": "gesture", "model": "YOLOv8n-Gesture7", "frames": 146, "rejected": 0, "inf_ms": 1060.9, "pl_ms": 21.4, "detections": 0, "top": [], "slots": [1, 2], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "HEARTBEAT", "t": 1667645675.549, "task": "gesture", "model": "YOLOv8n-Gesture7", "frames": 151, "rejected": 0, "inf_ms": 1046.3, "pl_ms": 21.4, "detections": 0, "top": [], "slots": [2, 0], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "HEARTBEAT", "t": 1667645681.072, "task": "gesture", "model": "YOLOv8n-Gesture7", "frames": 156, "rejected": 0, "inf_ms": 1076.0, "pl_ms": 21.3, "detections": 0, "top": [], "slots": [2, 0], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "HEARTBEAT", "t": 1667645686.453, "task": "gesture", "model": "YOLOv8n-Gesture7", "frames": 161, "rejected": 0, "inf_ms": 1068.5, "pl_ms": 21.3, "detections": 0, "top": [], "slots": [1, 2], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "HEARTBEAT", "t": 1667645691.959, "task": "gesture", "model": "YOLOv8n-Gesture7", "frames": 166, "rejected": 0, "inf_ms": 1067.9, "pl_ms": 21.4, "detections": 0, "top": [], "slots": [1, 2], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "VDMA_ALIAS_RECOVERED", "t": 1667645693.071, "slots": [0, 2]}
+{"event": "HEARTBEAT", "t": 1667645697.307, "task": "gesture", "model": "YOLOv8n-Gesture7", "frames": 171, "rejected": 0, "inf_ms": 1047.7, "pl_ms": 21.4, "detections": 0, "top": [], "slots": [2, 0], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "HEARTBEAT", "t": 1667645702.8, "task": "gesture", "model": "YOLOv8n-Gesture7", "frames": 176, "rejected": 0, "inf_ms": 1071.1, "pl_ms": 22.4, "detections": 0, "top": [], "slots": [2, 0], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "HEARTBEAT", "t": 1667645708.178, "task": "gesture", "model": "YOLOv8n-Gesture7", "frames": 181, "rejected": 0, "inf_ms": 1068.6, "pl_ms": 21.3, "detections": 0, "top": [], "slots": [0, 1], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "HEARTBEAT", "t": 1667645713.714, "task": "gesture", "model": "YOLOv8n-Gesture7", "frames": 186, "rejected": 0, "inf_ms": 1203.4, "pl_ms": 21.3, "detections": 0, "top": [], "slots": [0, 1], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "HEARTBEAT", "t": 1667645719.043, "task": "gesture", "model": "YOLOv8n-Gesture7", "frames": 191, "rejected": 0, "inf_ms": 1069.9, "pl_ms": 21.3, "detections": 0, "top": [], "slots": [0, 1], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "GESTURE_SHOWN", "t": 1667645721.198, "name": "Stop", "score": 0.715, "hold": 1.5}
+{"event": "GESTURE_CLEAR", "t": 1667645724.067, "name": "Stop"}
+{"event": "HEARTBEAT", "t": 1667645724.068, "task": "gesture", "model": "YOLOv8n-Gesture7", "frames": 195, "rejected": 0, "inf_ms": 1773.2, "pl_ms": 21.4, "detections": 1, "top": [{"name": "Stop", "score": 0.6733}], "slots": [2, 0], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "HEARTBEAT", "t": 1667645729.925, "task": "gesture", "model": "YOLOv8n-Gesture7", "frames": 200, "rejected": 0, "inf_ms": 1071.5, "pl_ms": 22.4, "detections": 1, "top": [{"name": "Up", "score": 0.6629}], "slots": [2, 0], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "HEARTBEAT", "t": 1667645735.335, "task": "gesture", "model": "YOLOv8n-Gesture7", "frames": 205, "rejected": 0, "inf_ms": 1085.9, "pl_ms": 22.4, "detections": 1, "top": [{"name": "Thumbs up", "score": 0.6517}], "slots": [0, 1], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "HEARTBEAT", "t": 1667645740.919, "task": "gesture", "model": "YOLOv8n-Gesture7", "frames": 210, "rejected": 0, "inf_ms": 1071.1, "pl_ms": 21.4, "detections": 1, "top": [{"name": "Up", "score": 0.5637}], "slots": [1, 2], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "VDMA_ALIAS_RECOVERED", "t": 1667645744.232, "slots": [2, 0]}
+{"event": "HEARTBEAT", "t": 1667645746.459, "task": "gesture", "model": "YOLOv8n-Gesture7", "frames": 215, "rejected": 0, "inf_ms": 1094.2, "pl_ms": 21.3, "detections": 1, "top": [{"name": "Thumbs up", "score": 0.6472}], "slots": [2, 0], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "VDMA_ALIAS_RECOVERED", "t": 1667645746.46, "slots": [2, 0]}
+{"event": "VDMA_ALIAS_RECOVERED", "t": 1667645748.683, "slots": [2, 0]}
+{"event": "HEARTBEAT", "t": 1667645752.068, "task": "gesture", "model": "YOLOv8n-Gesture7", "frames": 220, "rejected": 0, "inf_ms": 1138.4, "pl_ms": 21.9, "detections": 1, "top": [{"name": "Up", "score": 0.687}], "slots": [2, 1], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "HEARTBEAT", "t": 1667645757.587, "task": "gesture", "model": "YOLOv8n-Gesture7", "frames": 225, "rejected": 0, "inf_ms": 1091.3, "pl_ms": 21.3, "detections": 1, "top": [{"name": "Up", "score": 0.6768}], "slots": [2, 1], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "VDMA_ALIAS_RECOVERED", "t": 1667645759.819, "slots": [2, 0]}
+{"event": "GESTURE_SHOWN", "t": 1667645760.93, "name": "Right", "score": 0.7135, "hold": 1.5}
+{"event": "HEARTBEAT", "t": 1667645763.146, "task": "gesture", "model": "YOLOv8n-Gesture7", "frames": 230, "rejected": 0, "inf_ms": 1093.2, "pl_ms": 21.3, "detections": 1, "top": [{"name": "Right", "score": 0.7145}], "slots": [2, 1], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "VDMA_STALL_WARN", "t": 1667645764.382, "channel": 0, "slots": [2, 1]}
+{"event": "GESTURE_CLEAR", "t": 1667645766.587, "name": "Right"}
+{"event": "HEARTBEAT", "t": 1667645768.79, "task": "gesture", "model": "YOLOv8n-Gesture7", "frames": 235, "rejected": 0, "inf_ms": 1092.9, "pl_ms": 21.3, "detections": 1, "top": [{"name": "Left", "score": 0.6878}], "slots": [1, 0], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "HEARTBEAT", "t": 1667645774.298, "task": "gesture", "model": "YOLOv8n-Gesture7", "frames": 240, "rejected": 0, "inf_ms": 1091.5, "pl_ms": 22.4, "detections": 0, "top": [], "slots": [0, 1], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "VDMA_ALIAS_RECOVERED", "t": 1667645775.427, "slots": [0, 1]}
+{"event": "HEARTBEAT", "t": 1667645780.289, "task": "gesture", "model": "YOLOv8n-Gesture7", "frames": 245, "rejected": 0, "inf_ms": 1480.0, "pl_ms": 22.4, "detections": 0, "top": [], "slots": [1, 2], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "VDMA_ALIAS_RECOVERED", "t": 1667645782.498, "slots": [0, 1]}
+{"event": "HEARTBEAT", "t": 1667645785.85, "task": "gesture", "model": "YOLOv8n-Gesture7", "frames": 250, "rejected": 0, "inf_ms": 1090.5, "pl_ms": 21.3, "detections": 0, "top": [], "slots": [0, 1], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "HEARTBEAT", "t": 1667645791.937, "task": "gesture", "model": "YOLOv8n-Gesture7", "frames": 255, "rejected": 0, "inf_ms": 1090.7, "pl_ms": 22.4, "detections": 0, "top": [], "slots": [1, 2], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "HEARTBEAT", "t": 1667645797.441, "task": "gesture", "model": "YOLOv8n-Gesture7", "frames": 260, "rejected": 0, "inf_ms": 1091.0, "pl_ms": 22.4, "detections": 0, "top": [], "slots": [2, 0], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "VDMA_ALIAS_RECOVERED", "t": 1667645797.442, "slots": [2, 0]}
+{"event": "HEARTBEAT", "t": 1667645803.416, "task": "gesture", "model": "YOLOv8n-Gesture7", "frames": 265, "rejected": 0, "inf_ms": 1068.5, "pl_ms": 21.4, "detections": 0, "top": [], "slots": [0, 1], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "HEARTBEAT", "t": 1667645808.417, "task": "gesture", "model": "YOLOv8n-Gesture7", "frames": 269, "rejected": 0, "inf_ms": 1089.4, "pl_ms": 21.3, "detections": 0, "top": [], "slots": [0, 1], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "HEARTBEAT", "t": 1667645814.372, "task": "gesture", "model": "YOLOv8n-Gesture7", "frames": 274, "rejected": 0, "inf_ms": 1095.1, "pl_ms": 21.4, "detections": 0, "top": [], "slots": [0, 1], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "HEARTBEAT", "t": 1667645819.764, "task": "gesture", "model": "YOLOv8n-Gesture7", "frames": 279, "rejected": 0, "inf_ms": 1070.7, "pl_ms": 21.4, "detections": 0, "top": [], "slots": [2, 0], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "HEARTBEAT", "t": 1667645825.807, "task": "gesture", "model": "YOLOv8n-Gesture7", "frames": 284, "rejected": 0, "inf_ms": 1072.6, "pl_ms": 21.4, "detections": 0, "top": [], "slots": [0, 2], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "HEARTBEAT", "t": 1667645831.65, "task": "gesture", "model": "YOLOv8n-Gesture7", "frames": 289, "rejected": 0, "inf_ms": 1079.8, "pl_ms": 21.4, "detections": 0, "top": [], "slots": [0, 1], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "HEARTBEAT", "t": 1667645837.663, "task": "gesture", "model": "YOLOv8n-Gesture7", "frames": 294, "rejected": 0, "inf_ms": 1227.6, "pl_ms": 21.3, "detections": 0, "top": [], "slots": [2, 1], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "VDMA_ALIAS_RECOVERED", "t": 1667645838.759, "slots": [0, 1]}
+{"event": "HEARTBEAT", "t": 1667645843.504, "task": "gesture", "model": "YOLOv8n-Gesture7", "frames": 299, "rejected": 0, "inf_ms": 1090.3, "pl_ms": 21.3, "detections": 0, "top": [], "slots": [2, 0], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "VDMA_ALIAS_RECOVERED", "t": 1667645844.61, "slots": [2, 0]}
+{"event": "VDMA_ALIAS_RECOVERED", "t": 1667645847.987, "slots": [0, 1]}
+{"event": "HEARTBEAT", "t": 1667645849.098, "task": "gesture", "model": "YOLOv8n-Gesture7", "frames": 304, "rejected": 0, "inf_ms": 1092.2, "pl_ms": 21.3, "detections": 0, "top": [], "slots": [0, 1], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "HEARTBEAT", "t": 1667645854.776, "task": "gesture", "model": "YOLOv8n-Gesture7", "frames": 309, "rejected": 0, "inf_ms": 1049.3, "pl_ms": 22.5, "detections": 0, "top": [], "slots": [2, 0], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "HEARTBEAT", "t": 1667645860.136, "task": "gesture", "model": "YOLOv8n-Gesture7", "frames": 314, "rejected": 0, "inf_ms": 1069.8, "pl_ms": 21.3, "detections": 0, "top": [], "slots": [1, 0], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}

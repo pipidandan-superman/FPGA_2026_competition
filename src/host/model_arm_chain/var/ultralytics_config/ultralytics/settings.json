@@ -1,0 +1,19 @@
+{
+  "settings_version": "0.0.8",
+  "datasets_dir": "E:\\datasets",
+  "weights_dir": "E:\\competition\\weights",
+  "runs_dir": "E:\\competition\\runs",
+  "uuid": "cc1e48a6d9f74bcdaa8cfddc2cac7a9837b9a720d55b88b53838605c87abdaae",
+  "sync": true,
+  "api_key": "",
+  "openai_api_key": "",
+  "clearml": true,
+  "comet": true,
+  "dvc": true,
+  "mlflow": true,
+  "raytune": true,
+  "tensorboard": false,
+  "wandb": false,
+  "vscode_msg": true,
+  "openvino_msg": true
+}

@@ -1,0 +1,70 @@
+#-----------------------------------------------------------
+# xsim v2025.2 (64-bit)
+# SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+# Start of session at: Tue Nov  3 12:11:42 2026
+# Process ID         : 17416
+# Current directory  : E:/competition/4_metrics/logs/2026-11-02_multitask_fix_run01/sim_negctl_pose
+# Command line       : xsim.exe -mode tcl -source {xsim.dir/work.tb_task_pose_osd/xsim_script.tcl}
+# Log file           : E:/competition/4_metrics/logs/2026-11-02_multitask_fix_run01/sim_negctl_pose/xsim.log
+# Journal file       : E:/competition/4_metrics/logs/2026-11-02_multitask_fix_run01/sim_negctl_pose\xsim.jou
+# Running On         : HC-202510241838
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26200
+# Processor Detail   : AMD Ryzen 5 9600X 6-Core Processor             
+# CPU Frequency      : 3893 MHz
+# CPU Physical cores : 6
+# CPU Logical cores  : 12
+# Host memory        : 33410 MB
+# Swap memory        : 25769 MB
+# Total Virtual      : 59179 MB
+# Available Virtual  : 21920 MB
+#-----------------------------------------------------------
+source xsim.dir/work.tb_task_pose_osd/xsim_script.tcl
+# xsim {work.tb_task_pose_osd} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+GLYPH_IDENTITY_PASS
+POSE_AXI_WRITE addr=008 data=00000002
+POSE_AXI_WRITE addr=00c data=00000001
+POSE_AXI_WRITE addr=040 data=00000064
+POSE_AXI_WRITE addr=044 data=00000104
+POSE_AXI_WRITE addr=048 data=0000005a
+POSE_AXI_WRITE addr=04c data=0000010e
+POSE_AXI_WRITE addr=050 data=00000058
+POSE_AXI_WRITE addr=054 data=000000aa
+POSE_AXI_WRITE addr=058 data=00000064
+POSE_AXI_WRITE addr=05c data=0000005a
+POSE_AXI_WRITE addr=090 data=00000096
+POSE_AXI_WRITE addr=094 data=0000008c
+POSE_AXI_WRITE addr=098 data=0000005a
+POSE_AXI_WRITE addr=09c data=000000be
+POSE_AXI_WRITE addr=0a0 data=0000008c
+POSE_AXI_WRITE addr=0a4 data=0000005a
+POSE_AXI_WRITE addr=0d8 data=0000008c
+POSE_AXI_WRITE addr=0dc data=000000dc
+POSE_AXI_WRITE addr=0e0 data=0000005a
+POSE_AXI_WRITE addr=0e4 data=000000c8
+POSE_AXI_WRITE addr=0e8 data=000000dc
+POSE_AXI_WRITE addr=0ec data=0000005a
+POSE_AXI_WRITE addr=114 data=00000140
+POSE_AXI_WRITE addr=118 data=000000f0
+POSE_AXI_WRITE addr=11c data=0000005a
+POSE_AXI_WRITE addr=240 data=0000012c
+POSE_AXI_WRITE addr=244 data=0000017c
+POSE_AXI_WRITE addr=248 data=000000b4
+POSE_AXI_WRITE addr=24c data=0000012c
+POSE_AXI_WRITE addr=250 data=0000004d
+POSE_AXI_WRITE addr=314 data=00000190
+POSE_AXI_WRITE addr=318 data=00000104
+POSE_AXI_WRITE addr=31c data=00000042
+POSE_17POINT_2PERSON_AXI_PASS
+POSE_AXI_WRITE addr=014 data=00000001
+POSE_AXI_DEBUG kp11=(140,220,90) kp12=(200,220,90)
+POSE_FONT_PIXEL_FAIL code=80 gy=3 x=5 got=0 exp=1
+Fatal: POSE_FONT_PIXEL_MISMATCH code=80 gy=3 x=5
+Time: 82350 ns  Iteration: 0  Process: /tb_task_pose_osd/Always104_23  Scope: tb_task_pose_osd  File: E:/competition/4_metrics/logs/2026-11-02_multitask_fix_run01/tb/tb_task_pose_osd.v Line: 112
+$finish called at time : 82350 ns
+exit
+INFO: [Common 17-206] Exiting xsim at Tue Nov  3 12:11:44 2026...

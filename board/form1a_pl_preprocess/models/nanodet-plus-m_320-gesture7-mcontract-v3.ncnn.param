@@ -1,0 +1,321 @@
+7767517
+319 359
+Input            data                     0 1 data
+Convolution      node_Conv_1792           1 1 data getitem 0=24 1=3 11=3 2=1 12=1 3=2 13=2 4=1 14=1 15=1 16=1 5=1 6=648
+ReLU             node_leaky_relu          1 1 getitem leaky_relu 0=1.000000e-01
+Pooling          node_max_pool2d          1 1 leaky_relu max_pool2d 0=0 1=3 11=3 2=2 12=2 3=1 13=1 14=1 15=1 5=1
+Split            splitncnn_0              1 2 max_pool2d max_pool2d_splitncnn_0 max_pool2d_splitncnn_1
+ConvolutionDepthWise node_Conv_1794           1 1 max_pool2d_splitncnn_1 getitem_3 0=24 1=3 11=3 2=1 12=1 3=2 13=2 4=1 14=1 15=1 16=1 5=1 6=216 7=24
+Convolution      node_Conv_1796           1 1 getitem_3 getitem_6 0=58 1=1 11=1 2=1 12=1 3=1 13=1 4=0 14=0 15=0 16=0 5=1 6=1392
+ReLU             node_leaky_relu_1        1 1 getitem_6 leaky_relu_1 0=1.000000e-01
+Convolution      node_Conv_1798           1 1 max_pool2d_splitncnn_0 getitem_9 0=58 1=1 11=1 2=1 12=1 3=1 13=1 4=0 14=0 15=0 16=0 5=1 6=1392
+ReLU             node_leaky_relu_2        1 1 getitem_9 leaky_relu_2 0=1.000000e-01
+ConvolutionDepthWise node_Conv_1800           1 1 leaky_relu_2 getitem_12 0=58 1=3 11=3 2=1 12=1 3=2 13=2 4=1 14=1 15=1 16=1 5=1 6=522 7=58
+Convolution      node_Conv_1802           1 1 getitem_12 getitem_15 0=58 1=1 11=1 2=1 12=1 3=1 13=1 4=0 14=0 15=0 16=0 5=1 6=3364
+ReLU             node_leaky_relu_3        1 1 getitem_15 leaky_relu_3 0=1.000000e-01
+Concat           node_cat                 2 1 leaky_relu_1 leaky_relu_3 cat 0=0
+ShuffleChannel   node_view_1              1 1 cat view_1 0=2 1=0
+Split            splitncnn_1              1 2 view_1 view_1_splitncnn_0 view_1_splitncnn_1
+Crop             node_Split_1423_slice0   1 1 view_1_splitncnn_1 split_split_0 -23309=1,0 -23310=1,58 -23311=1,0
+Crop             node_Split_1423_slice1   1 1 view_1_splitncnn_0 split_split_1 -23309=1,58 -23310=1,116 -23311=1,0
+Convolution      node_Conv_1804           1 1 split_split_1 getitem_20 0=58 1=1 11=1 2=1 12=1 3=1 13=1 4=0 14=0 15=0 16=0 5=1 6=3364
+ReLU             node_leaky_relu_4        1 1 getitem_20 leaky_relu_4 0=1.000000e-01
+ConvolutionDepthWise node_Conv_1806           1 1 leaky_relu_4 getitem_23 0=58 1=3 11=3 2=1 12=1 3=1 13=1 4=1 14=1 15=1 16=1 5=1 6=522 7=58
+Convolution      node_Conv_1808           1 1 getitem_23 getitem_26 0=58 1=1 11=1 2=1 12=1 3=1 13=1 4=0 14=0 15=0 16=0 5=1 6=3364
+ReLU             node_leaky_relu_5        1 1 getitem_26 leaky_relu_5 0=1.000000e-01
+Concat           node_cat_1               2 1 split_split_0 leaky_relu_5 cat_1 0=0
+ShuffleChannel   node_view_3              1 1 cat_1 view_3 0=2 1=0
+Split            splitncnn_2              1 2 view_3 view_3_splitncnn_0 view_3_splitncnn_1
+Crop             node_Split_1436_slice0   1 1 view_3_splitncnn_1 split_1_split_0 -23309=1,0 -23310=1,58 -23311=1,0
+Crop             node_Split_1436_slice1   1 1 view_3_splitncnn_0 split_1_split_1 -23309=1,58 -23310=1,116 -23311=1,0
+Convolution      node_Conv_1810           1 1 split_1_split_1 getitem_31 0=58 1=1 11=1 2=1 12=1 3=1 13=1 4=0 14=0 15=0 16=0 5=1 6=3364
+ReLU             node_leaky_relu_6        1 1 getitem_31 leaky_relu_6 0=1.000000e-01
+ConvolutionDepthWise node_Conv_1812           1 1 leaky_relu_6 getitem_34 0=58 1=3 11=3 2=1 12=1 3=1 13=1 4=1 14=1 15=1 16=1 5=1 6=522 7=58
+Convolution      node_Conv_1814           1 1 getitem_34 getitem_37 0=58 1=1 11=1 2=1 12=1 3=1 13=1 4=0 14=0 15=0 16=0 5=1 6=3364
+ReLU             node_leaky_relu_7        1 1 getitem_37 leaky_relu_7 0=1.000000e-01
+Concat           node_cat_2               2 1 split_1_split_0 leaky_relu_7 cat_2 0=0
+ShuffleChannel   node_view_5              1 1 cat_2 view_5 0=2 1=0
+Split            splitncnn_3              1 2 view_5 view_5_splitncnn_0 view_5_splitncnn_1
+Crop             node_Split_1449_slice0   1 1 view_5_splitncnn_1 split_2_split_0 -23309=1,0 -23310=1,58 -23311=1,0
+Crop             node_Split_1449_slice1   1 1 view_5_splitncnn_0 split_2_split_1 -23309=1,58 -23310=1,116 -23311=1,0
+Convolution      node_Conv_1816           1 1 split_2_split_1 getitem_42 0=58 1=1 11=1 2=1 12=1 3=1 13=1 4=0 14=0 15=0 16=0 5=1 6=3364
+ReLU             node_leaky_relu_8        1 1 getitem_42 leaky_relu_8 0=1.000000e-01
+ConvolutionDepthWise node_Conv_1818           1 1 leaky_relu_8 getitem_45 0=58 1=3 11=3 2=1 12=1 3=1 13=1 4=1 14=1 15=1 16=1 5=1 6=522 7=58
+Convolution      node_Conv_1820           1 1 getitem_45 getitem_48 0=58 1=1 11=1 2=1 12=1 3=1 13=1 4=0 14=0 15=0 16=0 5=1 6=3364
+ReLU             node_leaky_relu_9        1 1 getitem_48 leaky_relu_9 0=1.000000e-01
+Concat           node_cat_3               2 1 split_2_split_0 leaky_relu_9 cat_3 0=0
+ShuffleChannel   node_view_7              1 1 cat_3 view_7 0=2 1=0
+Split            splitncnn_4              1 3 view_7 view_7_splitncnn_0 view_7_splitncnn_1 view_7_splitncnn_2
+ConvolutionDepthWise node_Conv_1822           1 1 view_7_splitncnn_2 getitem_51 0=116 1=3 11=3 2=1 12=1 3=2 13=2 4=1 14=1 15=1 16=1 5=1 6=1044 7=116
+Convolution      node_Conv_1824           1 1 getitem_51 getitem_54 0=116 1=1 11=1 2=1 12=1 3=1 13=1 4=0 14=0 15=0 16=0 5=1 6=13456
+ReLU             node_leaky_relu_10       1 1 getitem_54 leaky_relu_10 0=1.000000e-01
+Convolution      node_Conv_1826           1 1 view_7_splitncnn_1 getitem_57 0=116 1=1 11=1 2=1 12=1 3=1 13=1 4=0 14=0 15=0 16=0 5=1 6=13456
+ReLU             node_leaky_relu_11       1 1 getitem_57 leaky_relu_11 0=1.000000e-01
+ConvolutionDepthWise node_Conv_1828           1 1 leaky_relu_11 getitem_60 0=116 1=3 11=3 2=1 12=1 3=2 13=2 4=1 14=1 15=1 16=1 5=1 6=1044 7=116
+Convolution      node_Conv_1830           1 1 getitem_60 getitem_63 0=116 1=1 11=1 2=1 12=1 3=1 13=1 4=0 14=0 15=0 16=0 5=1 6=13456
+ReLU             node_leaky_relu_12       1 1 getitem_63 leaky_relu_12 0=1.000000e-01
+Concat           node_cat_4               2 1 leaky_relu_10 leaky_relu_12 cat_4 0=0
+ShuffleChannel   node_view_9              1 1 cat_4 view_9 0=2 1=0
+Split            splitncnn_5              1 2 view_9 view_9_splitncnn_0 view_9_splitncnn_1
+Crop             node_Split_1477_slice0   1 1 view_9_splitncnn_1 split_3_split_0 -23309=1,0 -23310=1,116 -23311=1,0
+Crop             node_Split_1477_slice1   1 1 view_9_splitncnn_0 split_3_split_1 -23309=1,116 -23310=1,232 -23311=1,0
+Convolution      node_Conv_1832           1 1 split_3_split_1 getitem_68 0=116 1=1 11=1 2=1 12=1 3=1 13=1 4=0 14=0 15=0 16=0 5=1 6=13456
+ReLU             node_leaky_relu_13       1 1 getitem_68 leaky_relu_13 0=1.000000e-01
+ConvolutionDepthWise node_Conv_1834           1 1 leaky_relu_13 getitem_71 0=116 1=3 11=3 2=1 12=1 3=1 13=1 4=1 14=1 15=1 16=1 5=1 6=1044 7=116
+Convolution      node_Conv_1836           1 1 getitem_71 getitem_74 0=116 1=1 11=1 2=1 12=1 3=1 13=1 4=0 14=0 15=0 16=0 5=1 6=13456
+ReLU             node_leaky_relu_14       1 1 getitem_74 leaky_relu_14 0=1.000000e-01
+Concat           node_cat_5               2 1 split_3_split_0 leaky_relu_14 cat_5 0=0
+ShuffleChannel   node_view_11             1 1 cat_5 view_11 0=2 1=0
+Split            splitncnn_6              1 2 view_11 view_11_splitncnn_0 view_11_splitncnn_1
+Crop             node_Split_1490_slice0   1 1 view_11_splitncnn_1 split_4_split_0 -23309=1,0 -23310=1,116 -23311=1,0
+Crop             node_Split_1490_slice1   1 1 view_11_splitncnn_0 split_4_split_1 -23309=1,116 -23310=1,232 -23311=1,0
+Convolution      node_Conv_1838           1 1 split_4_split_1 getitem_79 0=116 1=1 11=1 2=1 12=1 3=1 13=1 4=0 14=0 15=0 16=0 5=1 6=13456
+ReLU             node_leaky_relu_15       1 1 getitem_79 leaky_relu_15 0=1.000000e-01
+ConvolutionDepthWise node_Conv_1840           1 1 leaky_relu_15 getitem_82 0=116 1=3 11=3 2=1 12=1 3=1 13=1 4=1 14=1 15=1 16=1 5=1 6=1044 7=116
+Convolution      node_Conv_1842           1 1 getitem_82 getitem_85 0=116 1=1 11=1 2=1 12=1 3=1 13=1 4=0 14=0 15=0 16=0 5=1 6=13456
+ReLU             node_leaky_relu_16       1 1 getitem_85 leaky_relu_16 0=1.000000e-01
+Concat           node_cat_6               2 1 split_4_split_0 leaky_relu_16 cat_6 0=0
+ShuffleChannel   node_view_13             1 1 cat_6 view_13 0=2 1=0
+Split            splitncnn_7              1 2 view_13 view_13_splitncnn_0 view_13_splitncnn_1
+Crop             node_Split_1503_slice0   1 1 view_13_splitncnn_1 split_5_split_0 -23309=1,0 -23310=1,116 -23311=1,0
+Crop             node_Split_1503_slice1   1 1 view_13_splitncnn_0 split_5_split_1 -23309=1,116 -23310=1,232 -23311=1,0
+Convolution      node_Conv_1844           1 1 split_5_split_1 getitem_90 0=116 1=1 11=1 2=1 12=1 3=1 13=1 4=0 14=0 15=0 16=0 5=1 6=13456
+ReLU             node_leaky_relu_17       1 1 getitem_90 leaky_relu_17 0=1.000000e-01
+ConvolutionDepthWise node_Conv_1846           1 1 leaky_relu_17 getitem_93 0=116 1=3 11=3 2=1 12=1 3=1 13=1 4=1 14=1 15=1 16=1 5=1 6=1044 7=116
+Convolution      node_Conv_1848           1 1 getitem_93 getitem_96 0=116 1=1 11=1 2=1 12=1 3=1 13=1 4=0 14=0 15=0 16=0 5=1 6=13456
+ReLU             node_leaky_relu_18       1 1 getitem_96 leaky_relu_18 0=1.000000e-01
+Concat           node_cat_7               2 1 split_5_split_0 leaky_relu_18 cat_7 0=0
+ShuffleChannel   node_view_15             1 1 cat_7 view_15 0=2 1=0
+Split            splitncnn_8              1 2 view_15 view_15_splitncnn_0 view_15_splitncnn_1
+Crop             node_Split_1516_slice0   1 1 view_15_splitncnn_1 split_6_split_0 -23309=1,0 -23310=1,116 -23311=1,0
+Crop             node_Split_1516_slice1   1 1 view_15_splitncnn_0 split_6_split_1 -23309=1,116 -23310=1,232 -23311=1,0
+Convolution      node_Conv_1850           1 1 split_6_split_1 getitem_101 0=116 1=1 11=1 2=1 12=1 3=1 13=1 4=0 14=0 15=0 16=0 5=1 6=13456
+ReLU             node_leaky_relu_19       1 1 getitem_101 leaky_relu_19 0=1.000000e-01
+ConvolutionDepthWise node_Conv_1852           1 1 leaky_relu_19 getitem_104 0=116 1=3 11=3 2=1 12=1 3=1 13=1 4=1 14=1 15=1 16=1 5=1 6=1044 7=116
+Convolution      node_Conv_1854           1 1 getitem_104 getitem_107 0=116 1=1 11=1 2=1 12=1 3=1 13=1 4=0 14=0 15=0 16=0 5=1 6=13456
+ReLU             node_leaky_relu_20       1 1 getitem_107 leaky_relu_20 0=1.000000e-01
+Concat           node_cat_8               2 1 split_6_split_0 leaky_relu_20 cat_8 0=0
+ShuffleChannel   node_view_17             1 1 cat_8 view_17 0=2 1=0
+Split            splitncnn_9              1 2 view_17 view_17_splitncnn_0 view_17_splitncnn_1
+Crop             node_Split_1529_slice0   1 1 view_17_splitncnn_1 split_7_split_0 -23309=1,0 -23310=1,116 -23311=1,0
+Crop             node_Split_1529_slice1   1 1 view_17_splitncnn_0 split_7_split_1 -23309=1,116 -23310=1,232 -23311=1,0
+Convolution      node_Conv_1856           1 1 split_7_split_1 getitem_112 0=116 1=1 11=1 2=1 12=1 3=1 13=1 4=0 14=0 15=0 16=0 5=1 6=13456
+ReLU             node_leaky_relu_21       1 1 getitem_112 leaky_relu_21 0=1.000000e-01
+ConvolutionDepthWise node_Conv_1858           1 1 leaky_relu_21 getitem_115 0=116 1=3 11=3 2=1 12=1 3=1 13=1 4=1 14=1 15=1 16=1 5=1 6=1044 7=116
+Convolution      node_Conv_1860           1 1 getitem_115 getitem_118 0=116 1=1 11=1 2=1 12=1 3=1 13=1 4=0 14=0 15=0 16=0 5=1 6=13456
+ReLU             node_leaky_relu_22       1 1 getitem_118 leaky_relu_22 0=1.000000e-01
+Concat           node_cat_9               2 1 split_7_split_0 leaky_relu_22 cat_9 0=0
+ShuffleChannel   node_view_19             1 1 cat_9 view_19 0=2 1=0
+Split            splitncnn_10             1 2 view_19 view_19_splitncnn_0 view_19_splitncnn_1
+Crop             node_Split_1542_slice0   1 1 view_19_splitncnn_1 split_8_split_0 -23309=1,0 -23310=1,116 -23311=1,0
+Crop             node_Split_1542_slice1   1 1 view_19_splitncnn_0 split_8_split_1 -23309=1,116 -23310=1,232 -23311=1,0
+Convolution      node_Conv_1862           1 1 split_8_split_1 getitem_123 0=116 1=1 11=1 2=1 12=1 3=1 13=1 4=0 14=0 15=0 16=0 5=1 6=13456
+ReLU             node_leaky_relu_23       1 1 getitem_123 leaky_relu_23 0=1.000000e-01
+ConvolutionDepthWise node_Conv_1864           1 1 leaky_relu_23 getitem_126 0=116 1=3 11=3 2=1 12=1 3=1 13=1 4=1 14=1 15=1 16=1 5=1 6=1044 7=116
+Convolution      node_Conv_1866           1 1 getitem_126 getitem_129 0=116 1=1 11=1 2=1 12=1 3=1 13=1 4=0 14=0 15=0 16=0 5=1 6=13456
+ReLU             node_leaky_relu_24       1 1 getitem_129 leaky_relu_24 0=1.000000e-01
+Concat           node_cat_10              2 1 split_8_split_0 leaky_relu_24 cat_10 0=0
+ShuffleChannel   node_view_21             1 1 cat_10 view_21 0=2 1=0
+Split            splitncnn_11             1 2 view_21 view_21_splitncnn_0 view_21_splitncnn_1
+Crop             node_Split_1555_slice0   1 1 view_21_splitncnn_1 split_9_split_0 -23309=1,0 -23310=1,116 -23311=1,0
+Crop             node_Split_1555_slice1   1 1 view_21_splitncnn_0 split_9_split_1 -23309=1,116 -23310=1,232 -23311=1,0
+Convolution      node_Conv_1868           1 1 split_9_split_1 getitem_134 0=116 1=1 11=1 2=1 12=1 3=1 13=1 4=0 14=0 15=0 16=0 5=1 6=13456
+ReLU             node_leaky_relu_25       1 1 getitem_134 leaky_relu_25 0=1.000000e-01
+ConvolutionDepthWise node_Conv_1870           1 1 leaky_relu_25 getitem_137 0=116 1=3 11=3 2=1 12=1 3=1 13=1 4=1 14=1 15=1 16=1 5=1 6=1044 7=116
+Convolution      node_Conv_1872           1 1 getitem_137 getitem_140 0=116 1=1 11=1 2=1 12=1 3=1 13=1 4=0 14=0 15=0 16=0 5=1 6=13456
+ReLU             node_leaky_relu_26       1 1 getitem_140 leaky_relu_26 0=1.000000e-01
+Concat           node_cat_11              2 1 split_9_split_0 leaky_relu_26 cat_11 0=0
+ShuffleChannel   node_view_23             1 1 cat_11 view_23 0=2 1=0
+Split            splitncnn_12             1 3 view_23 view_23_splitncnn_0 view_23_splitncnn_1 view_23_splitncnn_2
+ConvolutionDepthWise node_Conv_1874           1 1 view_23_splitncnn_2 getitem_143 0=232 1=3 11=3 2=1 12=1 3=2 13=2 4=1 14=1 15=1 16=1 5=1 6=2088 7=232
+Convolution      node_Conv_1876           1 1 getitem_143 getitem_146 0=232 1=1 11=1 2=1 12=1 3=1 13=1 4=0 14=0 15=0 16=0 5=1 6=53824
+ReLU             node_leaky_relu_27       1 1 getitem_146 leaky_relu_27 0=1.000000e-01
+Convolution      node_Conv_1878           1 1 view_23_splitncnn_1 getitem_149 0=232 1=1 11=1 2=1 12=1 3=1 13=1 4=0 14=0 15=0 16=0 5=1 6=53824
+ReLU             node_leaky_relu_28       1 1 getitem_149 leaky_relu_28 0=1.000000e-01
+ConvolutionDepthWise node_Conv_1880           1 1 leaky_relu_28 getitem_152 0=232 1=3 11=3 2=1 12=1 3=2 13=2 4=1 14=1 15=1 16=1 5=1 6=2088 7=232
+Convolution      node_Conv_1882           1 1 getitem_152 getitem_155 0=232 1=1 11=1 2=1 12=1 3=1 13=1 4=0 14=0 15=0 16=0 5=1 6=53824
+ReLU             node_leaky_relu_29       1 1 getitem_155 leaky_relu_29 0=1.000000e-01
+Concat           node_cat_12              2 1 leaky_relu_27 leaky_relu_29 cat_12 0=0
+ShuffleChannel   node_view_25             1 1 cat_12 view_25 0=2 1=0
+Split            splitncnn_13             1 2 view_25 view_25_splitncnn_0 view_25_splitncnn_1
+Crop             node_Split_1583_slice0   1 1 view_25_splitncnn_1 split_10_split_0 -23309=1,0 -23310=1,232 -23311=1,0
+Crop             node_Split_1583_slice1   1 1 view_25_splitncnn_0 split_10_split_1 -23309=1,232 -23310=1,464 -23311=1,0
+Convolution      node_Conv_1884           1 1 split_10_split_1 getitem_160 0=232 1=1 11=1 2=1 12=1 3=1 13=1 4=0 14=0 15=0 16=0 5=1 6=53824
+ReLU             node_leaky_relu_30       1 1 getitem_160 leaky_relu_30 0=1.000000e-01
+ConvolutionDepthWise node_Conv_1886           1 1 leaky_relu_30 getitem_163 0=232 1=3 11=3 2=1 12=1 3=1 13=1 4=1 14=1 15=1 16=1 5=1 6=2088 7=232
+Convolution      node_Conv_1888           1 1 getitem_163 getitem_166 0=232 1=1 11=1 2=1 12=1 3=1 13=1 4=0 14=0 15=0 16=0 5=1 6=53824
+ReLU             node_leaky_relu_31       1 1 getitem_166 leaky_relu_31 0=1.000000e-01
+Concat           node_cat_13              2 1 split_10_split_0 leaky_relu_31 cat_13 0=0
+ShuffleChannel   node_view_27             1 1 cat_13 view_27 0=2 1=0
+Split            splitncnn_14             1 2 view_27 view_27_splitncnn_0 view_27_splitncnn_1
+Crop             node_Split_1596_slice0   1 1 view_27_splitncnn_1 split_11_split_0 -23309=1,0 -23310=1,232 -23311=1,0
+Crop             node_Split_1596_slice1   1 1 view_27_splitncnn_0 split_11_split_1 -23309=1,232 -23310=1,464 -23311=1,0
+Convolution      node_Conv_1890           1 1 split_11_split_1 getitem_171 0=232 1=1 11=1 2=1 12=1 3=1 13=1 4=0 14=0 15=0 16=0 5=1 6=53824
+ReLU             node_leaky_relu_32       1 1 getitem_171 leaky_relu_32 0=1.000000e-01
+ConvolutionDepthWise node_Conv_1892           1 1 leaky_relu_32 getitem_174 0=232 1=3 11=3 2=1 12=1 3=1 13=1 4=1 14=1 15=1 16=1 5=1 6=2088 7=232
+Convolution      node_Conv_1894           1 1 getitem_174 getitem_177 0=232 1=1 11=1 2=1 12=1 3=1 13=1 4=0 14=0 15=0 16=0 5=1 6=53824
+ReLU             node_leaky_relu_33       1 1 getitem_177 leaky_relu_33 0=1.000000e-01
+Concat           node_cat_14              2 1 split_11_split_0 leaky_relu_33 cat_14 0=0
+ShuffleChannel   node_view_29             1 1 cat_14 view_29 0=2 1=0
+Split            splitncnn_15             1 2 view_29 view_29_splitncnn_0 view_29_splitncnn_1
+Crop             node_Split_1609_slice0   1 1 view_29_splitncnn_1 split_12_split_0 -23309=1,0 -23310=1,232 -23311=1,0
+Crop             node_Split_1609_slice1   1 1 view_29_splitncnn_0 split_12_split_1 -23309=1,232 -23310=1,464 -23311=1,0
+Convolution      node_Conv_1896           1 1 split_12_split_1 getitem_182 0=232 1=1 11=1 2=1 12=1 3=1 13=1 4=0 14=0 15=0 16=0 5=1 6=53824
+ReLU             node_leaky_relu_34       1 1 getitem_182 leaky_relu_34 0=1.000000e-01
+ConvolutionDepthWise node_Conv_1898           1 1 leaky_relu_34 getitem_185 0=232 1=3 11=3 2=1 12=1 3=1 13=1 4=1 14=1 15=1 16=1 5=1 6=2088 7=232
+Convolution      node_Conv_1900           1 1 getitem_185 getitem_188 0=232 1=1 11=1 2=1 12=1 3=1 13=1 4=0 14=0 15=0 16=0 5=1 6=53824
+ReLU             node_leaky_relu_35       1 1 getitem_188 leaky_relu_35 0=1.000000e-01
+Concat           node_cat_15              2 1 split_12_split_0 leaky_relu_35 cat_15 0=0
+ShuffleChannel   node_view_31             1 1 cat_15 view_31 0=2 1=0
+Convolution      node_Conv_1902           1 1 view_7_splitncnn_0 getitem_191 0=96 1=1 11=1 2=1 12=1 3=1 13=1 4=0 14=0 15=0 16=0 5=1 6=11136
+ReLU             node_leaky_relu_36       1 1 getitem_191 leaky_relu_36 0=1.000000e-01
+Convolution      node_Conv_1904           1 1 view_23_splitncnn_0 getitem_194 0=96 1=1 11=1 2=1 12=1 3=1 13=1 4=0 14=0 15=0 16=0 5=1 6=22272
+ReLU             node_leaky_relu_37       1 1 getitem_194 leaky_relu_37 0=1.000000e-01
+Convolution      node_Conv_1906           1 1 view_31 getitem_197 0=96 1=1 11=1 2=1 12=1 3=1 13=1 4=0 14=0 15=0 16=0 5=1 6=44544
+ReLU             node_leaky_relu_38       1 1 getitem_197 leaky_relu_38 0=1.000000e-01
+Split            splitncnn_16             1 3 leaky_relu_38 leaky_relu_38_splitncnn_0 leaky_relu_38_splitncnn_1 leaky_relu_38_splitncnn_2
+Interp           node_upsample_bilinear2d 1 1 leaky_relu_38_splitncnn_2 upsample_bilinear2d 0=2 1=2.000000e+00 2=2.000000e+00 3=0 4=0 6=0
+Concat           node_cat_16              2 1 upsample_bilinear2d leaky_relu_37 cat_16 0=0
+Split            splitncnn_17             1 2 cat_16 cat_16_splitncnn_0 cat_16_splitncnn_1
+Convolution      node_Conv_1908           1 1 cat_16_splitncnn_1 getitem_200 0=48 1=1 11=1 2=1 12=1 3=1 13=1 4=0 14=0 15=0 16=0 5=1 6=9216
+ReLU             node_leaky_relu_39       1 1 getitem_200 leaky_relu_39 0=1.000000e-01
+Split            splitncnn_18             1 2 leaky_relu_39 leaky_relu_39_splitncnn_0 leaky_relu_39_splitncnn_1
+ConvolutionDepthWise node_Conv_1910           1 1 leaky_relu_39_splitncnn_1 getitem_203 0=48 1=3 11=3 2=1 12=1 3=1 13=1 4=1 14=1 15=1 16=1 5=1 6=432 7=48
+ReLU             node_leaky_relu_40       1 1 getitem_203 leaky_relu_40 0=1.000000e-01
+Concat           node_cat_17              2 1 leaky_relu_39_splitncnn_0 leaky_relu_40 cat_17 0=0
+Convolution      node_Conv_1912           1 1 cat_17 getitem_206 0=48 1=1 11=1 2=1 12=1 3=1 13=1 4=0 14=0 15=0 16=0 5=1 6=4608
+Split            splitncnn_19             1 2 getitem_206 getitem_206_splitncnn_0 getitem_206_splitncnn_1
+ConvolutionDepthWise node_Conv_1914           1 1 getitem_206_splitncnn_1 getitem_209 0=48 1=3 11=3 2=1 12=1 3=1 13=1 4=1 14=1 15=1 16=1 5=1 6=432 7=48
+Concat           node_cat_18              2 1 getitem_206_splitncnn_0 getitem_209 cat_18 0=0
+ConvolutionDepthWise node_Conv_1916           1 1 cat_16_splitncnn_0 getitem_212 0=192 1=5 11=5 2=1 12=1 3=1 13=1 4=2 14=2 15=2 16=2 5=1 6=4800 7=192
+Convolution      node_Conv_1918           1 1 getitem_212 getitem_215 0=96 1=1 11=1 2=1 12=1 3=1 13=1 4=0 14=0 15=0 16=0 5=1 6=18432
+BinaryOp         node_add                 2 1 cat_18 getitem_215 add 0=0
+Split            splitncnn_20             1 2 add add_splitncnn_0 add_splitncnn_1
+Interp           node_upsample_bilinear2d_1 1 1 add_splitncnn_1 upsample_bilinear2d_1 0=2 1=2.000000e+00 2=2.000000e+00 3=0 4=0 6=0
+Concat           node_cat_19              2 1 upsample_bilinear2d_1 leaky_relu_36 cat_19 0=0
+Split            splitncnn_21             1 2 cat_19 cat_19_splitncnn_0 cat_19_splitncnn_1
+Convolution      node_Conv_1920           1 1 cat_19_splitncnn_1 getitem_218 0=48 1=1 11=1 2=1 12=1 3=1 13=1 4=0 14=0 15=0 16=0 5=1 6=9216
+ReLU             node_leaky_relu_41       1 1 getitem_218 leaky_relu_41 0=1.000000e-01
+Split            splitncnn_22             1 2 leaky_relu_41 leaky_relu_41_splitncnn_0 leaky_relu_41_splitncnn_1
+ConvolutionDepthWise node_Conv_1922           1 1 leaky_relu_41_splitncnn_1 getitem_221 0=48 1=3 11=3 2=1 12=1 3=1 13=1 4=1 14=1 15=1 16=1 5=1 6=432 7=48
+ReLU             node_leaky_relu_42       1 1 getitem_221 leaky_relu_42 0=1.000000e-01
+Concat           node_cat_20              2 1 leaky_relu_41_splitncnn_0 leaky_relu_42 cat_20 0=0
+Convolution      node_Conv_1924           1 1 cat_20 getitem_224 0=48 1=1 11=1 2=1 12=1 3=1 13=1 4=0 14=0 15=0 16=0 5=1 6=4608
+Split            splitncnn_23             1 2 getitem_224 getitem_224_splitncnn_0 getitem_224_splitncnn_1
+ConvolutionDepthWise node_Conv_1926           1 1 getitem_224_splitncnn_1 getitem_227 0=48 1=3 11=3 2=1 12=1 3=1 13=1 4=1 14=1 15=1 16=1 5=1 6=432 7=48
+Concat           node_cat_21              2 1 getitem_224_splitncnn_0 getitem_227 cat_21 0=0
+ConvolutionDepthWise node_Conv_1928           1 1 cat_19_splitncnn_0 getitem_230 0=192 1=5 11=5 2=1 12=1 3=1 13=1 4=2 14=2 15=2 16=2 5=1 6=4800 7=192
+Convolution      node_Conv_1930           1 1 getitem_230 getitem_233 0=96 1=1 11=1 2=1 12=1 3=1 13=1 4=0 14=0 15=0 16=0 5=1 6=18432
+BinaryOp         node_add_1               2 1 cat_21 getitem_233 add_1 0=0
+Split            splitncnn_24             1 2 add_1 add_1_splitncnn_0 add_1_splitncnn_1
+ConvolutionDepthWise node_Conv_1932           1 1 add_1_splitncnn_1 getitem_236 0=96 1=5 11=5 2=1 12=1 3=2 13=2 4=2 14=2 15=2 16=2 5=1 6=2400 7=96
+ReLU             node_leaky_relu_43       1 1 getitem_236 leaky_relu_43 0=1.000000e-01
+Convolution      node_Conv_1934           1 1 leaky_relu_43 getitem_239 0=96 1=1 11=1 2=1 12=1 3=1 13=1 4=0 14=0 15=0 16=0 5=1 6=9216
+ReLU             node_leaky_relu_44       1 1 getitem_239 leaky_relu_44 0=1.000000e-01
+Concat           node_cat_22              2 1 leaky_relu_44 add_splitncnn_0 cat_22 0=0
+Split            splitncnn_25             1 2 cat_22 cat_22_splitncnn_0 cat_22_splitncnn_1
+Convolution      node_Conv_1936           1 1 cat_22_splitncnn_1 getitem_242 0=48 1=1 11=1 2=1 12=1 3=1 13=1 4=0 14=0 15=0 16=0 5=1 6=9216
+ReLU             node_leaky_relu_45       1 1 getitem_242 leaky_relu_45 0=1.000000e-01
+Split            splitncnn_26             1 2 leaky_relu_45 leaky_relu_45_splitncnn_0 leaky_relu_45_splitncnn_1
+ConvolutionDepthWise node_Conv_1938           1 1 leaky_relu_45_splitncnn_1 getitem_245 0=48 1=3 11=3 2=1 12=1 3=1 13=1 4=1 14=1 15=1 16=1 5=1 6=432 7=48
+ReLU             node_leaky_relu_46       1 1 getitem_245 leaky_relu_46 0=1.000000e-01
+Concat           node_cat_23              2 1 leaky_relu_45_splitncnn_0 leaky_relu_46 cat_23 0=0
+Convolution      node_Conv_1940           1 1 cat_23 getitem_248 0=48 1=1 11=1 2=1 12=1 3=1 13=1 4=0 14=0 15=0 16=0 5=1 6=4608
+Split            splitncnn_27             1 2 getitem_248 getitem_248_splitncnn_0 getitem_248_splitncnn_1
+ConvolutionDepthWise node_Conv_1942           1 1 getitem_248_splitncnn_1 getitem_251 0=48 1=3 11=3 2=1 12=1 3=1 13=1 4=1 14=1 15=1 16=1 5=1 6=432 7=48
+Concat           node_cat_24              2 1 getitem_248_splitncnn_0 getitem_251 cat_24 0=0
+ConvolutionDepthWise node_Conv_1944           1 1 cat_22_splitncnn_0 getitem_254 0=192 1=5 11=5 2=1 12=1 3=1 13=1 4=2 14=2 15=2 16=2 5=1 6=4800 7=192
+Convolution      node_Conv_1946           1 1 getitem_254 getitem_257 0=96 1=1 11=1 2=1 12=1 3=1 13=1 4=0 14=0 15=0 16=0 5=1 6=18432
+BinaryOp         node_add_2               2 1 cat_24 getitem_257 add_2 0=0
+Split            splitncnn_28             1 2 add_2 add_2_splitncnn_0 add_2_splitncnn_1
+ConvolutionDepthWise node_Conv_1948           1 1 add_2_splitncnn_1 getitem_260 0=96 1=5 11=5 2=1 12=1 3=2 13=2 4=2 14=2 15=2 16=2 5=1 6=2400 7=96
+ReLU             node_leaky_relu_47       1 1 getitem_260 leaky_relu_47 0=1.000000e-01
+Convolution      node_Conv_1950           1 1 leaky_relu_47 getitem_263 0=96 1=1 11=1 2=1 12=1 3=1 13=1 4=0 14=0 15=0 16=0 5=1 6=9216
+ReLU             node_leaky_relu_48       1 1 getitem_263 leaky_relu_48 0=1.000000e-01
+Concat           node_cat_25              2 1 leaky_relu_48 leaky_relu_38_splitncnn_1 cat_25 0=0
+Split            splitncnn_29             1 2 cat_25 cat_25_splitncnn_0 cat_25_splitncnn_1
+Convolution      node_Conv_1952           1 1 cat_25_splitncnn_1 getitem_266 0=48 1=1 11=1 2=1 12=1 3=1 13=1 4=0 14=0 15=0 16=0 5=1 6=9216
+ReLU             node_leaky_relu_49       1 1 getitem_266 leaky_relu_49 0=1.000000e-01
+Split            splitncnn_30             1 2 leaky_relu_49 leaky_relu_49_splitncnn_0 leaky_relu_49_splitncnn_1
+ConvolutionDepthWise node_Conv_1954           1 1 leaky_relu_49_splitncnn_1 getitem_269 0=48 1=3 11=3 2=1 12=1 3=1 13=1 4=1 14=1 15=1 16=1 5=1 6=432 7=48
+ReLU             node_leaky_relu_50       1 1 getitem_269 leaky_relu_50 0=1.000000e-01
+Concat           node_cat_26              2 1 leaky_relu_49_splitncnn_0 leaky_relu_50 cat_26 0=0
+Convolution      node_Conv_1956           1 1 cat_26 getitem_272 0=48 1=1 11=1 2=1 12=1 3=1 13=1 4=0 14=0 15=0 16=0 5=1 6=4608
+Split            splitncnn_31             1 2 getitem_272 getitem_272_splitncnn_0 getitem_272_splitncnn_1
+ConvolutionDepthWise node_Conv_1958           1 1 getitem_272_splitncnn_1 getitem_275 0=48 1=3 11=3 2=1 12=1 3=1 13=1 4=1 14=1 15=1 16=1 5=1 6=432 7=48
+Concat           node_cat_27              2 1 getitem_272_splitncnn_0 getitem_275 cat_27 0=0
+ConvolutionDepthWise node_Conv_1960           1 1 cat_25_splitncnn_0 getitem_278 0=192 1=5 11=5 2=1 12=1 3=1 13=1 4=2 14=2 15=2 16=2 5=1 6=4800 7=192
+Convolution      node_Conv_1962           1 1 getitem_278 getitem_281 0=96 1=1 11=1 2=1 12=1 3=1 13=1 4=0 14=0 15=0 16=0 5=1 6=18432
+BinaryOp         node_add_3               2 1 cat_27 getitem_281 add_3 0=0
+Split            splitncnn_32             1 2 add_3 add_3_splitncnn_0 add_3_splitncnn_1
+ConvolutionDepthWise node_Conv_1964           1 1 leaky_relu_38_splitncnn_0 getitem_284 0=96 1=5 11=5 2=1 12=1 3=2 13=2 4=2 14=2 15=2 16=2 5=1 6=2400 7=96
+ReLU             node_leaky_relu_51       1 1 getitem_284 leaky_relu_51 0=1.000000e-01
+Convolution      node_Conv_1966           1 1 leaky_relu_51 getitem_287 0=96 1=1 11=1 2=1 12=1 3=1 13=1 4=0 14=0 15=0 16=0 5=1 6=9216
+ReLU             node_leaky_relu_52       1 1 getitem_287 leaky_relu_52 0=1.000000e-01
+ConvolutionDepthWise node_Conv_1968           1 1 add_3_splitncnn_1 getitem_290 0=96 1=5 11=5 2=1 12=1 3=2 13=2 4=2 14=2 15=2 16=2 5=1 6=2400 7=96
+ReLU             node_leaky_relu_53       1 1 getitem_290 leaky_relu_53 0=1.000000e-01
+Convolution      node_Conv_1970           1 1 leaky_relu_53 getitem_293 0=96 1=1 11=1 2=1 12=1 3=1 13=1 4=0 14=0 15=0 16=0 5=1 6=9216
+ReLU             node_leaky_relu_54       1 1 getitem_293 leaky_relu_54 0=1.000000e-01
+BinaryOp         node_add_4               2 1 leaky_relu_52 leaky_relu_54 add_4 0=0
+ConvolutionDepthWise node_Conv_1972           1 1 add_1_splitncnn_0 getitem_296 0=96 1=5 11=5 2=1 12=1 3=1 13=1 4=2 14=2 15=2 16=2 5=1 6=2400 7=96
+ReLU             node_leaky_relu_55       1 1 getitem_296 leaky_relu_55 0=1.000000e-01
+Convolution      node_Conv_1974           1 1 leaky_relu_55 getitem_299 0=96 1=1 11=1 2=1 12=1 3=1 13=1 4=0 14=0 15=0 16=0 5=1 6=9216
+ReLU             node_leaky_relu_56       1 1 getitem_299 leaky_relu_56 0=1.000000e-01
+ConvolutionDepthWise node_Conv_1976           1 1 leaky_relu_56 getitem_302 0=96 1=5 11=5 2=1 12=1 3=1 13=1 4=2 14=2 15=2 16=2 5=1 6=2400 7=96
+ReLU             node_leaky_relu_57       1 1 getitem_302 leaky_relu_57 0=1.000000e-01
+Convolution      node_Conv_1978           1 1 leaky_relu_57 getitem_305 0=96 1=1 11=1 2=1 12=1 3=1 13=1 4=0 14=0 15=0 16=0 5=1 6=9216
+ReLU             node_leaky_relu_58       1 1 getitem_305 leaky_relu_58 0=1.000000e-01
+Convolution      node_conv2d_94           1 1 leaky_relu_58 conv2d_94 0=39 1=1 11=1 2=1 12=1 3=1 13=1 4=0 14=0 15=0 16=0 5=1 6=3744
+Split            splitncnn_33             1 2 conv2d_94 conv2d_94_splitncnn_0 conv2d_94_splitncnn_1
+Crop             node_Split_1739_slice0   1 1 conv2d_94_splitncnn_1 split_with_sizes_split_0 -23309=1,0 -23310=1,7 -23311=1,0
+Crop             node_Split_1739_slice1   1 1 conv2d_94_splitncnn_0 split_with_sizes_split_1 -23309=1,7 -23310=1,39 -23311=1,0
+Sigmoid          node_sigmoid             1 1 split_with_sizes_split_0 sigmoid
+Concat           node_cat_28              2 1 sigmoid split_with_sizes_split_1 cat_28 0=0
+Reshape          node_view_32             1 1 cat_28 view_32 0=1600 1=39
+ConvolutionDepthWise node_Conv_1980           1 1 add_2_splitncnn_0 getitem_310 0=96 1=5 11=5 2=1 12=1 3=1 13=1 4=2 14=2 15=2 16=2 5=1 6=2400 7=96
+ReLU             node_leaky_relu_59       1 1 getitem_310 leaky_relu_59 0=1.000000e-01
+Convolution      node_Conv_1982           1 1 leaky_relu_59 getitem_313 0=96 1=1 11=1 2=1 12=1 3=1 13=1 4=0 14=0 15=0 16=0 5=1 6=9216
+ReLU             node_leaky_relu_60       1 1 getitem_313 leaky_relu_60 0=1.000000e-01
+ConvolutionDepthWise node_Conv_1984           1 1 leaky_relu_60 getitem_316 0=96 1=5 11=5 2=1 12=1 3=1 13=1 4=2 14=2 15=2 16=2 5=1 6=2400 7=96
+ReLU             node_leaky_relu_61       1 1 getitem_316 leaky_relu_61 0=1.000000e-01
+Convolution      node_Conv_1986           1 1 leaky_relu_61 getitem_319 0=96 1=1 11=1 2=1 12=1 3=1 13=1 4=0 14=0 15=0 16=0 5=1 6=9216
+ReLU             node_leaky_relu_62       1 1 getitem_319 leaky_relu_62 0=1.000000e-01
+Convolution      node_conv2d_99           1 1 leaky_relu_62 conv2d_99 0=39 1=1 11=1 2=1 12=1 3=1 13=1 4=0 14=0 15=0 16=0 5=1 6=3744
+Split            splitncnn_34             1 2 conv2d_99 conv2d_99_splitncnn_0 conv2d_99_splitncnn_1
+Crop             node_Split_1755_slice0   1 1 conv2d_99_splitncnn_1 split_with_sizes_1_split_0 -23309=1,0 -23310=1,7 -23311=1,0
+Crop             node_Split_1755_slice1   1 1 conv2d_99_splitncnn_0 split_with_sizes_1_split_1 -23309=1,7 -23310=1,39 -23311=1,0
+Sigmoid          node_sigmoid_1           1 1 split_with_sizes_1_split_0 sigmoid_1
+Concat           node_cat_29              2 1 sigmoid_1 split_with_sizes_1_split_1 cat_29 0=0
+Reshape          node_view_33             1 1 cat_29 view_33 0=400 1=39
+ConvolutionDepthWise node_Conv_1988           1 1 add_3_splitncnn_0 getitem_324 0=96 1=5 11=5 2=1 12=1 3=1 13=1 4=2 14=2 15=2 16=2 5=1 6=2400 7=96
+ReLU             node_leaky_relu_63       1 1 getitem_324 leaky_relu_63 0=1.000000e-01
+Convolution      node_Conv_1990           1 1 leaky_relu_63 getitem_327 0=96 1=1 11=1 2=1 12=1 3=1 13=1 4=0 14=0 15=0 16=0 5=1 6=9216
+ReLU             node_leaky_relu_64       1 1 getitem_327 leaky_relu_64 0=1.000000e-01
+ConvolutionDepthWise node_Conv_1992           1 1 leaky_relu_64 getitem_330 0=96 1=5 11=5 2=1 12=1 3=1 13=1 4=2 14=2 15=2 16=2 5=1 6=2400 7=96
+ReLU             node_leaky_relu_65       1 1 getitem_330 leaky_relu_65 0=1.000000e-01
+Convolution      node_Conv_1994           1 1 leaky_relu_65 getitem_333 0=96 1=1 11=1 2=1 12=1 3=1 13=1 4=0 14=0 15=0 16=0 5=1 6=9216
+ReLU             node_leaky_relu_66       1 1 getitem_333 leaky_relu_66 0=1.000000e-01
+Convolution      node_conv2d_104          1 1 leaky_relu_66 conv2d_104 0=39 1=1 11=1 2=1 12=1 3=1 13=1 4=0 14=0 15=0 16=0 5=1 6=3744
+Split            splitncnn_35             1 2 conv2d_104 conv2d_104_splitncnn_0 conv2d_104_splitncnn_1
+Crop             node_Split_1771_slice0   1 1 conv2d_104_splitncnn_1 split_with_sizes_2_split_0 -23309=1,0 -23310=1,7 -23311=1,0
+Crop             node_Split_1771_slice1   1 1 conv2d_104_splitncnn_0 split_with_sizes_2_split_1 -23309=1,7 -23310=1,39 -23311=1,0
+Sigmoid          node_sigmoid_2           1 1 split_with_sizes_2_split_0 sigmoid_2
+Concat           node_cat_30              2 1 sigmoid_2 split_with_sizes_2_split_1 cat_30 0=0
+Reshape          node_view_34             1 1 cat_30 view_34 0=100 1=39
+ConvolutionDepthWise node_Conv_1996           1 1 add_4 getitem_338 0=96 1=5 11=5 2=1 12=1 3=1 13=1 4=2 14=2 15=2 16=2 5=1 6=2400 7=96
+ReLU             node_leaky_relu_67       1 1 getitem_338 leaky_relu_67 0=1.000000e-01
+Convolution      node_Conv_1998           1 1 leaky_relu_67 getitem_341 0=96 1=1 11=1 2=1 12=1 3=1 13=1 4=0 14=0 15=0 16=0 5=1 6=9216
+ReLU             node_leaky_relu_68       1 1 getitem_341 leaky_relu_68 0=1.000000e-01
+ConvolutionDepthWise node_Conv_2000           1 1 leaky_relu_68 getitem_344 0=96 1=5 11=5 2=1 12=1 3=1 13=1 4=2 14=2 15=2 16=2 5=1 6=2400 7=96
+ReLU             node_leaky_relu_69       1 1 getitem_344 leaky_relu_69 0=1.000000e-01
+Convolution      node_Conv_2002           1 1 leaky_relu_69 getitem_347 0=96 1=1 11=1 2=1 12=1 3=1 13=1 4=0 14=0 15=0 16=0 5=1 6=9216
+ReLU             node_leaky_relu_70       1 1 getitem_347 leaky_relu_70 0=1.000000e-01
+Convolution      node_conv2d_109          1 1 leaky_relu_70 conv2d_109 0=39 1=1 11=1 2=1 12=1 3=1 13=1 4=0 14=0 15=0 16=0 5=1 6=3744
+Split            splitncnn_36             1 2 conv2d_109 conv2d_109_splitncnn_0 conv2d_109_splitncnn_1
+Crop             node_Split_1787_slice0   1 1 conv2d_109_splitncnn_1 split_with_sizes_3_split_0 -23309=1,0 -23310=1,7 -23311=1,0
+Crop             node_Split_1787_slice1   1 1 conv2d_109_splitncnn_0 split_with_sizes_3_split_1 -23309=1,7 -23310=1,39 -23311=1,0
+Sigmoid          node_sigmoid_3           1 1 split_with_sizes_3_split_0 sigmoid_3
+Concat           node_cat_31              2 1 sigmoid_3 split_with_sizes_3_split_1 cat_31 0=0
+Reshape          node_view_35             1 1 cat_31 view_35 0=25 1=39
+Concat           node_cat_32              4 1 view_32 view_33 view_34 view_35 cat_32 0=1
+Permute          node_permute             1 1 cat_32 output 0=1

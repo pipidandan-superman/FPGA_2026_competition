@@ -1,0 +1,14 @@
+# package_audit_v2 — PSPL_YOLOV8N_RESIDENT v2 refreeze (2026-11-03 run)
+PASS python_ast files=10 errors=0
+PASS bash_n files=75 errors=0
+PASS junk_scan pycache/tmp=0 xil_outside_hw=0 (hw/.Xil = inherited v1 Vivado project state, untouched by v2)
+PASS registry_closure entries=1 missing=none
+PASS registry_no_trailing_newline last=b'ages\toutput0'
+PASS bit_identity 72b358ff75a8d1c1bda519da248bd94fb4bdc236dd16fcca36eb4fc1262f7a58
+PASS pinned_board_sha_record files=11 bad=none
+PASS v2_candidate_identity files=12 bad=none
+PASS manifest_regen_spotcheck total=2300 spot=30 bad=none
+PASS evidence_v2_complete missing=none
+PACKAGE files=2300 size_mb=415.5
+RESULT PACKAGE_AUDIT_PASS
+NOTE sha256_manifest.txt entries reflect the post-488-frame-snapshot regeneration; this log file is deliberately not in the manifest (self-reference).

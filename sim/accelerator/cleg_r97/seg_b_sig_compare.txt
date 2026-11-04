@@ -1,0 +1,32 @@
+# AC1 C-leg segment B: db5 freeze-family full-field byte compare vs pre-merge baseline
+# 执行：competition-75 主会话放飞的执行代理 ｜ 核验：competition-b6
+# Baseline: 2026-10-24_golden63_p0_premeerge_run01 (freeze band) +
+#           golden63 r11 full run (EARLY_ERR err=07 final, original program ae9e7c24)
+# C-leg B:  2026-10-24_cleg_sim_run01 (merged tree, current program head 52aa2bf7)
+# b6 R92 sharpening order: signature-family FULL FIELD SET pinned, not just "reaches seg3".
+# Field set = st=23 / blk=2 / pdone=0 / sc-dn=0 + watchdog err=07 final state.
+
+| # | field (R92 pinned) | baseline | C-leg seg B | verdict |
+|---|---|---|---|---|
+| 1 | freeze entry transition | st 22->23 (cyc=13149412) | st 22->23 (cyc=14906845) | SAME FAMILY (cyc differs = program-timing, not signature) |
+| 2 | st | 23 (band 逐字) | 23 (band 逐字) | BYTE-IDENTICAL |
+| 3 | blk | 2 | 2 | BYTE-IDENTICAL |
+| 4 | pdone | 0 | 0 | BYTE-IDENTICAL |
+| 5 | sc-dn (freeze entry + fire) | 0 / 0 | 0 / 0 | BYTE-IDENTICAL |
+| 6 | watchdog final | st 23->26 -> EARLY_ERR err=07 prog=2 yb=109824 | st 23->26 (cyc=64906103, sc dn=0) -> EARLY_ERR err=07 prog=2 yb=109824 | BYTE-IDENTICAL (err/prog/yb fields; cyc=freeze start+50M TIMEOUT, program-timing-dependent) |
+| 7 | counter family G5LD | m0ar=488018 m1ar=411692 m0rv=488018 m1rv=411692 | m0ar=488018 m1ar=411692 m0rv=488018 m1rv=411692 | BYTE-IDENTICAL (drained-symmetric) |
+| 8 | G5FINE | ir=8 ij=0 rr=8 jl=4 wfk=27 ra=8 dead=0 wbv=0 ifl=0 \| muxph=0 mtv=0 mtr=1 \| brgp=0 brgrdy=1 \| xwbv=0 xwbr=0 nl=0 ck=26 xk=27 | same | BYTE-IDENTICAL |
+| 9 | G5WRD | wpreq=0 n=411890 \| lsq=0 arc=0 st=0 ovf=0 enq=0 n=411692 \| arv=0 arr=1 \| srvst=0 hit=411692 cap=411692 \| rv=0 rr=1 rl=0 \| ha=02181d7e pa=10c0ec50 wb=10c0eb80 | same | BYTE-IDENTICAL |
+| 10 | freeze band G5ST | st=23 ax=0 conv=0 ppp=0 blk=2 awv=0 awr=1 bv=0 pdone=0 | same | BYTE-IDENTICAL |
+
+Cross-checks:
+- A<->B deterministic checkpoint chain: diff of G5SEG lines EMPTY -> BYTE-IDENTICAL
+  (deterministic restart law verified in-run).
+- EARLY_ERR line byte-identical to R83 S3 fix run seg B (same program+tree earlier
+  today) incl. cyc=64906103 -> determinism across runs reproduced.
+- Disease attribution: existing (b6 R79/R92 judged program/generator layer, RTL/knives
+  innocent). NOT a regression criterion. Verdict basis = regression freedom
+  (merged RTL = pre-merge baseline), not full-graph green.
+
+SEG3/DB5 FREEZE-FAMILY GATE (R92 full-field set): PASS (10/10 field items same family,
+9/9 byte-identical on signature fields)

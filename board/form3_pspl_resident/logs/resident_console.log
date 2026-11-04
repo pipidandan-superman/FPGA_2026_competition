@@ -1,0 +1,311 @@
+BIT_IDENTITY_PASS 72b358ff75a8d1c1bda519da248bd94fb4bdc236dd16fcca36eb4fc1262f7a58
+RESIDENT_OVERLAY_DOWNLOAD_PASS
+INDEPENDENT_INFERENCE_RESET_PASS
+[06:02:23] === D0 COMPLIANT WHOLEGRAPH RUN START (manual-paged S v1) ===
+[06:02:23] BOOT_ID=38c414e2-c313-4103-8cfd-7a959c31a28d
+[06:02:23] BIT_PIN=d23fd7e15961c3860d287c8ab97ef86dd641f8118705604712d9f86481b52bd0 FIXED_VOL=b25a05c0862eeccdd6ee7aa9ef66b67e910460afe571a26a7bf7e94dbd4c4932
+[06:02:23] VOLUME parsed: W=351 P=0 skipped(M/T/R/H)=65 segs=[('1', 76800), ('2', 54000), ('3', 19200), ('4', 39100), ('5', 307200), ('6', 625600)]
+[06:02:23] FSM_PLAN groups=37 tables={'PPP': 256, 'PAGE': 3, 'EDGE': 8, 'JOIN': 20} words=287
+[06:02:23] JOIN_HOLE_GATE_PASS (scan=20 JOIN words, zero %32>=20)
+[06:02:23] ARENA model span=0x8D3000 heads@0x8AE620+149100
+[06:02:24] L0 CMA_ALLOC phys=0x10100000 len=0x8D3000 delta=0x00100000
+[06:02:24] L0 NOTE delta nonzero -> w0-patch law active
+[06:02:24] PREFILL_VERIFY PASS (3 sentinel slices x 512B spot, arena 0x8D3000)
+[06:02:24] L0 LIVE_INPUT path=/home/xilinx/hybrid_head_only/live_input.npy sha256=c72373a2bda9c9ded4dbc98962881100a94e388c7e7c6469389a0aa62310ba07
+[06:02:24] L0 LOAD x_image off=0x0 bytes=307200
+[06:02:24] L0 HYBRID_FEATURE node=model.15 off=0x497000 bytes=102400 sha256=6a5a46f8ff82a6c821cac643315313d6a529f1558fe7224965af0077e39bac0c
+[06:02:24] L0 HYBRID_FEATURE node=model.18 off=0x4F4C00 bytes=51200 sha256=d46cfb15508ec32012d9941cdf2a20d2002ecfdec8a45729e42f721f08bd3917
+[06:02:24] L0 HYBRID_FEATURE node=model.21 off=0x523A00 bytes=25600 sha256=d03f3d32e6e3ca1e73ed146f40e82afb1fb16e6f371d74c266f28034c24edac6
+[06:02:24] L0 RESIDENT_ARMED key=('b25a05c0862eeccdd6ee7aa9ef66b67e910460afe571a26a7bf7e94dbd4c4932', 9252864)
+[06:02:24] L0 LIVE_ARENA_INPUT_EXPORT path=/home/xilinx/hybrid_head_only/live_arena_input.bin
+[06:02:24] L0 LOAD done planes=22 (w 63 + x 1); u2x NOT preloaded (conv-side materialization; poison-filled -> C5 diagnostic)
+[06:02:24] PRE-STRUCTURAL shim_progress=0; PPU island absent
+[06:02:24] FSM_LOAD grp=1 tbl=PPP  cur=  0 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:24] FSM_LOAD grp=2 tbl=PPP  cur=  8 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:24] FSM_LOAD grp=3 tbl=PPP  cur= 16 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:24] FSM_LOAD grp=4 tbl=PPP  cur= 24 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:24] FSM_LOAD grp=5 tbl=PPP  cur= 32 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:24] FSM_LOAD grp=6 tbl=PPP  cur= 40 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:24] FSM_LOAD grp=7 tbl=PPP  cur= 48 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:24] FSM_LOAD grp=8 tbl=PPP  cur= 56 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:24] FSM_LOAD grp=9 tbl=PPP  cur= 64 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:24] FSM_LOAD grp=10 tbl=PPP  cur= 72 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:24] FSM_LOAD grp=11 tbl=PPP  cur= 80 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:24] FSM_LOAD grp=12 tbl=PPP  cur= 88 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:24] FSM_LOAD grp=13 tbl=PPP  cur= 96 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:24] FSM_LOAD grp=14 tbl=PPP  cur=104 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:24] FSM_LOAD grp=15 tbl=PPP  cur=112 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:24] FSM_LOAD grp=16 tbl=PPP  cur=120 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:24] FSM_LOAD grp=17 tbl=PPP  cur=128 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:24] FSM_LOAD grp=18 tbl=PPP  cur=136 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:24] FSM_LOAD grp=19 tbl=PPP  cur=144 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:24] FSM_LOAD grp=20 tbl=PPP  cur=152 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:24] FSM_LOAD grp=21 tbl=PPP  cur=160 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:24] FSM_LOAD grp=22 tbl=PPP  cur=168 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:24] FSM_LOAD grp=23 tbl=PPP  cur=176 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:24] FSM_LOAD grp=24 tbl=PPP  cur=184 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:24] FSM_LOAD grp=25 tbl=PPP  cur=192 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:24] FSM_LOAD grp=26 tbl=PPP  cur=200 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:24] FSM_LOAD grp=27 tbl=PPP  cur=208 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:24] FSM_LOAD grp=28 tbl=PPP  cur=216 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:24] FSM_LOAD grp=29 tbl=PPP  cur=224 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:24] FSM_LOAD grp=30 tbl=PPP  cur=232 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:24] FSM_LOAD grp=31 tbl=PPP  cur=240 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:24] FSM_LOAD grp=32 tbl=PPP  cur=248 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:24] FSM_LOAD grp=33 tbl=PAGE cur=  0 n= 1 done=1 cnt=1 err=0x0 OK
+[06:02:24] FSM_LOAD grp=34 tbl=PAGE cur=  1 n= 1 done=1 cnt=1 err=0x0 OK
+[06:02:24] FSM_LOAD grp=35 tbl=EDGE cur=  0 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:24] FSM_LOAD grp=36 tbl=JOIN cur=  0 n=20 done=1 cnt=20 err=0x0 OK
+[06:02:24] FSM_LOAD grp=37 tbl=PAGE cur=  0 n= 1 done=1 cnt=1 err=0x0 OK
+[06:02:24] NARROW W:EE byte=0x04 readback=0x04 OK
+[06:02:24] FULL W:DE/EC low-high write-read PASS word=0x00000000
+[06:02:25] SHADOW_DEMOLITION write@0x138 STATUS=0x00000000
+[06:02:25] SHADOW_DEMOLITION_PASS (0x138 write inert)
+[06:02:25] L3 DOORBELL #1 fired (seg=1 exp_valid=76800) ...
+[06:02:25] L3 DOORBELL #1 result=done status=0x00000002 wall=0.30s ticks=15046147
+[06:02:25] STICKY after_db1 shim_err=0x00 ld_err=0x0
+[06:02:25] HEAD_ONLY_ACCOUNT_NOTE db=1 full-graph counters not applicable
+[06:02:25] NARROW W:EE byte=0x04 readback=0x04 OK
+[06:02:25] FULL W:DE/EC low-high write-read PASS word=0x00030000
+[06:02:25] L3 DOORBELL #2 fired (seg=2 exp_valid=54000) ...
+[06:02:25] L3 DOORBELL #2 result=done status=0x00000002 wall=0.30s ticks=15046236
+[06:02:25] STICKY after_db2 shim_err=0x00 ld_err=0x0
+[06:02:25] HEAD_ONLY_ACCOUNT_NOTE db=2 full-graph counters not applicable
+[06:02:25] NARROW W:EE byte=0x04 readback=0x04 OK
+[06:02:25] FULL W:DE/EC low-high write-read PASS word=0x00060000
+[06:02:25] L3 DOORBELL #3 fired (seg=3 exp_valid=19200) ...
+[06:02:26] L3 DOORBELL #3 result=done status=0x00000002 wall=0.15s ticks=7526405
+[06:02:26] STICKY after_db3 shim_err=0x00 ld_err=0x0
+[06:02:26] HEAD_ONLY_ACCOUNT_NOTE db=3 full-graph counters not applicable
+[06:02:26] NARROW W:EE byte=0x04 readback=0x04 OK
+[06:02:26] FULL W:DE/EC low-high write-read PASS word=0x00090000
+[06:02:26] L3 DOORBELL #4 fired (seg=4 exp_valid=39100) ...
+[06:02:26] L3 DOORBELL #4 result=done status=0x00000002 wall=0.15s ticks=7525334
+[06:02:26] STICKY after_db4 shim_err=0x00 ld_err=0x0
+[06:02:26] HEAD_ONLY_ACCOUNT_NOTE db=4 full-graph counters not applicable
+[06:02:26] NARROW W:EE byte=0x04 readback=0x04 OK
+[06:02:26] FULL W:DE/EC low-high write-read PASS word=0x000C0000
+[06:02:26] L3 DOORBELL #5 fired (seg=5 exp_valid=307200) ...
+[06:02:26] L3 DOORBELL #5 result=done status=0x00000002 wall=0.35s ticks=17550998
+[06:02:26] STICKY after_db5 shim_err=0x00 ld_err=0x0
+[06:02:26] HEAD_ONLY_ACCOUNT_NOTE db=5 full-graph counters not applicable
+[06:02:26] NARROW W:EE byte=0x04 readback=0x04 OK
+[06:02:26] FULL W:DE/EC low-high write-read PASS word=0x000F0000
+[06:02:26] L3 DOORBELL #6 fired (seg=6 exp_valid=625600) ...
+[06:02:27] L3 DOORBELL #6 result=done status=0x00000002 wall=0.35s ticks=17551566
+[06:02:27] STICKY after_db6 shim_err=0x00 ld_err=0x0
+[06:02:27] HEAD_ONLY_ACCOUNT_NOTE db=6 full-graph counters not applicable
+[06:02:27] REPLAY done W(word)=339 narrow=0 FSM={groups:37 words:287 patched:0} P=0 rdback_bad=0 skipped=65 fail=0
+[06:02:27] STICKY final shim_err=0x00 ld_err=0x0
+[06:02:27] LIVE_SEGMENT_EXPORT name=reg8 bytes=102400 sha256=77287894d8415b9cdaf671173821c13645600732dfff662f55910fa18e9a7b74
+[06:02:27] LIVE_SEGMENT_EXPORT name=reg16 bytes=25600 sha256=29a86201b9640990e4dd42fd13a5e1bb6d7c2bfa18594a6e0315ea97fc6fb843
+[06:02:27] LIVE_SEGMENT_EXPORT name=reg32 bytes=6400 sha256=180add700228d487f5a8708bdf0216ff5a4592720b065483d262b1cf92fc5c7f
+[06:02:27] LIVE_SEGMENT_EXPORT name=cls8 bytes=11200 sha256=33a17bc891adfcfbc3a2975745ee82dd564c8d20ac6b9051c009e304a71ad670
+[06:02:27] LIVE_SEGMENT_EXPORT name=cls16 bytes=2800 sha256=d5dece806c0e2026e958da6ae8d8d5f10bd59be2d9ae3f18905772f33579d422
+[06:02:27] LIVE_SEGMENT_EXPORT name=cls32 bytes=700 sha256=a5e6d42a5c8085d73afba2e1889945dd9272cdb23bd90522156184b0f23c11e4
+[06:02:27] LIVE_C1_C2_PASS; six segments read directly without aggregation DMA
+[06:02:27] RC=0
+STEADY_FRAME 0 total_ms 12049.99153099925 ps_feature_ms 966.7321590022766 detections [{"label": "Thumbs up", "class_id": 5, "confidence": 0.6646888256072998, "xyxy": [383.5674743652344, 294.14361572265625, 504.3187255859375, 403.21966552734375]}]
+[06:02:28] === D0 COMPLIANT WHOLEGRAPH RUN START (manual-paged S v1) ===
+[06:02:28] BOOT_ID=38c414e2-c313-4103-8cfd-7a959c31a28d
+[06:02:28] BIT_PIN=d23fd7e15961c3860d287c8ab97ef86dd641f8118705604712d9f86481b52bd0 FIXED_VOL=b25a05c0862eeccdd6ee7aa9ef66b67e910460afe571a26a7bf7e94dbd4c4932
+[06:02:28] VOLUME parsed: W=351 P=0 skipped(M/T/R/H)=65 segs=[('1', 76800), ('2', 54000), ('3', 19200), ('4', 39100), ('5', 307200), ('6', 625600)]
+[06:02:28] FSM_PLAN groups=37 tables={'PPP': 256, 'PAGE': 3, 'EDGE': 8, 'JOIN': 20} words=287
+[06:02:28] JOIN_HOLE_GATE_PASS (scan=20 JOIN words, zero %32>=20)
+[06:02:28] ARENA model span=0x8D3000 heads@0x8AE620+149100
+[06:02:28] L0 RESIDENT_HIT phys=0x10100000 len=0x8D3000; preserve input and all weight planes
+[06:02:28] L0 HYBRID_FEATURE node=model.15 off=0x497000 bytes=102400 sha256=6a5a46f8ff82a6c821cac643315313d6a529f1558fe7224965af0077e39bac0c
+[06:02:28] L0 HYBRID_FEATURE node=model.18 off=0x4F4C00 bytes=51200 sha256=d46cfb15508ec32012d9941cdf2a20d2002ecfdec8a45729e42f721f08bd3917
+[06:02:28] L0 HYBRID_FEATURE node=model.21 off=0x523A00 bytes=25600 sha256=d03f3d32e6e3ca1e73ed146f40e82afb1fb16e6f371d74c266f28034c24edac6
+[06:02:28] L0 LIVE_ARENA_INPUT_EXPORT path=/home/xilinx/hybrid_head_only/live_arena_input.bin
+[06:02:28] L0 LOAD done planes=3 (w 63 + x 1); u2x NOT preloaded (conv-side materialization; poison-filled -> C5 diagnostic)
+[06:02:28] PRE-STRUCTURAL shim_progress=6970; PPU island absent
+[06:02:28] PRE_EPOCH_BASE reuse completed hardware state; validate this frame by counter deltas
+[06:02:28] FSM_LOAD grp=1 tbl=PPP  cur=  0 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:28] FSM_LOAD grp=2 tbl=PPP  cur=  8 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:28] FSM_LOAD grp=3 tbl=PPP  cur= 16 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:28] FSM_LOAD grp=4 tbl=PPP  cur= 24 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:28] FSM_LOAD grp=5 tbl=PPP  cur= 32 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:28] FSM_LOAD grp=6 tbl=PPP  cur= 40 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:28] FSM_LOAD grp=7 tbl=PPP  cur= 48 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:28] FSM_LOAD grp=8 tbl=PPP  cur= 56 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:28] FSM_LOAD grp=9 tbl=PPP  cur= 64 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:28] FSM_LOAD grp=10 tbl=PPP  cur= 72 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:28] FSM_LOAD grp=11 tbl=PPP  cur= 80 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:28] FSM_LOAD grp=12 tbl=PPP  cur= 88 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:28] FSM_LOAD grp=13 tbl=PPP  cur= 96 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:28] FSM_LOAD grp=14 tbl=PPP  cur=104 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:28] FSM_LOAD grp=15 tbl=PPP  cur=112 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:28] FSM_LOAD grp=16 tbl=PPP  cur=120 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:28] FSM_LOAD grp=17 tbl=PPP  cur=128 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:28] FSM_LOAD grp=18 tbl=PPP  cur=136 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:28] FSM_LOAD grp=19 tbl=PPP  cur=144 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:28] FSM_LOAD grp=20 tbl=PPP  cur=152 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:28] FSM_LOAD grp=21 tbl=PPP  cur=160 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:28] FSM_LOAD grp=22 tbl=PPP  cur=168 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:28] FSM_LOAD grp=23 tbl=PPP  cur=176 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:28] FSM_LOAD grp=24 tbl=PPP  cur=184 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:28] FSM_LOAD grp=25 tbl=PPP  cur=192 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:28] FSM_LOAD grp=26 tbl=PPP  cur=200 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:28] FSM_LOAD grp=27 tbl=PPP  cur=208 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:28] FSM_LOAD grp=28 tbl=PPP  cur=216 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:28] FSM_LOAD grp=29 tbl=PPP  cur=224 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:28] FSM_LOAD grp=30 tbl=PPP  cur=232 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:28] FSM_LOAD grp=31 tbl=PPP  cur=240 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:28] FSM_LOAD grp=32 tbl=PPP  cur=248 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:28] FSM_LOAD grp=33 tbl=PAGE cur=  0 n= 1 done=1 cnt=1 err=0x0 OK
+[06:02:28] FSM_LOAD grp=34 tbl=PAGE cur=  1 n= 1 done=1 cnt=1 err=0x0 OK
+[06:02:28] FSM_LOAD grp=35 tbl=EDGE cur=  0 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:28] FSM_LOAD grp=36 tbl=JOIN cur=  0 n=20 done=1 cnt=20 err=0x0 OK
+[06:02:28] FSM_LOAD grp=37 tbl=PAGE cur=  0 n= 1 done=1 cnt=1 err=0x0 OK
+[06:02:28] NARROW W:EE byte=0x04 readback=0x04 OK
+[06:02:28] FULL W:DE/EC low-high write-read PASS word=0x00000000
+[06:02:28] SHADOW_DEMOLITION write@0x138 STATUS=0x00000002
+[06:02:28] SHADOW_DEMOLITION_PASS (0x138 write inert)
+[06:02:28] L3 DOORBELL #1 fired (seg=1 exp_valid=76800) ...
+[06:02:29] L3 DOORBELL #1 result=done status=0x00000002 wall=0.30s ticks=15049716
+[06:02:29] STICKY after_db1 shim_err=0x00 ld_err=0x0
+[06:02:29] HEAD_ONLY_ACCOUNT_NOTE db=1 full-graph counters not applicable
+[06:02:29] NARROW W:EE byte=0x04 readback=0x04 OK
+[06:02:29] FULL W:DE/EC low-high write-read PASS word=0x00030000
+[06:02:29] L3 DOORBELL #2 fired (seg=2 exp_valid=54000) ...
+[06:02:29] L3 DOORBELL #2 result=done status=0x00000002 wall=0.30s ticks=15046189
+[06:02:29] STICKY after_db2 shim_err=0x00 ld_err=0x0
+[06:02:29] HEAD_ONLY_ACCOUNT_NOTE db=2 full-graph counters not applicable
+[06:02:29] NARROW W:EE byte=0x04 readback=0x04 OK
+[06:02:29] FULL W:DE/EC low-high write-read PASS word=0x00060000
+[06:02:29] L3 DOORBELL #3 fired (seg=3 exp_valid=19200) ...
+[06:02:29] L3 DOORBELL #3 result=done status=0x00000002 wall=0.15s ticks=7524338
+[06:02:29] STICKY after_db3 shim_err=0x00 ld_err=0x0
+[06:02:29] HEAD_ONLY_ACCOUNT_NOTE db=3 full-graph counters not applicable
+[06:02:29] NARROW W:EE byte=0x04 readback=0x04 OK
+[06:02:29] FULL W:DE/EC low-high write-read PASS word=0x00090000
+[06:02:29] L3 DOORBELL #4 fired (seg=4 exp_valid=39100) ...
+[06:02:29] L3 DOORBELL #4 result=done status=0x00000002 wall=0.15s ticks=7524259
+[06:02:29] STICKY after_db4 shim_err=0x00 ld_err=0x0
+[06:02:29] HEAD_ONLY_ACCOUNT_NOTE db=4 full-graph counters not applicable
+[06:02:29] NARROW W:EE byte=0x04 readback=0x04 OK
+[06:02:29] FULL W:DE/EC low-high write-read PASS word=0x000C0000
+[06:02:29] L3 DOORBELL #5 fired (seg=5 exp_valid=307200) ...
+[06:02:30] L3 DOORBELL #5 result=done status=0x00000002 wall=0.35s ticks=17553662
+[06:02:30] STICKY after_db5 shim_err=0x00 ld_err=0x0
+[06:02:30] HEAD_ONLY_ACCOUNT_NOTE db=5 full-graph counters not applicable
+[06:02:30] NARROW W:EE byte=0x04 readback=0x04 OK
+[06:02:30] FULL W:DE/EC low-high write-read PASS word=0x000F0000
+[06:02:30] L3 DOORBELL #6 fired (seg=6 exp_valid=625600) ...
+[06:02:30] L3 DOORBELL #6 result=done status=0x00000002 wall=0.35s ticks=17551425
+[06:02:30] STICKY after_db6 shim_err=0x00 ld_err=0x0
+[06:02:30] HEAD_ONLY_ACCOUNT_NOTE db=6 full-graph counters not applicable
+[06:02:30] REPLAY done W(word)=339 narrow=0 FSM={groups:37 words:287 patched:0} P=0 rdback_bad=0 skipped=65 fail=0
+[06:02:30] STICKY final shim_err=0x00 ld_err=0x0
+[06:02:30] LIVE_SEGMENT_EXPORT name=reg8 bytes=102400 sha256=77287894d8415b9cdaf671173821c13645600732dfff662f55910fa18e9a7b74
+[06:02:30] LIVE_SEGMENT_EXPORT name=reg16 bytes=25600 sha256=29a86201b9640990e4dd42fd13a5e1bb6d7c2bfa18594a6e0315ea97fc6fb843
+[06:02:30] LIVE_SEGMENT_EXPORT name=reg32 bytes=6400 sha256=180add700228d487f5a8708bdf0216ff5a4592720b065483d262b1cf92fc5c7f
+[06:02:30] LIVE_SEGMENT_EXPORT name=cls8 bytes=11200 sha256=33a17bc891adfcfbc3a2975745ee82dd564c8d20ac6b9051c009e304a71ad670
+[06:02:30] LIVE_SEGMENT_EXPORT name=cls16 bytes=2800 sha256=d5dece806c0e2026e958da6ae8d8d5f10bd59be2d9ae3f18905772f33579d422
+[06:02:30] LIVE_SEGMENT_EXPORT name=cls32 bytes=700 sha256=a5e6d42a5c8085d73afba2e1889945dd9272cdb23bd90522156184b0f23c11e4
+[06:02:30] LIVE_C1_C2_PASS; six segments read directly without aggregation DMA
+[06:02:30] RC=0
+STEADY_FRAME 1 total_ms 3472.6261609976063 ps_feature_ms 910.1561790012056 detections [{"label": "Thumbs up", "class_id": 5, "confidence": 0.6646888256072998, "xyxy": [383.5674743652344, 294.14361572265625, 504.3187255859375, 403.21966552734375]}]
+[06:02:31] === D0 COMPLIANT WHOLEGRAPH RUN START (manual-paged S v1) ===
+[06:02:31] BOOT_ID=38c414e2-c313-4103-8cfd-7a959c31a28d
+[06:02:31] BIT_PIN=d23fd7e15961c3860d287c8ab97ef86dd641f8118705604712d9f86481b52bd0 FIXED_VOL=b25a05c0862eeccdd6ee7aa9ef66b67e910460afe571a26a7bf7e94dbd4c4932
+[06:02:31] VOLUME parsed: W=351 P=0 skipped(M/T/R/H)=65 segs=[('1', 76800), ('2', 54000), ('3', 19200), ('4', 39100), ('5', 307200), ('6', 625600)]
+[06:02:31] FSM_PLAN groups=37 tables={'PPP': 256, 'PAGE': 3, 'EDGE': 8, 'JOIN': 20} words=287
+[06:02:31] JOIN_HOLE_GATE_PASS (scan=20 JOIN words, zero %32>=20)
+[06:02:31] ARENA model span=0x8D3000 heads@0x8AE620+149100
+[06:02:31] L0 RESIDENT_HIT phys=0x10100000 len=0x8D3000; preserve input and all weight planes
+[06:02:31] L0 HYBRID_FEATURE node=model.15 off=0x497000 bytes=102400 sha256=6a5a46f8ff82a6c821cac643315313d6a529f1558fe7224965af0077e39bac0c
+[06:02:31] L0 HYBRID_FEATURE node=model.18 off=0x4F4C00 bytes=51200 sha256=d46cfb15508ec32012d9941cdf2a20d2002ecfdec8a45729e42f721f08bd3917
+[06:02:31] L0 HYBRID_FEATURE node=model.21 off=0x523A00 bytes=25600 sha256=d03f3d32e6e3ca1e73ed146f40e82afb1fb16e6f371d74c266f28034c24edac6
+[06:02:31] L0 LIVE_ARENA_INPUT_EXPORT path=/home/xilinx/hybrid_head_only/live_arena_input.bin
+[06:02:31] L0 LOAD done planes=3 (w 63 + x 1); u2x NOT preloaded (conv-side materialization; poison-filled -> C5 diagnostic)
+[06:02:31] PRE-STRUCTURAL shim_progress=13940; PPU island absent
+[06:02:31] PRE_EPOCH_BASE reuse completed hardware state; validate this frame by counter deltas
+[06:02:31] FSM_LOAD grp=1 tbl=PPP  cur=  0 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:31] FSM_LOAD grp=2 tbl=PPP  cur=  8 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:31] FSM_LOAD grp=3 tbl=PPP  cur= 16 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:31] FSM_LOAD grp=4 tbl=PPP  cur= 24 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:31] FSM_LOAD grp=5 tbl=PPP  cur= 32 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:31] FSM_LOAD grp=6 tbl=PPP  cur= 40 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:31] FSM_LOAD grp=7 tbl=PPP  cur= 48 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:31] FSM_LOAD grp=8 tbl=PPP  cur= 56 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:31] FSM_LOAD grp=9 tbl=PPP  cur= 64 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:31] FSM_LOAD grp=10 tbl=PPP  cur= 72 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:31] FSM_LOAD grp=11 tbl=PPP  cur= 80 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:31] FSM_LOAD grp=12 tbl=PPP  cur= 88 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:31] FSM_LOAD grp=13 tbl=PPP  cur= 96 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:31] FSM_LOAD grp=14 tbl=PPP  cur=104 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:31] FSM_LOAD grp=15 tbl=PPP  cur=112 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:31] FSM_LOAD grp=16 tbl=PPP  cur=120 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:31] FSM_LOAD grp=17 tbl=PPP  cur=128 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:31] FSM_LOAD grp=18 tbl=PPP  cur=136 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:31] FSM_LOAD grp=19 tbl=PPP  cur=144 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:31] FSM_LOAD grp=20 tbl=PPP  cur=152 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:31] FSM_LOAD grp=21 tbl=PPP  cur=160 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:31] FSM_LOAD grp=22 tbl=PPP  cur=168 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:31] FSM_LOAD grp=23 tbl=PPP  cur=176 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:31] FSM_LOAD grp=24 tbl=PPP  cur=184 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:31] FSM_LOAD grp=25 tbl=PPP  cur=192 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:31] FSM_LOAD grp=26 tbl=PPP  cur=200 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:31] FSM_LOAD grp=27 tbl=PPP  cur=208 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:31] FSM_LOAD grp=28 tbl=PPP  cur=216 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:31] FSM_LOAD grp=29 tbl=PPP  cur=224 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:31] FSM_LOAD grp=30 tbl=PPP  cur=232 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:31] FSM_LOAD grp=31 tbl=PPP  cur=240 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:31] FSM_LOAD grp=32 tbl=PPP  cur=248 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:31] FSM_LOAD grp=33 tbl=PAGE cur=  0 n= 1 done=1 cnt=1 err=0x0 OK
+[06:02:31] FSM_LOAD grp=34 tbl=PAGE cur=  1 n= 1 done=1 cnt=1 err=0x0 OK
+[06:02:31] FSM_LOAD grp=35 tbl=EDGE cur=  0 n= 8 done=1 cnt=8 err=0x0 OK
+[06:02:31] FSM_LOAD grp=36 tbl=JOIN cur=  0 n=20 done=1 cnt=20 err=0x0 OK
+[06:02:31] FSM_LOAD grp=37 tbl=PAGE cur=  0 n= 1 done=1 cnt=1 err=0x0 OK
+[06:02:31] NARROW W:EE byte=0x04 readback=0x04 OK
+[06:02:31] FULL W:DE/EC low-high write-read PASS word=0x00000000
+[06:02:32] SHADOW_DEMOLITION write@0x138 STATUS=0x00000002
+[06:02:32] SHADOW_DEMOLITION_PASS (0x138 write inert)
+[06:02:32] L3 DOORBELL #1 fired (seg=1 exp_valid=76800) ...
+[06:02:32] L3 DOORBELL #1 result=done status=0x00000002 wall=0.30s ticks=15044948
+[06:02:32] STICKY after_db1 shim_err=0x00 ld_err=0x0
+[06:02:32] HEAD_ONLY_ACCOUNT_NOTE db=1 full-graph counters not applicable
+[06:02:32] NARROW W:EE byte=0x04 readback=0x04 OK
+[06:02:32] FULL W:DE/EC low-high write-read PASS word=0x00030000
+[06:02:32] L3 DOORBELL #2 fired (seg=2 exp_valid=54000) ...
+[06:02:32] L3 DOORBELL #2 result=done status=0x00000002 wall=0.30s ticks=15047014
+[06:02:32] STICKY after_db2 shim_err=0x00 ld_err=0x0
+[06:02:32] HEAD_ONLY_ACCOUNT_NOTE db=2 full-graph counters not applicable
+[06:02:32] NARROW W:EE byte=0x04 readback=0x04 OK
+[06:02:32] FULL W:DE/EC low-high write-read PASS word=0x00060000
+[06:02:32] L3 DOORBELL #3 fired (seg=3 exp_valid=19200) ...
+[06:02:32] L3 DOORBELL #3 result=done status=0x00000002 wall=0.15s ticks=7524656
+[06:02:32] STICKY after_db3 shim_err=0x00 ld_err=0x0
+[06:02:32] HEAD_ONLY_ACCOUNT_NOTE db=3 full-graph counters not applicable
+[06:02:32] NARROW W:EE byte=0x04 readback=0x04 OK
+[06:02:32] FULL W:DE/EC low-high write-read PASS word=0x00090000
+[06:02:32] L3 DOORBELL #4 fired (seg=4 exp_valid=39100) ...
+[06:02:33] L3 DOORBELL #4 result=done status=0x00000002 wall=0.15s ticks=7524535
+[06:02:33] STICKY after_db4 shim_err=0x00 ld_err=0x0
+[06:02:33] HEAD_ONLY_ACCOUNT_NOTE db=4 full-graph counters not applicable
+[06:02:33] NARROW W:EE byte=0x04 readback=0x04 OK
+[06:02:33] FULL W:DE/EC low-high write-read PASS word=0x000C0000
+[06:02:33] L3 DOORBELL #5 fired (seg=5 exp_valid=307200) ...
+[06:02:33] L3 DOORBELL #5 result=done status=0x00000002 wall=0.35s ticks=17550930
+[06:02:33] STICKY after_db5 shim_err=0x00 ld_err=0x0
+[06:02:33] HEAD_ONLY_ACCOUNT_NOTE db=5 full-graph counters not applicable
+[06:02:33] NARROW W:EE byte=0x04 readback=0x04 OK
+[06:02:33] FULL W:DE/EC low-high write-read PASS word=0x000F0000
+[06:02:33] L3 DOORBELL #6 fired (seg=6 exp_valid=625600) ...
+[06:02:33] L3 DOORBELL #6 result=done status=0x00000002 wall=0.35s ticks=17550870
+[06:02:33] STICKY after_db6 shim_err=0x00 ld_err=0x0
+[06:02:33] HEAD_ONLY_ACCOUNT_NOTE db=6 full-graph counters not applicable
+[06:02:33] REPLAY done W(word)=339 narrow=0 FSM={groups:37 words:287 patched:0} P=0 rdback_bad=0 skipped=65 fail=0
+[06:02:33] STICKY final shim_err=0x00 ld_err=0x0
+[06:02:33] LIVE_SEGMENT_EXPORT name=reg8 bytes=102400 sha256=77287894d8415b9cdaf671173821c13645600732dfff662f55910fa18e9a7b74
+[06:02:33] LIVE_SEGMENT_EXPORT name=reg16 bytes=25600 sha256=29a86201b9640990e4dd42fd13a5e1bb6d7c2bfa18594a6e0315ea97fc6fb843
+[06:02:33] LIVE_SEGMENT_EXPORT name=reg32 bytes=6400 sha256=180add700228d487f5a8708bdf0216ff5a4592720b065483d262b1cf92fc5c7f
+[06:02:33] LIVE_SEGMENT_EXPORT name=cls8 bytes=11200 sha256=33a17bc891adfcfbc3a2975745ee82dd564c8d20ac6b9051c009e304a71ad670
+[06:02:33] LIVE_SEGMENT_EXPORT name=cls16 bytes=2800 sha256=d5dece806c0e2026e958da6ae8d8d5f10bd59be2d9ae3f18905772f33579d422
+[06:02:33] LIVE_SEGMENT_EXPORT name=cls32 bytes=700 sha256=a5e6d42a5c8085d73afba2e1889945dd9272cdb23bd90522156184b0f23c11e4
+[06:02:33] LIVE_C1_C2_PASS; six segments read directly without aggregation DMA
+[06:02:33] RC=0
+STEADY_FRAME 2 total_ms 3311.4798629976576 ps_feature_ms 788.0527880006412 detections [{"label": "Thumbs up", "class_id": 5, "confidence": 0.6646888256072998, "xyxy": [383.5674743652344, 294.14361572265625, 504.3187255859375, 403.21966552734375]}]
+STEADY_THREE_FRAME_COMPLETE

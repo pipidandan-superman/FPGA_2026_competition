@@ -1,0 +1,2427 @@
+{
+ "params": {
+  "desc_table_max": 128
+ },
+ "entries": [
+  {
+   "desc_id": 0,
+   "sched_index": 0,
+   "op": "conv",
+   "node": "model.0",
+   "in_bufs": [
+    0
+   ],
+   "out_buf": 1,
+   "out_region": "graph_buf",
+   "deps": [],
+   "last": 0,
+   "frame_end": 0,
+   "quant_node": "model.0",
+   "k_chain": [
+    27
+   ],
+   "n_blocks": 1
+  },
+  {
+   "desc_id": 1,
+   "sched_index": 1,
+   "op": "conv",
+   "node": "model.1",
+   "in_bufs": [
+    1
+   ],
+   "out_buf": 2,
+   "out_region": "graph_buf",
+   "deps": [
+    0
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "quant_node": "model.1",
+   "k_chain": [
+    144
+   ],
+   "n_blocks": 1
+  },
+  {
+   "desc_id": 2,
+   "sched_index": 2,
+   "op": "conv",
+   "node": "model.2.cv1",
+   "in_bufs": [
+    2
+   ],
+   "out_buf": 3,
+   "out_region": "graph_buf",
+   "deps": [
+    1
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "quant_node": "model.2.cv1",
+   "k_chain": [
+    32
+   ],
+   "n_blocks": 1
+  },
+  {
+   "desc_id": 3,
+   "sched_index": 3,
+   "op": "view",
+   "node": "model.2.split0",
+   "in_bufs": [
+    3
+   ],
+   "out_buf": 4,
+   "out_region": "graph_buf",
+   "deps": [
+    2
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "parent_buf": 3,
+   "ch": [
+    0,
+    16
+   ]
+  },
+  {
+   "desc_id": 4,
+   "sched_index": 4,
+   "op": "view",
+   "node": "model.2.split1",
+   "in_bufs": [
+    3
+   ],
+   "out_buf": 5,
+   "out_region": "graph_buf",
+   "deps": [
+    2
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "parent_buf": 3,
+   "ch": [
+    16,
+    32
+   ]
+  },
+  {
+   "desc_id": 5,
+   "sched_index": 5,
+   "op": "conv",
+   "node": "model.2.m.0.cv1",
+   "in_bufs": [
+    5
+   ],
+   "out_buf": 6,
+   "out_region": "graph_buf",
+   "deps": [
+    4
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "quant_node": "model.2.m.0.cv1",
+   "k_chain": [
+    144
+   ],
+   "n_blocks": 1
+  },
+  {
+   "desc_id": 6,
+   "sched_index": 6,
+   "op": "conv",
+   "node": "model.2.m.0.cv2",
+   "in_bufs": [
+    6
+   ],
+   "out_buf": 7,
+   "out_region": "graph_buf",
+   "deps": [
+    5
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "quant_node": "model.2.m.0.cv2",
+   "k_chain": [
+    144
+   ],
+   "n_blocks": 1
+  },
+  {
+   "desc_id": 7,
+   "sched_index": 7,
+   "op": "add",
+   "node": "model.2.m.0",
+   "in_bufs": [
+    7,
+    5
+   ],
+   "out_buf": 8,
+   "out_region": "graph_buf",
+   "deps": [
+    4,
+    6
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "a_buf": 7,
+   "b_buf": 5,
+   "a_scale": 0.14610355482326717,
+   "b_scale": 0.1714084492458165,
+   "out_scale": 0.16194453197898895
+  },
+  {
+   "desc_id": 8,
+   "sched_index": 8,
+   "op": "concat",
+   "node": "model.2.cat",
+   "in_bufs": [
+    4,
+    5,
+    8
+   ],
+   "out_buf": 9,
+   "out_region": "graph_buf",
+   "deps": [
+    3,
+    4,
+    7
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "inputs": [
+    {
+     "buf": 4,
+     "scale": 0.1714084492458165
+    },
+    {
+     "buf": 5,
+     "scale": 0.1714084492458165
+    },
+    {
+     "buf": 8,
+     "scale": 0.16194453197898895
+    }
+   ],
+   "out_scale": 0.1714084492458165
+  },
+  {
+   "desc_id": 9,
+   "sched_index": 9,
+   "op": "conv",
+   "node": "model.2.cv2",
+   "in_bufs": [
+    9
+   ],
+   "out_buf": 10,
+   "out_region": "graph_buf",
+   "deps": [
+    8
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "quant_node": "model.2.cv2",
+   "k_chain": [
+    48
+   ],
+   "n_blocks": 1
+  },
+  {
+   "desc_id": 10,
+   "sched_index": 10,
+   "op": "conv",
+   "node": "model.3",
+   "in_bufs": [
+    10
+   ],
+   "out_buf": 11,
+   "out_region": "graph_buf",
+   "deps": [
+    9
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "quant_node": "model.3",
+   "k_chain": [
+    288
+   ],
+   "n_blocks": 1
+  },
+  {
+   "desc_id": 11,
+   "sched_index": 11,
+   "op": "conv",
+   "node": "model.4.cv1",
+   "in_bufs": [
+    11
+   ],
+   "out_buf": 12,
+   "out_region": "graph_buf",
+   "deps": [
+    10
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "quant_node": "model.4.cv1",
+   "k_chain": [
+    64
+   ],
+   "n_blocks": 1
+  },
+  {
+   "desc_id": 12,
+   "sched_index": 12,
+   "op": "view",
+   "node": "model.4.split0",
+   "in_bufs": [
+    12
+   ],
+   "out_buf": 13,
+   "out_region": "graph_buf",
+   "deps": [
+    11
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "parent_buf": 12,
+   "ch": [
+    0,
+    32
+   ]
+  },
+  {
+   "desc_id": 13,
+   "sched_index": 13,
+   "op": "view",
+   "node": "model.4.split1",
+   "in_bufs": [
+    12
+   ],
+   "out_buf": 14,
+   "out_region": "graph_buf",
+   "deps": [
+    11
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "parent_buf": 12,
+   "ch": [
+    32,
+    64
+   ]
+  },
+  {
+   "desc_id": 14,
+   "sched_index": 14,
+   "op": "conv",
+   "node": "model.4.m.0.cv1",
+   "in_bufs": [
+    14
+   ],
+   "out_buf": 15,
+   "out_region": "graph_buf",
+   "deps": [
+    13
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "quant_node": "model.4.m.0.cv1",
+   "k_chain": [
+    288
+   ],
+   "n_blocks": 1
+  },
+  {
+   "desc_id": 15,
+   "sched_index": 15,
+   "op": "conv",
+   "node": "model.4.m.0.cv2",
+   "in_bufs": [
+    15
+   ],
+   "out_buf": 16,
+   "out_region": "graph_buf",
+   "deps": [
+    14
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "quant_node": "model.4.m.0.cv2",
+   "k_chain": [
+    288
+   ],
+   "n_blocks": 1
+  },
+  {
+   "desc_id": 16,
+   "sched_index": 16,
+   "op": "add",
+   "node": "model.4.m.0",
+   "in_bufs": [
+    16,
+    14
+   ],
+   "out_buf": 17,
+   "out_region": "graph_buf",
+   "deps": [
+    13,
+    15
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "a_buf": 16,
+   "b_buf": 14,
+   "a_scale": 0.03416862067451158,
+   "b_scale": 0.04216206115002102,
+   "out_scale": 0.04217760878727702
+  },
+  {
+   "desc_id": 17,
+   "sched_index": 17,
+   "op": "conv",
+   "node": "model.4.m.1.cv1",
+   "in_bufs": [
+    17
+   ],
+   "out_buf": 18,
+   "out_region": "graph_buf",
+   "deps": [
+    16
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "quant_node": "model.4.m.1.cv1",
+   "k_chain": [
+    288
+   ],
+   "n_blocks": 1
+  },
+  {
+   "desc_id": 18,
+   "sched_index": 18,
+   "op": "conv",
+   "node": "model.4.m.1.cv2",
+   "in_bufs": [
+    18
+   ],
+   "out_buf": 19,
+   "out_region": "graph_buf",
+   "deps": [
+    17
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "quant_node": "model.4.m.1.cv2",
+   "k_chain": [
+    288
+   ],
+   "n_blocks": 1
+  },
+  {
+   "desc_id": 19,
+   "sched_index": 19,
+   "op": "add",
+   "node": "model.4.m.1",
+   "in_bufs": [
+    19,
+    17
+   ],
+   "out_buf": 20,
+   "out_region": "graph_buf",
+   "deps": [
+    16,
+    18
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "a_buf": 19,
+   "b_buf": 17,
+   "a_scale": 0.06592712927917678,
+   "b_scale": 0.04217760878727702,
+   "out_scale": 0.07710620780636483
+  },
+  {
+   "desc_id": 20,
+   "sched_index": 20,
+   "op": "concat",
+   "node": "model.4.cat",
+   "in_bufs": [
+    13,
+    14,
+    17,
+    20
+   ],
+   "out_buf": 21,
+   "out_region": "graph_buf",
+   "deps": [
+    12,
+    13,
+    16,
+    19
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "inputs": [
+    {
+     "buf": 13,
+     "scale": 0.04216206115002102
+    },
+    {
+     "buf": 14,
+     "scale": 0.04216206115002102
+    },
+    {
+     "buf": 17,
+     "scale": 0.04217760878727702
+    },
+    {
+     "buf": 20,
+     "scale": 0.07710620780636483
+    }
+   ],
+   "out_scale": 0.04216206115002102
+  },
+  {
+   "desc_id": 21,
+   "sched_index": 21,
+   "op": "conv",
+   "node": "model.4.cv2",
+   "in_bufs": [
+    21
+   ],
+   "out_buf": 22,
+   "out_region": "graph_buf",
+   "deps": [
+    20
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "quant_node": "model.4.cv2",
+   "k_chain": [
+    128
+   ],
+   "n_blocks": 1
+  },
+  {
+   "desc_id": 22,
+   "sched_index": 22,
+   "op": "conv",
+   "node": "model.5",
+   "in_bufs": [
+    22
+   ],
+   "out_buf": 23,
+   "out_region": "graph_buf",
+   "deps": [
+    21
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "quant_node": "model.5",
+   "k_chain": [
+    576
+   ],
+   "n_blocks": 1
+  },
+  {
+   "desc_id": 23,
+   "sched_index": 23,
+   "op": "conv",
+   "node": "model.6.cv1",
+   "in_bufs": [
+    23
+   ],
+   "out_buf": 24,
+   "out_region": "graph_buf",
+   "deps": [
+    22
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "quant_node": "model.6.cv1",
+   "k_chain": [
+    128
+   ],
+   "n_blocks": 1
+  },
+  {
+   "desc_id": 24,
+   "sched_index": 24,
+   "op": "view",
+   "node": "model.6.split0",
+   "in_bufs": [
+    24
+   ],
+   "out_buf": 25,
+   "out_region": "graph_buf",
+   "deps": [
+    23
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "parent_buf": 24,
+   "ch": [
+    0,
+    64
+   ]
+  },
+  {
+   "desc_id": 25,
+   "sched_index": 25,
+   "op": "view",
+   "node": "model.6.split1",
+   "in_bufs": [
+    24
+   ],
+   "out_buf": 26,
+   "out_region": "graph_buf",
+   "deps": [
+    23
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "parent_buf": 24,
+   "ch": [
+    64,
+    128
+   ]
+  },
+  {
+   "desc_id": 26,
+   "sched_index": 26,
+   "op": "conv",
+   "node": "model.6.m.0.cv1",
+   "in_bufs": [
+    26
+   ],
+   "out_buf": 27,
+   "out_region": "graph_buf",
+   "deps": [
+    25
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "quant_node": "model.6.m.0.cv1",
+   "k_chain": [
+    576
+   ],
+   "n_blocks": 1
+  },
+  {
+   "desc_id": 27,
+   "sched_index": 27,
+   "op": "conv",
+   "node": "model.6.m.0.cv2",
+   "in_bufs": [
+    27
+   ],
+   "out_buf": 28,
+   "out_region": "graph_buf",
+   "deps": [
+    26
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "quant_node": "model.6.m.0.cv2",
+   "k_chain": [
+    576
+   ],
+   "n_blocks": 1
+  },
+  {
+   "desc_id": 28,
+   "sched_index": 28,
+   "op": "add",
+   "node": "model.6.m.0",
+   "in_bufs": [
+    28,
+    26
+   ],
+   "out_buf": 29,
+   "out_region": "graph_buf",
+   "deps": [
+    25,
+    27
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "a_buf": 28,
+   "b_buf": 26,
+   "a_scale": 0.02993748771158729,
+   "b_scale": 0.04569760525015779,
+   "out_scale": 0.03489775389835931
+  },
+  {
+   "desc_id": 29,
+   "sched_index": 29,
+   "op": "conv",
+   "node": "model.6.m.1.cv1",
+   "in_bufs": [
+    29
+   ],
+   "out_buf": 30,
+   "out_region": "graph_buf",
+   "deps": [
+    28
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "quant_node": "model.6.m.1.cv1",
+   "k_chain": [
+    576
+   ],
+   "n_blocks": 1
+  },
+  {
+   "desc_id": 30,
+   "sched_index": 30,
+   "op": "conv",
+   "node": "model.6.m.1.cv2",
+   "in_bufs": [
+    30
+   ],
+   "out_buf": 31,
+   "out_region": "graph_buf",
+   "deps": [
+    29
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "quant_node": "model.6.m.1.cv2",
+   "k_chain": [
+    576
+   ],
+   "n_blocks": 1
+  },
+  {
+   "desc_id": 31,
+   "sched_index": 31,
+   "op": "add",
+   "node": "model.6.m.1",
+   "in_bufs": [
+    31,
+    29
+   ],
+   "out_buf": 32,
+   "out_region": "graph_buf",
+   "deps": [
+    28,
+    30
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "a_buf": 31,
+   "b_buf": 29,
+   "a_scale": 0.06039911668425001,
+   "b_scale": 0.03489775389835931,
+   "out_scale": 0.06087015666164338
+  },
+  {
+   "desc_id": 32,
+   "sched_index": 32,
+   "op": "concat",
+   "node": "model.6.cat",
+   "in_bufs": [
+    25,
+    26,
+    29,
+    32
+   ],
+   "out_buf": 33,
+   "out_region": "graph_buf",
+   "deps": [
+    24,
+    25,
+    28,
+    31
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "inputs": [
+    {
+     "buf": 25,
+     "scale": 0.04569760525015779
+    },
+    {
+     "buf": 26,
+     "scale": 0.04569760525015779
+    },
+    {
+     "buf": 29,
+     "scale": 0.03489775389835931
+    },
+    {
+     "buf": 32,
+     "scale": 0.06087015666164338
+    }
+   ],
+   "out_scale": 0.04569760525015779
+  },
+  {
+   "desc_id": 33,
+   "sched_index": 33,
+   "op": "conv",
+   "node": "model.6.cv2",
+   "in_bufs": [
+    33
+   ],
+   "out_buf": 34,
+   "out_region": "graph_buf",
+   "deps": [
+    32
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "quant_node": "model.6.cv2",
+   "k_chain": [
+    256
+   ],
+   "n_blocks": 1
+  },
+  {
+   "desc_id": 34,
+   "sched_index": 34,
+   "op": "conv",
+   "node": "model.7",
+   "in_bufs": [
+    34
+   ],
+   "out_buf": 35,
+   "out_region": "graph_buf",
+   "deps": [
+    33
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "quant_node": "model.7",
+   "k_chain": [
+    1024,
+    128
+   ],
+   "n_blocks": 2
+  },
+  {
+   "desc_id": 35,
+   "sched_index": 35,
+   "op": "conv",
+   "node": "model.8.cv1",
+   "in_bufs": [
+    35
+   ],
+   "out_buf": 36,
+   "out_region": "graph_buf",
+   "deps": [
+    34
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "quant_node": "model.8.cv1",
+   "k_chain": [
+    256
+   ],
+   "n_blocks": 1
+  },
+  {
+   "desc_id": 36,
+   "sched_index": 36,
+   "op": "view",
+   "node": "model.8.split0",
+   "in_bufs": [
+    36
+   ],
+   "out_buf": 37,
+   "out_region": "graph_buf",
+   "deps": [
+    35
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "parent_buf": 36,
+   "ch": [
+    0,
+    128
+   ]
+  },
+  {
+   "desc_id": 37,
+   "sched_index": 37,
+   "op": "view",
+   "node": "model.8.split1",
+   "in_bufs": [
+    36
+   ],
+   "out_buf": 38,
+   "out_region": "graph_buf",
+   "deps": [
+    35
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "parent_buf": 36,
+   "ch": [
+    128,
+    256
+   ]
+  },
+  {
+   "desc_id": 38,
+   "sched_index": 38,
+   "op": "conv",
+   "node": "model.8.m.0.cv1",
+   "in_bufs": [
+    38
+   ],
+   "out_buf": 39,
+   "out_region": "graph_buf",
+   "deps": [
+    37
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "quant_node": "model.8.m.0.cv1",
+   "k_chain": [
+    1024,
+    128
+   ],
+   "n_blocks": 2
+  },
+  {
+   "desc_id": 39,
+   "sched_index": 39,
+   "op": "conv",
+   "node": "model.8.m.0.cv2",
+   "in_bufs": [
+    39
+   ],
+   "out_buf": 40,
+   "out_region": "graph_buf",
+   "deps": [
+    38
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "quant_node": "model.8.m.0.cv2",
+   "k_chain": [
+    1024,
+    128
+   ],
+   "n_blocks": 2
+  },
+  {
+   "desc_id": 40,
+   "sched_index": 40,
+   "op": "add",
+   "node": "model.8.m.0",
+   "in_bufs": [
+    40,
+    38
+   ],
+   "out_buf": 41,
+   "out_region": "graph_buf",
+   "deps": [
+    37,
+    39
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "a_buf": 40,
+   "b_buf": 38,
+   "a_scale": 0.07613699020832543,
+   "b_scale": 0.057259425126255044,
+   "out_scale": 0.08052830127286868
+  },
+  {
+   "desc_id": 41,
+   "sched_index": 41,
+   "op": "concat",
+   "node": "model.8.cat",
+   "in_bufs": [
+    37,
+    38,
+    41
+   ],
+   "out_buf": 42,
+   "out_region": "graph_buf",
+   "deps": [
+    36,
+    37,
+    40
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "inputs": [
+    {
+     "buf": 37,
+     "scale": 0.057259425126255044
+    },
+    {
+     "buf": 38,
+     "scale": 0.057259425126255044
+    },
+    {
+     "buf": 41,
+     "scale": 0.08052830127286868
+    }
+   ],
+   "out_scale": 0.057259425126255044
+  },
+  {
+   "desc_id": 42,
+   "sched_index": 42,
+   "op": "conv",
+   "node": "model.8.cv2",
+   "in_bufs": [
+    42
+   ],
+   "out_buf": 43,
+   "out_region": "graph_buf",
+   "deps": [
+    41
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "quant_node": "model.8.cv2",
+   "k_chain": [
+    384
+   ],
+   "n_blocks": 1
+  },
+  {
+   "desc_id": 43,
+   "sched_index": 43,
+   "op": "conv",
+   "node": "model.9.cv1",
+   "in_bufs": [
+    43
+   ],
+   "out_buf": 44,
+   "out_region": "graph_buf",
+   "deps": [
+    42
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "quant_node": "model.9.cv1",
+   "k_chain": [
+    256
+   ],
+   "n_blocks": 1
+  },
+  {
+   "desc_id": 44,
+   "sched_index": 44,
+   "op": "maxpool5",
+   "node": "model.9.pool0",
+   "in_bufs": [
+    44
+   ],
+   "out_buf": 45,
+   "out_region": "graph_buf",
+   "deps": [
+    43
+   ],
+   "last": 0,
+   "frame_end": 0
+  },
+  {
+   "desc_id": 45,
+   "sched_index": 45,
+   "op": "maxpool5",
+   "node": "model.9.pool1",
+   "in_bufs": [
+    45
+   ],
+   "out_buf": 46,
+   "out_region": "graph_buf",
+   "deps": [
+    44
+   ],
+   "last": 0,
+   "frame_end": 0
+  },
+  {
+   "desc_id": 46,
+   "sched_index": 46,
+   "op": "maxpool5",
+   "node": "model.9.pool2",
+   "in_bufs": [
+    46
+   ],
+   "out_buf": 47,
+   "out_region": "graph_buf",
+   "deps": [
+    45
+   ],
+   "last": 0,
+   "frame_end": 0
+  },
+  {
+   "desc_id": 47,
+   "sched_index": 47,
+   "op": "concat",
+   "node": "model.9.cat",
+   "in_bufs": [
+    44,
+    45,
+    46,
+    47
+   ],
+   "out_buf": 48,
+   "out_region": "graph_buf",
+   "deps": [
+    43,
+    44,
+    45,
+    46
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "inputs": [
+    {
+     "buf": 44,
+     "scale": 0.056574141639688116
+    },
+    {
+     "buf": 45,
+     "scale": 0.056574141639688116
+    },
+    {
+     "buf": 46,
+     "scale": 0.056574141639688116
+    },
+    {
+     "buf": 47,
+     "scale": 0.056574141639688116
+    }
+   ],
+   "out_scale": 0.056574141639688116
+  },
+  {
+   "desc_id": 48,
+   "sched_index": 48,
+   "op": "conv",
+   "node": "model.9.cv2",
+   "in_bufs": [
+    48
+   ],
+   "out_buf": 49,
+   "out_region": "graph_buf",
+   "deps": [
+    47
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "quant_node": "model.9.cv2",
+   "k_chain": [
+    512
+   ],
+   "n_blocks": 1
+  },
+  {
+   "desc_id": 49,
+   "sched_index": 49,
+   "op": "upsample2",
+   "node": "model.10",
+   "in_bufs": [
+    49
+   ],
+   "out_buf": 50,
+   "out_region": "graph_buf",
+   "deps": [
+    48
+   ],
+   "last": 0,
+   "frame_end": 0
+  },
+  {
+   "desc_id": 50,
+   "sched_index": 50,
+   "op": "concat",
+   "node": "model.11",
+   "in_bufs": [
+    50,
+    34
+   ],
+   "out_buf": 51,
+   "out_region": "graph_buf",
+   "deps": [
+    33,
+    49
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "inputs": [
+    {
+     "buf": 50,
+     "scale": 0.021736030503520815
+    },
+    {
+     "buf": 34,
+     "scale": 0.03707902972707047
+    }
+   ],
+   "out_scale": 0.031223063298209015
+  },
+  {
+   "desc_id": 51,
+   "sched_index": 51,
+   "op": "conv",
+   "node": "model.12.cv1",
+   "in_bufs": [
+    51
+   ],
+   "out_buf": 52,
+   "out_region": "graph_buf",
+   "deps": [
+    50
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "quant_node": "model.12.cv1",
+   "k_chain": [
+    384
+   ],
+   "n_blocks": 1
+  },
+  {
+   "desc_id": 52,
+   "sched_index": 52,
+   "op": "view",
+   "node": "model.12.split0",
+   "in_bufs": [
+    52
+   ],
+   "out_buf": 53,
+   "out_region": "graph_buf",
+   "deps": [
+    51
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "parent_buf": 52,
+   "ch": [
+    0,
+    64
+   ]
+  },
+  {
+   "desc_id": 53,
+   "sched_index": 53,
+   "op": "view",
+   "node": "model.12.split1",
+   "in_bufs": [
+    52
+   ],
+   "out_buf": 54,
+   "out_region": "graph_buf",
+   "deps": [
+    51
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "parent_buf": 52,
+   "ch": [
+    64,
+    128
+   ]
+  },
+  {
+   "desc_id": 54,
+   "sched_index": 54,
+   "op": "conv",
+   "node": "model.12.m.0.cv1",
+   "in_bufs": [
+    54
+   ],
+   "out_buf": 55,
+   "out_region": "graph_buf",
+   "deps": [
+    53
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "quant_node": "model.12.m.0.cv1",
+   "k_chain": [
+    576
+   ],
+   "n_blocks": 1
+  },
+  {
+   "desc_id": 55,
+   "sched_index": 55,
+   "op": "conv",
+   "node": "model.12.m.0.cv2",
+   "in_bufs": [
+    55
+   ],
+   "out_buf": 56,
+   "out_region": "graph_buf",
+   "deps": [
+    54
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "quant_node": "model.12.m.0.cv2",
+   "k_chain": [
+    576
+   ],
+   "n_blocks": 1
+  },
+  {
+   "desc_id": 56,
+   "sched_index": 56,
+   "op": "concat",
+   "node": "model.12.cat",
+   "in_bufs": [
+    53,
+    54,
+    56
+   ],
+   "out_buf": 57,
+   "out_region": "graph_buf",
+   "deps": [
+    52,
+    53,
+    55
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "inputs": [
+    {
+     "buf": 53,
+     "scale": 0.03684768083900815
+    },
+    {
+     "buf": 54,
+     "scale": 0.03684768083900815
+    },
+    {
+     "buf": 56,
+     "scale": 0.04538270606710686
+    }
+   ],
+   "out_scale": 0.03684768083900815
+  },
+  {
+   "desc_id": 57,
+   "sched_index": 57,
+   "op": "conv",
+   "node": "model.12.cv2",
+   "in_bufs": [
+    57
+   ],
+   "out_buf": 58,
+   "out_region": "graph_buf",
+   "deps": [
+    56
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "quant_node": "model.12.cv2",
+   "k_chain": [
+    192
+   ],
+   "n_blocks": 1
+  },
+  {
+   "desc_id": 58,
+   "sched_index": 58,
+   "op": "upsample2",
+   "node": "model.13",
+   "in_bufs": [
+    58
+   ],
+   "out_buf": 59,
+   "out_region": "graph_buf",
+   "deps": [
+    57
+   ],
+   "last": 0,
+   "frame_end": 0
+  },
+  {
+   "desc_id": 59,
+   "sched_index": 59,
+   "op": "concat",
+   "node": "model.14",
+   "in_bufs": [
+    59,
+    22
+   ],
+   "out_buf": 60,
+   "out_region": "graph_buf",
+   "deps": [
+    21,
+    58
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "inputs": [
+    {
+     "buf": 59,
+     "scale": 0.03376928867490334
+    },
+    {
+     "buf": 22,
+     "scale": 0.036705867184400685
+    }
+   ],
+   "out_scale": 0.034979498579416096
+  },
+  {
+   "desc_id": 60,
+   "sched_index": 60,
+   "op": "conv",
+   "node": "model.15.cv1",
+   "in_bufs": [
+    60
+   ],
+   "out_buf": 61,
+   "out_region": "graph_buf",
+   "deps": [
+    59
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "quant_node": "model.15.cv1",
+   "k_chain": [
+    192
+   ],
+   "n_blocks": 1
+  },
+  {
+   "desc_id": 61,
+   "sched_index": 61,
+   "op": "view",
+   "node": "model.15.split0",
+   "in_bufs": [
+    61
+   ],
+   "out_buf": 62,
+   "out_region": "graph_buf",
+   "deps": [
+    60
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "parent_buf": 61,
+   "ch": [
+    0,
+    32
+   ]
+  },
+  {
+   "desc_id": 62,
+   "sched_index": 62,
+   "op": "view",
+   "node": "model.15.split1",
+   "in_bufs": [
+    61
+   ],
+   "out_buf": 63,
+   "out_region": "graph_buf",
+   "deps": [
+    60
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "parent_buf": 61,
+   "ch": [
+    32,
+    64
+   ]
+  },
+  {
+   "desc_id": 63,
+   "sched_index": 63,
+   "op": "conv",
+   "node": "model.15.m.0.cv1",
+   "in_bufs": [
+    63
+   ],
+   "out_buf": 64,
+   "out_region": "graph_buf",
+   "deps": [
+    62
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "quant_node": "model.15.m.0.cv1",
+   "k_chain": [
+    288
+   ],
+   "n_blocks": 1
+  },
+  {
+   "desc_id": 64,
+   "sched_index": 64,
+   "op": "conv",
+   "node": "model.15.m.0.cv2",
+   "in_bufs": [
+    64
+   ],
+   "out_buf": 65,
+   "out_region": "graph_buf",
+   "deps": [
+    63
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "quant_node": "model.15.m.0.cv2",
+   "k_chain": [
+    288
+   ],
+   "n_blocks": 1
+  },
+  {
+   "desc_id": 65,
+   "sched_index": 65,
+   "op": "concat",
+   "node": "model.15.cat",
+   "in_bufs": [
+    62,
+    63,
+    65
+   ],
+   "out_buf": 66,
+   "out_region": "graph_buf",
+   "deps": [
+    61,
+    62,
+    64
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "inputs": [
+    {
+     "buf": 62,
+     "scale": 0.025663909004662647
+    },
+    {
+     "buf": 63,
+     "scale": 0.025663909004662647
+    },
+    {
+     "buf": 65,
+     "scale": 0.04772773324915274
+    }
+   ],
+   "out_scale": 0.025663909004662647
+  },
+  {
+   "desc_id": 66,
+   "sched_index": 66,
+   "op": "conv",
+   "node": "model.15.cv2",
+   "in_bufs": [
+    66
+   ],
+   "out_buf": 67,
+   "out_region": "graph_buf",
+   "deps": [
+    65
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "quant_node": "model.15.cv2",
+   "k_chain": [
+    96
+   ],
+   "n_blocks": 1
+  },
+  {
+   "desc_id": 67,
+   "sched_index": 67,
+   "op": "conv",
+   "node": "model.16",
+   "in_bufs": [
+    67
+   ],
+   "out_buf": 68,
+   "out_region": "graph_buf",
+   "deps": [
+    66
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "quant_node": "model.16",
+   "k_chain": [
+    576
+   ],
+   "n_blocks": 1
+  },
+  {
+   "desc_id": 68,
+   "sched_index": 68,
+   "op": "concat",
+   "node": "model.17",
+   "in_bufs": [
+    68,
+    58
+   ],
+   "out_buf": 69,
+   "out_region": "graph_buf",
+   "deps": [
+    57,
+    67
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "inputs": [
+    {
+     "buf": 68,
+     "scale": 0.048603649948466804
+    },
+    {
+     "buf": 58,
+     "scale": 0.03376928867490334
+    }
+   ],
+   "out_scale": 0.04212149303455749
+  },
+  {
+   "desc_id": 69,
+   "sched_index": 69,
+   "op": "conv",
+   "node": "model.18.cv1",
+   "in_bufs": [
+    69
+   ],
+   "out_buf": 70,
+   "out_region": "graph_buf",
+   "deps": [
+    68
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "quant_node": "model.18.cv1",
+   "k_chain": [
+    192
+   ],
+   "n_blocks": 1
+  },
+  {
+   "desc_id": 70,
+   "sched_index": 70,
+   "op": "view",
+   "node": "model.18.split0",
+   "in_bufs": [
+    70
+   ],
+   "out_buf": 71,
+   "out_region": "graph_buf",
+   "deps": [
+    69
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "parent_buf": 70,
+   "ch": [
+    0,
+    64
+   ]
+  },
+  {
+   "desc_id": 71,
+   "sched_index": 71,
+   "op": "view",
+   "node": "model.18.split1",
+   "in_bufs": [
+    70
+   ],
+   "out_buf": 72,
+   "out_region": "graph_buf",
+   "deps": [
+    69
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "parent_buf": 70,
+   "ch": [
+    64,
+    128
+   ]
+  },
+  {
+   "desc_id": 72,
+   "sched_index": 72,
+   "op": "conv",
+   "node": "model.18.m.0.cv1",
+   "in_bufs": [
+    72
+   ],
+   "out_buf": 73,
+   "out_region": "graph_buf",
+   "deps": [
+    71
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "quant_node": "model.18.m.0.cv1",
+   "k_chain": [
+    576
+   ],
+   "n_blocks": 1
+  },
+  {
+   "desc_id": 73,
+   "sched_index": 73,
+   "op": "conv",
+   "node": "model.18.m.0.cv2",
+   "in_bufs": [
+    73
+   ],
+   "out_buf": 74,
+   "out_region": "graph_buf",
+   "deps": [
+    72
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "quant_node": "model.18.m.0.cv2",
+   "k_chain": [
+    576
+   ],
+   "n_blocks": 1
+  },
+  {
+   "desc_id": 74,
+   "sched_index": 74,
+   "op": "concat",
+   "node": "model.18.cat",
+   "in_bufs": [
+    71,
+    72,
+    74
+   ],
+   "out_buf": 75,
+   "out_region": "graph_buf",
+   "deps": [
+    70,
+    71,
+    73
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "inputs": [
+    {
+     "buf": 71,
+     "scale": 0.051807045421468086
+    },
+    {
+     "buf": 72,
+     "scale": 0.051807045421468086
+    },
+    {
+     "buf": 74,
+     "scale": 0.0735220236513089
+    }
+   ],
+   "out_scale": 0.051807045421468086
+  },
+  {
+   "desc_id": 75,
+   "sched_index": 75,
+   "op": "conv",
+   "node": "model.18.cv2",
+   "in_bufs": [
+    75
+   ],
+   "out_buf": 76,
+   "out_region": "graph_buf",
+   "deps": [
+    74
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "quant_node": "model.18.cv2",
+   "k_chain": [
+    192
+   ],
+   "n_blocks": 1
+  },
+  {
+   "desc_id": 76,
+   "sched_index": 76,
+   "op": "conv",
+   "node": "model.19",
+   "in_bufs": [
+    76
+   ],
+   "out_buf": 77,
+   "out_region": "graph_buf",
+   "deps": [
+    75
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "quant_node": "model.19",
+   "k_chain": [
+    1024,
+    128
+   ],
+   "n_blocks": 2
+  },
+  {
+   "desc_id": 77,
+   "sched_index": 77,
+   "op": "concat",
+   "node": "model.20",
+   "in_bufs": [
+    77,
+    49
+   ],
+   "out_buf": 78,
+   "out_region": "graph_buf",
+   "deps": [
+    48,
+    76
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "inputs": [
+    {
+     "buf": 77,
+     "scale": 0.06947480501549501
+    },
+    {
+     "buf": 49,
+     "scale": 0.021736030503520815
+    }
+   ],
+   "out_scale": 0.054951067361050196
+  },
+  {
+   "desc_id": 78,
+   "sched_index": 78,
+   "op": "conv",
+   "node": "model.21.cv1",
+   "in_bufs": [
+    78
+   ],
+   "out_buf": 79,
+   "out_region": "graph_buf",
+   "deps": [
+    77
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "quant_node": "model.21.cv1",
+   "k_chain": [
+    384
+   ],
+   "n_blocks": 1
+  },
+  {
+   "desc_id": 79,
+   "sched_index": 79,
+   "op": "view",
+   "node": "model.21.split0",
+   "in_bufs": [
+    79
+   ],
+   "out_buf": 80,
+   "out_region": "graph_buf",
+   "deps": [
+    78
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "parent_buf": 79,
+   "ch": [
+    0,
+    128
+   ]
+  },
+  {
+   "desc_id": 80,
+   "sched_index": 80,
+   "op": "view",
+   "node": "model.21.split1",
+   "in_bufs": [
+    79
+   ],
+   "out_buf": 81,
+   "out_region": "graph_buf",
+   "deps": [
+    78
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "parent_buf": 79,
+   "ch": [
+    128,
+    256
+   ]
+  },
+  {
+   "desc_id": 81,
+   "sched_index": 81,
+   "op": "conv",
+   "node": "model.21.m.0.cv1",
+   "in_bufs": [
+    81
+   ],
+   "out_buf": 82,
+   "out_region": "graph_buf",
+   "deps": [
+    80
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "quant_node": "model.21.m.0.cv1",
+   "k_chain": [
+    1024,
+    128
+   ],
+   "n_blocks": 2
+  },
+  {
+   "desc_id": 82,
+   "sched_index": 82,
+   "op": "conv",
+   "node": "model.21.m.0.cv2",
+   "in_bufs": [
+    82
+   ],
+   "out_buf": 83,
+   "out_region": "graph_buf",
+   "deps": [
+    81
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "quant_node": "model.21.m.0.cv2",
+   "k_chain": [
+    1024,
+    128
+   ],
+   "n_blocks": 2
+  },
+  {
+   "desc_id": 83,
+   "sched_index": 83,
+   "op": "concat",
+   "node": "model.21.cat",
+   "in_bufs": [
+    80,
+    81,
+    83
+   ],
+   "out_buf": 84,
+   "out_region": "graph_buf",
+   "deps": [
+    79,
+    80,
+    82
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "inputs": [
+    {
+     "buf": 80,
+     "scale": 0.06657259875151204
+    },
+    {
+     "buf": 81,
+     "scale": 0.06657259875151204
+    },
+    {
+     "buf": 83,
+     "scale": 0.07046711403788544
+    }
+   ],
+   "out_scale": 0.06657259875151204
+  },
+  {
+   "desc_id": 84,
+   "sched_index": 84,
+   "op": "conv",
+   "node": "model.21.cv2",
+   "in_bufs": [
+    84
+   ],
+   "out_buf": 85,
+   "out_region": "graph_buf",
+   "deps": [
+    83
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "quant_node": "model.21.cv2",
+   "k_chain": [
+    384
+   ],
+   "n_blocks": 1
+  },
+  {
+   "desc_id": 85,
+   "sched_index": 85,
+   "op": "conv",
+   "node": "model.22.cv2.0.0",
+   "in_bufs": [
+    67
+   ],
+   "out_buf": 86,
+   "out_region": "graph_buf",
+   "deps": [
+    66
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "quant_node": "model.22.cv2.0.0",
+   "k_chain": [
+    576
+   ],
+   "n_blocks": 1
+  },
+  {
+   "desc_id": 86,
+   "sched_index": 86,
+   "op": "conv",
+   "node": "model.22.cv2.0.1",
+   "in_bufs": [
+    86
+   ],
+   "out_buf": 87,
+   "out_region": "graph_buf",
+   "deps": [
+    85
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "quant_node": "model.22.cv2.0.1",
+   "k_chain": [
+    576
+   ],
+   "n_blocks": 1
+  },
+  {
+   "desc_id": 87,
+   "sched_index": 87,
+   "op": "conv",
+   "node": "model.22.cv2.0.2",
+   "in_bufs": [
+    87
+   ],
+   "out_buf": 88,
+   "out_region": "graph_buf",
+   "deps": [
+    86
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "quant_node": "model.22.cv2.0.2",
+   "k_chain": [
+    64
+   ],
+   "n_blocks": 1
+  },
+  {
+   "desc_id": 88,
+   "sched_index": 88,
+   "op": "conv",
+   "node": "model.22.cv3.0.0",
+   "in_bufs": [
+    67
+   ],
+   "out_buf": 89,
+   "out_region": "graph_buf",
+   "deps": [
+    66
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "quant_node": "model.22.cv3.0.0",
+   "k_chain": [
+    576
+   ],
+   "n_blocks": 1
+  },
+  {
+   "desc_id": 89,
+   "sched_index": 89,
+   "op": "conv",
+   "node": "model.22.cv3.0.1",
+   "in_bufs": [
+    89
+   ],
+   "out_buf": 90,
+   "out_region": "graph_buf",
+   "deps": [
+    88
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "quant_node": "model.22.cv3.0.1",
+   "k_chain": [
+    576
+   ],
+   "n_blocks": 1
+  },
+  {
+   "desc_id": 90,
+   "sched_index": 90,
+   "op": "conv",
+   "node": "model.22.cv3.0.2",
+   "in_bufs": [
+    90
+   ],
+   "out_buf": 91,
+   "out_region": "graph_buf",
+   "deps": [
+    89
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "quant_node": "model.22.cv3.0.2",
+   "k_chain": [
+    64
+   ],
+   "n_blocks": 1
+  },
+  {
+   "desc_id": 91,
+   "sched_index": 91,
+   "op": "conv",
+   "node": "model.22.cv2.1.0",
+   "in_bufs": [
+    76
+   ],
+   "out_buf": 92,
+   "out_region": "graph_buf",
+   "deps": [
+    75
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "quant_node": "model.22.cv2.1.0",
+   "k_chain": [
+    1024,
+    128
+   ],
+   "n_blocks": 2
+  },
+  {
+   "desc_id": 92,
+   "sched_index": 92,
+   "op": "conv",
+   "node": "model.22.cv2.1.1",
+   "in_bufs": [
+    92
+   ],
+   "out_buf": 93,
+   "out_region": "graph_buf",
+   "deps": [
+    91
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "quant_node": "model.22.cv2.1.1",
+   "k_chain": [
+    576
+   ],
+   "n_blocks": 1
+  },
+  {
+   "desc_id": 93,
+   "sched_index": 93,
+   "op": "conv",
+   "node": "model.22.cv2.1.2",
+   "in_bufs": [
+    93
+   ],
+   "out_buf": 94,
+   "out_region": "graph_buf",
+   "deps": [
+    92
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "quant_node": "model.22.cv2.1.2",
+   "k_chain": [
+    64
+   ],
+   "n_blocks": 1
+  },
+  {
+   "desc_id": 94,
+   "sched_index": 94,
+   "op": "conv",
+   "node": "model.22.cv3.1.0",
+   "in_bufs": [
+    76
+   ],
+   "out_buf": 95,
+   "out_region": "graph_buf",
+   "deps": [
+    75
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "quant_node": "model.22.cv3.1.0",
+   "k_chain": [
+    1024,
+    128
+   ],
+   "n_blocks": 2
+  },
+  {
+   "desc_id": 95,
+   "sched_index": 95,
+   "op": "conv",
+   "node": "model.22.cv3.1.1",
+   "in_bufs": [
+    95
+   ],
+   "out_buf": 96,
+   "out_region": "graph_buf",
+   "deps": [
+    94
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "quant_node": "model.22.cv3.1.1",
+   "k_chain": [
+    576
+   ],
+   "n_blocks": 1
+  },
+  {
+   "desc_id": 96,
+   "sched_index": 96,
+   "op": "conv",
+   "node": "model.22.cv3.1.2",
+   "in_bufs": [
+    96
+   ],
+   "out_buf": 97,
+   "out_region": "graph_buf",
+   "deps": [
+    95
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "quant_node": "model.22.cv3.1.2",
+   "k_chain": [
+    64
+   ],
+   "n_blocks": 1
+  },
+  {
+   "desc_id": 97,
+   "sched_index": 97,
+   "op": "conv",
+   "node": "model.22.cv2.2.0",
+   "in_bufs": [
+    85
+   ],
+   "out_buf": 98,
+   "out_region": "graph_buf",
+   "deps": [
+    84
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "quant_node": "model.22.cv2.2.0",
+   "k_chain": [
+    1024,
+    1024,
+    256
+   ],
+   "n_blocks": 3
+  },
+  {
+   "desc_id": 98,
+   "sched_index": 98,
+   "op": "conv",
+   "node": "model.22.cv2.2.1",
+   "in_bufs": [
+    98
+   ],
+   "out_buf": 99,
+   "out_region": "graph_buf",
+   "deps": [
+    97
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "quant_node": "model.22.cv2.2.1",
+   "k_chain": [
+    576
+   ],
+   "n_blocks": 1
+  },
+  {
+   "desc_id": 99,
+   "sched_index": 99,
+   "op": "conv",
+   "node": "model.22.cv2.2.2",
+   "in_bufs": [
+    99
+   ],
+   "out_buf": 100,
+   "out_region": "graph_buf",
+   "deps": [
+    98
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "quant_node": "model.22.cv2.2.2",
+   "k_chain": [
+    64
+   ],
+   "n_blocks": 1
+  },
+  {
+   "desc_id": 100,
+   "sched_index": 100,
+   "op": "conv",
+   "node": "model.22.cv3.2.0",
+   "in_bufs": [
+    85
+   ],
+   "out_buf": 101,
+   "out_region": "graph_buf",
+   "deps": [
+    84
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "quant_node": "model.22.cv3.2.0",
+   "k_chain": [
+    1024,
+    1024,
+    256
+   ],
+   "n_blocks": 3
+  },
+  {
+   "desc_id": 101,
+   "sched_index": 101,
+   "op": "conv",
+   "node": "model.22.cv3.2.1",
+   "in_bufs": [
+    101
+   ],
+   "out_buf": 102,
+   "out_region": "graph_buf",
+   "deps": [
+    100
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "quant_node": "model.22.cv3.2.1",
+   "k_chain": [
+    576
+   ],
+   "n_blocks": 1
+  },
+  {
+   "desc_id": 102,
+   "sched_index": 102,
+   "op": "conv",
+   "node": "model.22.cv3.2.2",
+   "in_bufs": [
+    102
+   ],
+   "out_buf": 103,
+   "out_region": "graph_buf",
+   "deps": [
+    101
+   ],
+   "last": 0,
+   "frame_end": 0,
+   "quant_node": "model.22.cv3.2.2",
+   "k_chain": [
+    64
+   ],
+   "n_blocks": 1
+  },
+  {
+   "desc_id": 103,
+   "sched_index": 103,
+   "op": "heads",
+   "node": "model.22",
+   "in_bufs": [
+    91,
+    97,
+    103,
+    88,
+    94,
+    100
+   ],
+   "out_buf": null,
+   "out_region": "heads_out",
+   "deps": [
+    87,
+    90,
+    93,
+    96,
+    99,
+    102
+   ],
+   "last": 1,
+   "frame_end": 1,
+   "cls": [
+    {
+     "buf": 91,
+     "scale": 0.19704815110970608,
+     "shape": [
+      7,
+      40,
+      40
+     ]
+    },
+    {
+     "buf": 97,
+     "scale": 0.22808669150997682,
+     "shape": [
+      7,
+      20,
+      20
+     ]
+    },
+    {
+     "buf": 103,
+     "scale": 0.1831161806970496,
+     "shape": [
+      7,
+      10,
+      10
+     ]
+    }
+   ],
+   "reg": [
+    {
+     "buf": 88,
+     "scale": 0.10211387285252634,
+     "shape": [
+      64,
+      40,
+      40
+     ]
+    },
+    {
+     "buf": 94,
+     "scale": 0.11105443914242713,
+     "shape": [
+      64,
+      20,
+      20
+     ]
+    },
+    {
+     "buf": 100,
+     "scale": 0.10185566339994176,
+     "shape": [
+      64,
+      10,
+      10
+     ]
+    }
+   ]
+  }
+ ]
+}

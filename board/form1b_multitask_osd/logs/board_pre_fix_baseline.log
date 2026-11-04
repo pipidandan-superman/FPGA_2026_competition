@@ -1,0 +1,8 @@
+Warning: Permanently added '192.168.240.10' (ED25519) to the list of known hosts.
+0
+{"event": "HEARTBEAT", "t": 1667598731.489, "task": "gesture", "model": "YOLOv8n-Gesture7", "frames": 3886, "rejected": 0, "inf_ms": 1071.0, "pl_ms": 21.3, "detections": 0, "top": [], "slots": [2, 1], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "HEARTBEAT", "t": 1667598736.998, "task": "gesture", "model": "YOLOv8n-Gesture7", "frames": 3891, "rejected": 0, "inf_ms": 1073.5, "pl_ms": 22.4, "detections": 0, "top": [], "slots": [1, 2], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "HEARTBEAT", "t": 1667598742.428, "task": "gesture", "model": "YOLOv8n-Gesture7", "frames": 3896, "rejected": 0, "inf_ms": 1185.1, "pl_ms": 21.3, "detections": 0, "top": [], "slots": [0, 1], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+---CURRENT_MODEL---
+{"event": "MODEL_SELECT", "t": 1667594763.022, "src": "pl_btn", "from": "YOLO11n-Pose", "to": "NanoDet-COCO-Material"}
+{"event": "MODEL_SELECT", "t": 1667594764.98, "src": "pl_btn", "from": "NanoDet-COCO-Material", "to": "YOLOv8n-Gesture7"}

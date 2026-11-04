@@ -1,0 +1,16 @@
+{"event": "PL_LOADED", "t": 1667646039.661, "bit_sha256": "c910f8ce502f1175", "state": "operating"}
+{"event": "ACTION_DISABLED", "t": 1667646039.662, "reason": "three-task visual validation; all slots"}
+{"event": "ENGINE_READY", "t": 1667646044.426, "backend0": "ncnn", "backend1": "ncnn", "backend2": "split-ncnn+numpy-c2psa+ps-decode", "shapes": {"0": [238000], "1": [23100], "2": {"pre": [[1, 256, 10, 10], [1, 128, 20, 20], [1, 128, 40, 40]], "raw": [[1, 64, 2100], [1, 1, 2100], [1, 51, 2100]]}}}
+{"event": "BOARD_BLOCKS_READY", "t": 1667646054.662, "preproc": "0x1000001", "model_btn": true, "box_osd": true, "multitask_osd": true}
+{"event": "TASK_EVIDENCE_SAVED", "t": 1667646055.756, "task": "material", "file": "task0_det1"}
+{"event": "TASK_EVIDENCE_SAVED", "t": 1667646056.721, "task": "material", "file": "task0_det2"}
+{"event": "TASK_EVIDENCE_SAVED", "t": 1667646057.681, "task": "material", "file": "task0_det3"}
+{"event": "HEARTBEAT", "t": 1667646060.268, "task": "material", "model": "NanoDet-COCO-Material", "frames": 5, "rejected": 0, "inf_ms": 1665.4, "pl_ms": 68.1, "detections": 1, "top": [{"name": "person", "score": 0.8943}], "slots": [0, 2], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "HEARTBEAT", "t": 1667646073.615, "task": "gesture", "model": "YOLOv8n-Gesture7", "frames": 15, "rejected": 0, "inf_ms": 1073.4, "pl_ms": 21.4, "detections": 0, "top": [], "slots": [0, 1], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "GESTURE_SHOWN", "t": 1667646075.769, "name": "Up", "score": 0.6075, "hold": 1.5}
+{"event": "TASK_EVIDENCE_SAVED", "t": 1667646075.82, "task": "gesture", "file": "task1_det1"}
+{"event": "GESTURE_SHOWN", "t": 1667646076.917, "name": "Thumbs up", "score": 0.6872, "hold": 1.5}
+{"event": "TASK_EVIDENCE_SAVED", "t": 1667646076.967, "task": "gesture", "file": "task1_det2"}
+{"event": "GESTURE_SHOWN", "t": 1667646078.059, "name": "Up", "score": 0.6729, "hold": 1.5}
+{"event": "TASK_EVIDENCE_SAVED", "t": 1667646078.16, "task": "gesture", "file": "task1_det3"}
+{"event": "HEARTBEAT", "t": 1667646080.04, "task": "gesture", "model": "YOLOv8n-Gesture7", "frames": 20, "rejected": 0, "inf_ms": 1827.2, "pl_ms": 22.3, "detections": 1, "top": [{"name": "Up", "score": 0.6751}], "slots": [1, 0], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}

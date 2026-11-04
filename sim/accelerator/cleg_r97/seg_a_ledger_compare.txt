@@ -1,0 +1,23 @@
+# AC1 C-leg segment A ledger vs pre-merge baseline byte compare
+# 执行：competition-75 主会话放飞的执行代理 ｜ 核验：competition-b6
+# Baseline: 2026-10-24_golden63_p0_premeerge_run01 (7-file premerge tree, original program ae9e7c24)
+# C-leg A:  2026-10-24_cleg_sim_run01 (merged tree, current program head 52aa2bf7, generator abc77038)
+# Law: byte ledger (yb/m2w/aw/w/b + expect) must be byte-identical (RTL regression-free);
+#      desc closure 5/10/14/20 = approved R83 S3 program fix (necessary+sufficient, b6 R92),
+#      baseline's desc 2-capped shape = same disease pre-fix, not an RTL signature.
+
+| doorbell | field | baseline (P0 premerge) | C-leg seg A | verdict |
+|---|---|---|---|---|
+| db1 g1P0 | yb/m2w/aw/w/b | 24448/24448/3056/3056/3056 | 24448/24448/3056/3056/3056 | BYTE-IDENTICAL |
+| db1 g1P0 | bytes expect | 1868800 | 1868800 | BYTE-IDENTICAL |
+| db2 g1P1 | yb/m2w/aw/w/b | 48192/48192/6024/6024/6024 | 48192/48192/6024/6024/6024 | BYTE-IDENTICAL |
+| db2 g1P1 | bytes expect | 2112000 | 2112000 | BYTE-IDENTICAL |
+| db3 g1P2 | yb/m2w/aw/w/b | 68320/68320/8540/8540/8540 | 68320/68320/8540/8540/8540 | BYTE-IDENTICAL |
+| db3 g1P2 | bytes expect | 2291200 | 2291200 | BYTE-IDENTICAL |
+| db4 g2P2 | yb/m2w/aw/w/b | 109664/109664/13708/13708/13708 | 109664/109664/13708/13708/13708 | BYTE-IDENTICAL |
+| db4 g2P2 | bytes expect | 2700800 | 2700800 | BYTE-IDENTICAL |
+
+Cross-check vs R83 S3 fix run seg A (same program+tree, earlier today):
+all four G5SEG lines byte-identical incl. cyc/span (3114277/9241834/11845196/14901682) — deterministic chain reproduced.
+
+SEG1-4 LEDGER GATE: PASS (8/8 byte-compare items identical, regression-free)

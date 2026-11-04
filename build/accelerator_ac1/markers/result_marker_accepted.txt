@@ -1,0 +1,8 @@
+﻿RESULT_MARKER_ACCEPTED
+bit: INTEGRATION_AC1 (sha256 2fa0f2e1..., build INTEGRATION_BIT_PASS 02:12, xsa 5ae4791791...)
+date: 2026-10-24
+promotion: CANDIDATE -> ACCEPTED（转正留痕，主会话执行 b6 R97 转正官令）
+acceptance_A: 销项 (b6 R89, board_ac_run01 板上双腿探针 PASS)
+acceptance_C: 销项 (b6 R97, cleg_sim_run01 分段 sim 门六判据 PASS)
+battery: A+C 全过 = R80 放行电池终态；校准门（golden63 全图族）独立线维持红，非转正阻塞 (b6 R92/R97)
+evidence: RESULT_MARKER_ACCEPTANCE_A.txt (board_ac_run01) + result_marker_acceptance_c.txt (cleg_sim_run01)

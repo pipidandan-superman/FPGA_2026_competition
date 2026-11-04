@@ -1,0 +1,9 @@
+__pycache__/
+*.py[cod]
+.Xil/
+.vivado-ai/
+*.jou
+*.pb
+~$*
+.DS_Store
+Thumbs.db

@@ -1,0 +1,43 @@
+[
+    {
+        "note": "M5.1 RTL 变更台账（2026-10-07）。M4 rtl_ledger.json 为历史快照保持不可变；本文件只记 M5 起的增量变更（文件/旧SHA→新SHA/理由）。依据 = replan §7 条 3/4（图算子迁 PPU/PL）+ prancy-brewing-sloth.md 计划（已批准）。",
+        "entries": [
+            {
+                "dst_rel": "yolo_graph\\rtl\\ppu\\shell\\ppu_engine_mux.v",
+                "old_sha256": "0617e65ea85841650cfb3680a8fb819ebd41c603bb78966b6aa524c5d5a90307",
+                "new_sha256": "251573d35a7412efbfcfab5548d5c028c85f9a87bb2d89cdd896e2b3a8b228cc",
+                "old_bytes": 32705,
+                "new_bytes": 33585,
+                "version": "V1.9→V2.0",
+                "reason": "heads_off nc=7→n80：cls8/cls16 段基 145600/148400 → 262400/294400（§8 累计律，权威=ppu_desc_bundle.HEADS_LAYOUT；仅 heads 目标地址常数变化，其余路径零语义变化）。xsim heads 逐字节门与 f3_prep_n80 派生表交叉锁。"
+            },
+            {
+                "dst_rel": "yolo_graph\\rtl\\ppu\\f7\\ppu_f7_top.v",
+                "old_sha256": "59b3a62283a76fc214a05e7a669156847b41ff90b2ccbcb8227f76b0a437e074",
+                "new_sha256": "c7a598af8ae31fb548f4571634ea7170ed402321dcd5a27d60c75cb61414e140",
+                "old_bytes": 46271,
+                "new_bytes": 48013,
+                "version": "V1.7→V1.8",
+                "reason": "u_gemm 换 ppu_gemm_stub_f7（GEMM_DELAY=8/GEMM_ERR_ALWAYS=1）+ 原独占输出 tie-off（ecode=0xE0/busy=0/rcvr=0/desc_addr=0/DMA 用户面全 0）。动机：V2.4 资源门（真引擎 154/220=70.0% DSP 正压）；M5 域无 GEMM 描述符→err 路径不可达；u_gdma/m1_axi/wash 树保留零流量。xvlog 预检通过。"
+            },
+            {
+                "dst_rel": "yolo_graph\\rtl\\ppu\\tb\\tb_ppu_f7.sv",
+                "old_sha256": "73c7eead9f70715a5513ffed93c1b856859a50629c64d329614fbb2cf2f96f06",
+                "new_sha256": "1f8ecc17305055ae581ec73570dcabd7c5bd51589dc57d80a6ebc0a4775b8599",
+                "old_bytes": 191913,
+                "new_bytes": 192314,
+                "version": "TB F7A-D 仿真面（无功能变更）",
+                "reason": "M5.1：两处 F7G-only u_gemm 层级探针块（WDBG always 块 + GFACE 进度打印）加 `ifndef PPU_F7_GEMM_STUB 守卫。动机：本树 TB 为手势线终版（含 F7G/F7M 面），ppu_f7_top V1.8 stub 化后 u_gemm 无 state/blk/dw_* 等信号，xsim 静态展开仍解析层级名→elaboration 失败；F7A-D 语义零变化（探针本就 run_s==F7G 门控死代码）。真引擎回插：编不带该定义即恢复全探针。四门 F7A/B/C/D 全绿佐证（2026-10-07 run01）。"
+            },
+            {
+                "dst_rel": "yolo_dma_csr\\rtl\\ps_axi_pl\\yolo_reg_file.sv",
+                "old_sha256": "0b95f6ef9bfff037df4dd5aae061258381cb7fa69e0cae07772daed8c3b7e2e8",
+                "new_sha256": "b64d59d592e5c715a3c17928b5695b7e85e698332f1dfc23d07d96fbad929579",
+                "old_bytes": 19926,
+                "new_bytes": 20455,
+                "version": "L4r2 守卫回填（M4 拆分漂移修正）",
+                "reason": "M5.2 S0 源平价断言发现：M4 拆分从 2_fpga/3_yolo_zynq/rtl/ps_axi_pl（陈旧）拷贝，而 V2.3 板证位流（4f4c8487，2026-09-20 run04）实际综合的是 DMA_gemm 工程内 imports 拷贝——含 board l4r2（2026-09-18）幻影尾守卫（ack on EMPTY ring 只锁协议错不推尾针，与 yolo_result_ring L173 同拍同判）。本回填=按 V2.3 工程权威拷贝逐字节覆盖（SHA b64d59d5 两端一致，diff 单 hunk）。动机：V2.4 conv 路径原样律——不回填则板梯 L0 回归门重引入已修复 bug。rtl/ps_axi_pl 根与工程 imports 的同步偏差本身在 2_fpga 冻结基线内不修（只读）。"
+            }
+        ]
+    }
+]

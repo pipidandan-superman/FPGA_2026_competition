@@ -1,0 +1,19 @@
+AC1_C_LEG PASS (CANDIDATE)
+执行：competition-75 主会话放飞的执行代理 ｜ 核验：competition-b6（最终销项须 b6 亲验）
+日期：2026-10-24 ｜ 证据根：E:/competition/4_metrics/logs/2026-10-24_cleg_sim_run01/
+
+电池全过：
+1. 编译门 PASS —— xvlog/xelab ERROR=0，BMG 横幅 16/16（logs/banner_compile.txt）
+2. stage1 冒烟 PASS —— TB_R12_G5_STAGE1_OK errors=0（logs/stage1_smoke.log）
+3. 段级门 PASS —— seg1-4 字节账 8/8 与前合并基线逐字节同；A<->B 确定性
+   checkpoint 链逐字一致；db5 冻结族 R92 全字段 10/10 同族
+   （st=23/blk=2/pdone=0/sc-dn=0 + 看门狗 err=07 prog=2 yb=109824 终态）
+4. 纪律 PASS —— RTL/TB 零改动（filelist sha 86 件全在、37/37 重叠件 0 mismatch）、
+   golden63 原锚 ae9e7c24 未动、git/板卡/2_fpga/13_final 零接触、
+   xsim 后台+看守+心跳、进程零孤儿
+5. 分段律 PASS —— 分段+checkpoint；attempt1 外部谋杀案按进程死亡!=FAIL!=PASS
+   定性重跑成功（logs/incident_attempt1_killed.txt）
+6. 回归自由 PASS —— merged RTL = 前合并基线（全部签名面零偏离）
+
+性质：候选销项留痕（b6 R92——C 腿=分段 sim 门；golden63 全图门已退役出放行电池）。
+bit 转正（A 腿 R89 已销 + 本 C 腿）由主会话/b6 依 R80/R92 口径执行。

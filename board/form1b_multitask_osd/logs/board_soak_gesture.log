@@ -1,0 +1,10 @@
+Warning: Permanently added '192.168.240.10' (ED25519) to the list of known hosts.
+elapsed_sec=577
+GESTURE_SHOWN_COUNT=0
+THUMB_SHOWN=0
+---last_gesture_events---
+---last_heartbeats---
+{"event": "HEARTBEAT", "t": 1667600623.253, "task": "gesture", "model": "YOLOv8n-Gesture7", "frames": 871, "rejected": 0, "inf_ms": 1050.7, "pl_ms": 21.4, "detections": 0, "top": [], "slots": [1, 2], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+{"event": "HEARTBEAT", "t": 1667600628.71, "task": "gesture", "model": "YOLOv8n-Gesture7", "frames": 876, "rejected": 0, "inf_ms": 1221.2, "pl_ms": 21.4, "detections": 0, "top": [], "slots": [2, 1], "mm2s_sr": "0x11000", "s2mm_sr": "0x11000"}
+---chain_proc---
+10649 /usr/local/share/pynq-venv/bin/python3 /home/xilinx/multitask_osd/three_task_main_split.py --bit /home/xilinx/multitask_osd/multitask_osd.bit --ncnn-addr 127.0.0.1:5002 --ncnn-param /home/xilinx/three_task/models/nanodet_coco_320.param --ncnn-bin /home/xilinx/three_task/models/nanodet_coco_320.bin --ncnn-param-sha de3ce3a8cbb3e9bfdae9b2c65338a5f924a3a8493b587a774496c17afd614c2d --ncnn-bin-sha 4a5c68c058a6a70f94e66e2483c98a1ae16568dc628e4258e8be12b45082b2eb --c2psa-weights /home/xilinx/three_task/models/c2psa_weights.npz --c2psa-sha 669de125d30c3df48781821749931dbf7f9fbedfcb7b3578665465163ac32363 --model 0 --model-select /home/xilinx/multitask_osd/model_select --score 0.55 --new-task-score 0.25 --nms 0.6 --evidence /home/xilinx/multitask_osd/evidence_live

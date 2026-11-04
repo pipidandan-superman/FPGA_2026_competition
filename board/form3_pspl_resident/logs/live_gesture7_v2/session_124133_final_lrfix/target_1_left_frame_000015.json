@@ -1,0 +1,44 @@
+{
+  "frame_index": 15,
+  "total_ms": 2471.476,
+  "ps_backbone_neck_ms": 806.514,
+  "pl_driver_ms": 1565.194,
+  "pl_replay_ms": 1493.841,
+  "pl_doorbell_wall_s": [
+    0.272,
+    0.264,
+    0.132,
+    0.13,
+    0.334,
+    0.308
+  ],
+  "pl_recovered": false,
+  "display_conf": 0.5,
+  "top1_baseline": {
+    "confidence": 0.7135,
+    "class_id": 1,
+    "segment": "cls16",
+    "label": "Left"
+  },
+  "detections": [
+    {
+      "label": "Left",
+      "class_id": 1,
+      "confidence": 0.7134801745414734,
+      "xyxy": [
+        374.3172607421875,
+        88.25405883789062,
+        586.1325073242188,
+        258.35693359375
+      ]
+    }
+  ],
+  "vdma": {
+    "slots": [
+      0,
+      1
+    ],
+    "mm2s_sr": "0x11000",
+    "s2mm_sr": "0x11000"
+  }
+}

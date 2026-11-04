@@ -1,0 +1,20 @@
+﻿G5SEG seg=1 done cyc=2505718 span=2497715 yb=24448 m2w=24448 aw=3056 w=3056 b=3056
+TB_R12_G5_FAIL seg=1 bytes yb=24448 m2w=24448 expect=1868800
+TB_R12_G5_FAIL seg=1 desc_done=2 expect=5
+G5SEG seg=1 done cyc=8228350 span=5722379 yb=48192 m2w=48192 aw=6024 w=6024 b=6024
+TB_R12_G5_FAIL seg=1 bytes yb=48192 m2w=48192 expect=2112000
+TB_R12_G5_FAIL seg=1 desc_done=2 expect=10
+G5SEG seg=1 done cyc=10675925 span=2447322 yb=68320 m2w=68320 aw=8540 w=8540 b=8540
+TB_R12_G5_FAIL seg=1 bytes yb=68320 m2w=68320 expect=2291200
+TB_R12_G5_FAIL seg=1 desc_done=2 expect=14
+G5SEG seg=2 done cyc=13144249 span=2468071 yb=109664 m2w=109664 aw=13708 w=13708 b=13708
+TB_R12_G5_FAIL seg=2 bytes yb=109664 m2w=109664 expect=2700800
+TB_R12_G5_FAIL seg=2 desc_done=2 expect=20
+--- P0 G5ST tail (freeze band) ---
+G5ST st=23 ax=0 conv=0 ppp=0 blk=2 awv=0 awr=1 bv=0 pdone=0
+G5ST st=23 ax=0 conv=0 ppp=0 blk=2 awv=0 awr=1 bv=0 pdone=0
+G5ST st=23 ax=0 conv=0 ppp=0 blk=2 awv=0 awr=1 bv=0 pdone=0
+--- P0 freeze entry G5STRC ---
+G5STRC cyc=13149412 st 22->23 conv=0 b=2 seg=0 k=27 | axf s=0 bsy=0 dn=0 we=0 ar=54 rd=00000002 | ld w=0 x=0 seen=1 | sc dn=0 err=0
+--- golden63 r11 EARLY_ERR (merged tree, original program, err=07 final) ---
+TB_R12_G5_FAIL seg=3 EARLY_ERR cyc=63148670 err=07 prog=2 yb=109824

@@ -1,0 +1,2166 @@
+{
+  "arena_base": 268435456,
+  "w_region_off": 6101104,
+  "heads_off": 9102880,
+  "buffers": {
+    "0": {
+      "off": 0,
+      "size": 307200,
+      "producer": "input",
+      "producer_ord": null,
+      "shape": [
+        3,
+        320,
+        320
+      ],
+      "kind": "input",
+      "root": null,
+      "root_off": null
+    },
+    "1": {
+      "off": 307200,
+      "size": 409600,
+      "producer": "model.0",
+      "producer_ord": 0,
+      "shape": [
+        16,
+        160,
+        160
+      ],
+      "kind": "conv",
+      "root": null,
+      "root_off": null
+    },
+    "2": {
+      "off": 716800,
+      "size": 204800,
+      "producer": "model.1",
+      "producer_ord": 1,
+      "shape": [
+        32,
+        80,
+        80
+      ],
+      "kind": "conv",
+      "root": null,
+      "root_off": null
+    },
+    "3": {
+      "off": 921600,
+      "size": 204800,
+      "producer": "model.2.cv1",
+      "producer_ord": 2,
+      "shape": [
+        32,
+        80,
+        80
+      ],
+      "kind": "conv",
+      "root": null,
+      "root_off": null
+    },
+    "4": {
+      "off": 921600,
+      "size": 102400,
+      "producer": "model.2.cv1",
+      "producer_ord": 2,
+      "shape": [
+        16,
+        80,
+        80
+      ],
+      "kind": "view",
+      "root": 3,
+      "root_off": 0
+    },
+    "5": {
+      "off": 1024000,
+      "size": 102400,
+      "producer": "model.2.cv1",
+      "producer_ord": 2,
+      "shape": [
+        16,
+        80,
+        80
+      ],
+      "kind": "view",
+      "root": 3,
+      "root_off": 102400
+    },
+    "6": {
+      "off": 1126400,
+      "size": 102400,
+      "producer": "model.2.m.0.cv1",
+      "producer_ord": 3,
+      "shape": [
+        16,
+        80,
+        80
+      ],
+      "kind": "conv",
+      "root": null,
+      "root_off": null
+    },
+    "7": {
+      "off": 1228800,
+      "size": 102400,
+      "producer": "model.2.m.0.cv2",
+      "producer_ord": 4,
+      "shape": [
+        16,
+        80,
+        80
+      ],
+      "kind": "conv",
+      "root": null,
+      "root_off": null
+    },
+    "8": {
+      "off": 1331200,
+      "size": 102400,
+      "producer": "model.2.m.0",
+      "producer_ord": null,
+      "shape": [
+        16,
+        80,
+        80
+      ],
+      "kind": "op",
+      "root": null,
+      "root_off": null
+    },
+    "9": {
+      "off": 1433600,
+      "size": 307200,
+      "producer": "model.2.cat",
+      "producer_ord": null,
+      "shape": [
+        48,
+        80,
+        80
+      ],
+      "kind": "op",
+      "root": null,
+      "root_off": null
+    },
+    "10": {
+      "off": 1740800,
+      "size": 204800,
+      "producer": "model.2.cv2",
+      "producer_ord": 5,
+      "shape": [
+        32,
+        80,
+        80
+      ],
+      "kind": "conv",
+      "root": null,
+      "root_off": null
+    },
+    "11": {
+      "off": 1945600,
+      "size": 102400,
+      "producer": "model.3",
+      "producer_ord": 6,
+      "shape": [
+        64,
+        40,
+        40
+      ],
+      "kind": "conv",
+      "root": null,
+      "root_off": null
+    },
+    "12": {
+      "off": 2048000,
+      "size": 102400,
+      "producer": "model.4.cv1",
+      "producer_ord": 7,
+      "shape": [
+        64,
+        40,
+        40
+      ],
+      "kind": "conv",
+      "root": null,
+      "root_off": null
+    },
+    "13": {
+      "off": 2048000,
+      "size": 51200,
+      "producer": "model.4.cv1",
+      "producer_ord": 7,
+      "shape": [
+        32,
+        40,
+        40
+      ],
+      "kind": "view",
+      "root": 12,
+      "root_off": 0
+    },
+    "14": {
+      "off": 2099200,
+      "size": 51200,
+      "producer": "model.4.cv1",
+      "producer_ord": 7,
+      "shape": [
+        32,
+        40,
+        40
+      ],
+      "kind": "view",
+      "root": 12,
+      "root_off": 51200
+    },
+    "15": {
+      "off": 2150400,
+      "size": 51200,
+      "producer": "model.4.m.0.cv1",
+      "producer_ord": 8,
+      "shape": [
+        32,
+        40,
+        40
+      ],
+      "kind": "conv",
+      "root": null,
+      "root_off": null
+    },
+    "16": {
+      "off": 2201600,
+      "size": 51200,
+      "producer": "model.4.m.0.cv2",
+      "producer_ord": 9,
+      "shape": [
+        32,
+        40,
+        40
+      ],
+      "kind": "conv",
+      "root": null,
+      "root_off": null
+    },
+    "17": {
+      "off": 2252800,
+      "size": 51200,
+      "producer": "model.4.m.0",
+      "producer_ord": null,
+      "shape": [
+        32,
+        40,
+        40
+      ],
+      "kind": "op",
+      "root": null,
+      "root_off": null
+    },
+    "18": {
+      "off": 2304000,
+      "size": 51200,
+      "producer": "model.4.m.1.cv1",
+      "producer_ord": 10,
+      "shape": [
+        32,
+        40,
+        40
+      ],
+      "kind": "conv",
+      "root": null,
+      "root_off": null
+    },
+    "19": {
+      "off": 2355200,
+      "size": 51200,
+      "producer": "model.4.m.1.cv2",
+      "producer_ord": 11,
+      "shape": [
+        32,
+        40,
+        40
+      ],
+      "kind": "conv",
+      "root": null,
+      "root_off": null
+    },
+    "20": {
+      "off": 2406400,
+      "size": 51200,
+      "producer": "model.4.m.1",
+      "producer_ord": null,
+      "shape": [
+        32,
+        40,
+        40
+      ],
+      "kind": "op",
+      "root": null,
+      "root_off": null
+    },
+    "21": {
+      "off": 2457600,
+      "size": 204800,
+      "producer": "model.4.cat",
+      "producer_ord": null,
+      "shape": [
+        128,
+        40,
+        40
+      ],
+      "kind": "op",
+      "root": null,
+      "root_off": null
+    },
+    "22": {
+      "off": 2662400,
+      "size": 102400,
+      "producer": "model.4.cv2",
+      "producer_ord": 12,
+      "shape": [
+        64,
+        40,
+        40
+      ],
+      "kind": "conv",
+      "root": null,
+      "root_off": null
+    },
+    "23": {
+      "off": 2764800,
+      "size": 51200,
+      "producer": "model.5",
+      "producer_ord": 13,
+      "shape": [
+        128,
+        20,
+        20
+      ],
+      "kind": "conv",
+      "root": null,
+      "root_off": null
+    },
+    "24": {
+      "off": 2816000,
+      "size": 51200,
+      "producer": "model.6.cv1",
+      "producer_ord": 14,
+      "shape": [
+        128,
+        20,
+        20
+      ],
+      "kind": "conv",
+      "root": null,
+      "root_off": null
+    },
+    "25": {
+      "off": 2816000,
+      "size": 25600,
+      "producer": "model.6.cv1",
+      "producer_ord": 14,
+      "shape": [
+        64,
+        20,
+        20
+      ],
+      "kind": "view",
+      "root": 24,
+      "root_off": 0
+    },
+    "26": {
+      "off": 2841600,
+      "size": 25600,
+      "producer": "model.6.cv1",
+      "producer_ord": 14,
+      "shape": [
+        64,
+        20,
+        20
+      ],
+      "kind": "view",
+      "root": 24,
+      "root_off": 25600
+    },
+    "27": {
+      "off": 2867200,
+      "size": 25600,
+      "producer": "model.6.m.0.cv1",
+      "producer_ord": 15,
+      "shape": [
+        64,
+        20,
+        20
+      ],
+      "kind": "conv",
+      "root": null,
+      "root_off": null
+    },
+    "28": {
+      "off": 2892800,
+      "size": 25600,
+      "producer": "model.6.m.0.cv2",
+      "producer_ord": 16,
+      "shape": [
+        64,
+        20,
+        20
+      ],
+      "kind": "conv",
+      "root": null,
+      "root_off": null
+    },
+    "29": {
+      "off": 2918400,
+      "size": 25600,
+      "producer": "model.6.m.0",
+      "producer_ord": null,
+      "shape": [
+        64,
+        20,
+        20
+      ],
+      "kind": "op",
+      "root": null,
+      "root_off": null
+    },
+    "30": {
+      "off": 2944000,
+      "size": 25600,
+      "producer": "model.6.m.1.cv1",
+      "producer_ord": 17,
+      "shape": [
+        64,
+        20,
+        20
+      ],
+      "kind": "conv",
+      "root": null,
+      "root_off": null
+    },
+    "31": {
+      "off": 2969600,
+      "size": 25600,
+      "producer": "model.6.m.1.cv2",
+      "producer_ord": 18,
+      "shape": [
+        64,
+        20,
+        20
+      ],
+      "kind": "conv",
+      "root": null,
+      "root_off": null
+    },
+    "32": {
+      "off": 2995200,
+      "size": 25600,
+      "producer": "model.6.m.1",
+      "producer_ord": null,
+      "shape": [
+        64,
+        20,
+        20
+      ],
+      "kind": "op",
+      "root": null,
+      "root_off": null
+    },
+    "33": {
+      "off": 3020800,
+      "size": 102400,
+      "producer": "model.6.cat",
+      "producer_ord": null,
+      "shape": [
+        256,
+        20,
+        20
+      ],
+      "kind": "op",
+      "root": null,
+      "root_off": null
+    },
+    "34": {
+      "off": 3123200,
+      "size": 51200,
+      "producer": "model.6.cv2",
+      "producer_ord": 19,
+      "shape": [
+        128,
+        20,
+        20
+      ],
+      "kind": "conv",
+      "root": null,
+      "root_off": null
+    },
+    "35": {
+      "off": 3174400,
+      "size": 25600,
+      "producer": "model.7",
+      "producer_ord": 20,
+      "shape": [
+        256,
+        10,
+        10
+      ],
+      "kind": "conv",
+      "root": null,
+      "root_off": null
+    },
+    "36": {
+      "off": 3200000,
+      "size": 25600,
+      "producer": "model.8.cv1",
+      "producer_ord": 21,
+      "shape": [
+        256,
+        10,
+        10
+      ],
+      "kind": "conv",
+      "root": null,
+      "root_off": null
+    },
+    "37": {
+      "off": 3200000,
+      "size": 12800,
+      "producer": "model.8.cv1",
+      "producer_ord": 21,
+      "shape": [
+        128,
+        10,
+        10
+      ],
+      "kind": "view",
+      "root": 36,
+      "root_off": 0
+    },
+    "38": {
+      "off": 3212800,
+      "size": 12800,
+      "producer": "model.8.cv1",
+      "producer_ord": 21,
+      "shape": [
+        128,
+        10,
+        10
+      ],
+      "kind": "view",
+      "root": 36,
+      "root_off": 12800
+    },
+    "39": {
+      "off": 3225600,
+      "size": 12800,
+      "producer": "model.8.m.0.cv1",
+      "producer_ord": 22,
+      "shape": [
+        128,
+        10,
+        10
+      ],
+      "kind": "conv",
+      "root": null,
+      "root_off": null
+    },
+    "40": {
+      "off": 3238400,
+      "size": 12800,
+      "producer": "model.8.m.0.cv2",
+      "producer_ord": 23,
+      "shape": [
+        128,
+        10,
+        10
+      ],
+      "kind": "conv",
+      "root": null,
+      "root_off": null
+    },
+    "41": {
+      "off": 3251200,
+      "size": 12800,
+      "producer": "model.8.m.0",
+      "producer_ord": null,
+      "shape": [
+        128,
+        10,
+        10
+      ],
+      "kind": "op",
+      "root": null,
+      "root_off": null
+    },
+    "42": {
+      "off": 3264000,
+      "size": 38400,
+      "producer": "model.8.cat",
+      "producer_ord": null,
+      "shape": [
+        384,
+        10,
+        10
+      ],
+      "kind": "op",
+      "root": null,
+      "root_off": null
+    },
+    "43": {
+      "off": 3302400,
+      "size": 25600,
+      "producer": "model.8.cv2",
+      "producer_ord": 24,
+      "shape": [
+        256,
+        10,
+        10
+      ],
+      "kind": "conv",
+      "root": null,
+      "root_off": null
+    },
+    "44": {
+      "off": 3328000,
+      "size": 12800,
+      "producer": "model.9.cv1",
+      "producer_ord": 25,
+      "shape": [
+        128,
+        10,
+        10
+      ],
+      "kind": "conv",
+      "root": null,
+      "root_off": null
+    },
+    "45": {
+      "off": 3340800,
+      "size": 12800,
+      "producer": "model.9.pool0",
+      "producer_ord": null,
+      "shape": [
+        128,
+        10,
+        10
+      ],
+      "kind": "op",
+      "root": null,
+      "root_off": null
+    },
+    "46": {
+      "off": 3353600,
+      "size": 12800,
+      "producer": "model.9.pool1",
+      "producer_ord": null,
+      "shape": [
+        128,
+        10,
+        10
+      ],
+      "kind": "op",
+      "root": null,
+      "root_off": null
+    },
+    "47": {
+      "off": 3366400,
+      "size": 12800,
+      "producer": "model.9.pool2",
+      "producer_ord": null,
+      "shape": [
+        128,
+        10,
+        10
+      ],
+      "kind": "op",
+      "root": null,
+      "root_off": null
+    },
+    "48": {
+      "off": 3379200,
+      "size": 51200,
+      "producer": "model.9.cat",
+      "producer_ord": null,
+      "shape": [
+        512,
+        10,
+        10
+      ],
+      "kind": "op",
+      "root": null,
+      "root_off": null
+    },
+    "49": {
+      "off": 3430400,
+      "size": 25600,
+      "producer": "model.9.cv2",
+      "producer_ord": 26,
+      "shape": [
+        256,
+        10,
+        10
+      ],
+      "kind": "conv",
+      "root": null,
+      "root_off": null
+    },
+    "50": {
+      "off": 3456000,
+      "size": 102400,
+      "producer": "model.9.cv2",
+      "producer_ord": 26,
+      "shape": [
+        256,
+        20,
+        20
+      ],
+      "kind": "conv_side_up2x",
+      "root": null,
+      "root_off": null,
+      "materialize": "S2",
+      "note": "R35: conv-side materialization via 0xDE bitmap in segment S2; produced by model.9.cv2 walk"
+    },
+    "51": {
+      "off": 3558400,
+      "size": 153600,
+      "producer": "model.11",
+      "producer_ord": null,
+      "shape": [
+        384,
+        20,
+        20
+      ],
+      "kind": "op",
+      "root": null,
+      "root_off": null
+    },
+    "52": {
+      "off": 3712000,
+      "size": 51200,
+      "producer": "model.12.cv1",
+      "producer_ord": 27,
+      "shape": [
+        128,
+        20,
+        20
+      ],
+      "kind": "conv",
+      "root": null,
+      "root_off": null
+    },
+    "53": {
+      "off": 3712000,
+      "size": 25600,
+      "producer": "model.12.cv1",
+      "producer_ord": 27,
+      "shape": [
+        64,
+        20,
+        20
+      ],
+      "kind": "view",
+      "root": 52,
+      "root_off": 0
+    },
+    "54": {
+      "off": 3737600,
+      "size": 25600,
+      "producer": "model.12.cv1",
+      "producer_ord": 27,
+      "shape": [
+        64,
+        20,
+        20
+      ],
+      "kind": "view",
+      "root": 52,
+      "root_off": 25600
+    },
+    "55": {
+      "off": 3763200,
+      "size": 25600,
+      "producer": "model.12.m.0.cv1",
+      "producer_ord": 28,
+      "shape": [
+        64,
+        20,
+        20
+      ],
+      "kind": "conv",
+      "root": null,
+      "root_off": null
+    },
+    "56": {
+      "off": 3788800,
+      "size": 25600,
+      "producer": "model.12.m.0.cv2",
+      "producer_ord": 29,
+      "shape": [
+        64,
+        20,
+        20
+      ],
+      "kind": "conv",
+      "root": null,
+      "root_off": null
+    },
+    "57": {
+      "off": 3814400,
+      "size": 76800,
+      "producer": "model.12.cat",
+      "producer_ord": null,
+      "shape": [
+        192,
+        20,
+        20
+      ],
+      "kind": "op",
+      "root": null,
+      "root_off": null
+    },
+    "58": {
+      "off": 3891200,
+      "size": 51200,
+      "producer": "model.12.cv2",
+      "producer_ord": 30,
+      "shape": [
+        128,
+        20,
+        20
+      ],
+      "kind": "conv",
+      "root": null,
+      "root_off": null
+    },
+    "59": {
+      "off": 3942400,
+      "size": 204800,
+      "producer": "model.12.cv2",
+      "producer_ord": 30,
+      "shape": [
+        128,
+        40,
+        40
+      ],
+      "kind": "conv_side_up2x",
+      "root": null,
+      "root_off": null,
+      "materialize": "S2",
+      "note": "R35: conv-side materialization via 0xDE bitmap in segment S2; produced by model.12.cv2 walk"
+    },
+    "60": {
+      "off": 4147200,
+      "size": 307200,
+      "producer": "model.14",
+      "producer_ord": null,
+      "shape": [
+        192,
+        40,
+        40
+      ],
+      "kind": "op",
+      "root": null,
+      "root_off": null
+    },
+    "61": {
+      "off": 4454400,
+      "size": 102400,
+      "producer": "model.15.cv1",
+      "producer_ord": 31,
+      "shape": [
+        64,
+        40,
+        40
+      ],
+      "kind": "conv",
+      "root": null,
+      "root_off": null
+    },
+    "62": {
+      "off": 4454400,
+      "size": 51200,
+      "producer": "model.15.cv1",
+      "producer_ord": 31,
+      "shape": [
+        32,
+        40,
+        40
+      ],
+      "kind": "view",
+      "root": 61,
+      "root_off": 0
+    },
+    "63": {
+      "off": 4505600,
+      "size": 51200,
+      "producer": "model.15.cv1",
+      "producer_ord": 31,
+      "shape": [
+        32,
+        40,
+        40
+      ],
+      "kind": "view",
+      "root": 61,
+      "root_off": 51200
+    },
+    "64": {
+      "off": 4556800,
+      "size": 51200,
+      "producer": "model.15.m.0.cv1",
+      "producer_ord": 32,
+      "shape": [
+        32,
+        40,
+        40
+      ],
+      "kind": "conv",
+      "root": null,
+      "root_off": null
+    },
+    "65": {
+      "off": 4608000,
+      "size": 51200,
+      "producer": "model.15.m.0.cv2",
+      "producer_ord": 33,
+      "shape": [
+        32,
+        40,
+        40
+      ],
+      "kind": "conv",
+      "root": null,
+      "root_off": null
+    },
+    "66": {
+      "off": 4659200,
+      "size": 153600,
+      "producer": "model.15.cat",
+      "producer_ord": null,
+      "shape": [
+        96,
+        40,
+        40
+      ],
+      "kind": "op",
+      "root": null,
+      "root_off": null
+    },
+    "67": {
+      "off": 4812800,
+      "size": 102400,
+      "producer": "model.15.cv2",
+      "producer_ord": 34,
+      "shape": [
+        64,
+        40,
+        40
+      ],
+      "kind": "conv",
+      "root": null,
+      "root_off": null
+    },
+    "68": {
+      "off": 4915200,
+      "size": 25600,
+      "producer": "model.16",
+      "producer_ord": 35,
+      "shape": [
+        64,
+        20,
+        20
+      ],
+      "kind": "conv",
+      "root": null,
+      "root_off": null
+    },
+    "69": {
+      "off": 4940800,
+      "size": 76800,
+      "producer": "model.17",
+      "producer_ord": null,
+      "shape": [
+        192,
+        20,
+        20
+      ],
+      "kind": "op",
+      "root": null,
+      "root_off": null
+    },
+    "70": {
+      "off": 5017600,
+      "size": 51200,
+      "producer": "model.18.cv1",
+      "producer_ord": 36,
+      "shape": [
+        128,
+        20,
+        20
+      ],
+      "kind": "conv",
+      "root": null,
+      "root_off": null
+    },
+    "71": {
+      "off": 5017600,
+      "size": 25600,
+      "producer": "model.18.cv1",
+      "producer_ord": 36,
+      "shape": [
+        64,
+        20,
+        20
+      ],
+      "kind": "view",
+      "root": 70,
+      "root_off": 0
+    },
+    "72": {
+      "off": 5043200,
+      "size": 25600,
+      "producer": "model.18.cv1",
+      "producer_ord": 36,
+      "shape": [
+        64,
+        20,
+        20
+      ],
+      "kind": "view",
+      "root": 70,
+      "root_off": 25600
+    },
+    "73": {
+      "off": 5068800,
+      "size": 25600,
+      "producer": "model.18.m.0.cv1",
+      "producer_ord": 37,
+      "shape": [
+        64,
+        20,
+        20
+      ],
+      "kind": "conv",
+      "root": null,
+      "root_off": null
+    },
+    "74": {
+      "off": 5094400,
+      "size": 25600,
+      "producer": "model.18.m.0.cv2",
+      "producer_ord": 38,
+      "shape": [
+        64,
+        20,
+        20
+      ],
+      "kind": "conv",
+      "root": null,
+      "root_off": null
+    },
+    "75": {
+      "off": 5120000,
+      "size": 76800,
+      "producer": "model.18.cat",
+      "producer_ord": null,
+      "shape": [
+        192,
+        20,
+        20
+      ],
+      "kind": "op",
+      "root": null,
+      "root_off": null
+    },
+    "76": {
+      "off": 5196800,
+      "size": 51200,
+      "producer": "model.18.cv2",
+      "producer_ord": 39,
+      "shape": [
+        128,
+        20,
+        20
+      ],
+      "kind": "conv",
+      "root": null,
+      "root_off": null
+    },
+    "77": {
+      "off": 5248000,
+      "size": 12800,
+      "producer": "model.19",
+      "producer_ord": 40,
+      "shape": [
+        128,
+        10,
+        10
+      ],
+      "kind": "conv",
+      "root": null,
+      "root_off": null
+    },
+    "78": {
+      "off": 5260800,
+      "size": 38400,
+      "producer": "model.20",
+      "producer_ord": null,
+      "shape": [
+        384,
+        10,
+        10
+      ],
+      "kind": "op",
+      "root": null,
+      "root_off": null
+    },
+    "79": {
+      "off": 5299200,
+      "size": 25600,
+      "producer": "model.21.cv1",
+      "producer_ord": 41,
+      "shape": [
+        256,
+        10,
+        10
+      ],
+      "kind": "conv",
+      "root": null,
+      "root_off": null
+    },
+    "80": {
+      "off": 5299200,
+      "size": 12800,
+      "producer": "model.21.cv1",
+      "producer_ord": 41,
+      "shape": [
+        128,
+        10,
+        10
+      ],
+      "kind": "view",
+      "root": 79,
+      "root_off": 0
+    },
+    "81": {
+      "off": 5312000,
+      "size": 12800,
+      "producer": "model.21.cv1",
+      "producer_ord": 41,
+      "shape": [
+        128,
+        10,
+        10
+      ],
+      "kind": "view",
+      "root": 79,
+      "root_off": 12800
+    },
+    "82": {
+      "off": 5324800,
+      "size": 12800,
+      "producer": "model.21.m.0.cv1",
+      "producer_ord": 42,
+      "shape": [
+        128,
+        10,
+        10
+      ],
+      "kind": "conv",
+      "root": null,
+      "root_off": null
+    },
+    "83": {
+      "off": 5337600,
+      "size": 12800,
+      "producer": "model.21.m.0.cv2",
+      "producer_ord": 43,
+      "shape": [
+        128,
+        10,
+        10
+      ],
+      "kind": "conv",
+      "root": null,
+      "root_off": null
+    },
+    "84": {
+      "off": 5350400,
+      "size": 38400,
+      "producer": "model.21.cat",
+      "producer_ord": null,
+      "shape": [
+        384,
+        10,
+        10
+      ],
+      "kind": "op",
+      "root": null,
+      "root_off": null
+    },
+    "85": {
+      "off": 5388800,
+      "size": 25600,
+      "producer": "model.21.cv2",
+      "producer_ord": 44,
+      "shape": [
+        256,
+        10,
+        10
+      ],
+      "kind": "conv",
+      "root": null,
+      "root_off": null
+    },
+    "86": {
+      "off": 5414400,
+      "size": 102400,
+      "producer": "model.22.cv2.0.0",
+      "producer_ord": 45,
+      "shape": [
+        64,
+        40,
+        40
+      ],
+      "kind": "conv",
+      "root": null,
+      "root_off": null
+    },
+    "87": {
+      "off": 5516800,
+      "size": 102400,
+      "producer": "model.22.cv2.0.1",
+      "producer_ord": 46,
+      "shape": [
+        64,
+        40,
+        40
+      ],
+      "kind": "conv",
+      "root": null,
+      "root_off": null
+    },
+    "88": {
+      "off": 5619200,
+      "size": 102400,
+      "producer": "model.22.cv2.0.2",
+      "producer_ord": 47,
+      "shape": [
+        64,
+        40,
+        40
+      ],
+      "kind": "conv",
+      "root": null,
+      "root_off": null
+    },
+    "89": {
+      "off": 5721600,
+      "size": 102400,
+      "producer": "model.22.cv3.0.0",
+      "producer_ord": 48,
+      "shape": [
+        64,
+        40,
+        40
+      ],
+      "kind": "conv",
+      "root": null,
+      "root_off": null
+    },
+    "90": {
+      "off": 5824000,
+      "size": 102400,
+      "producer": "model.22.cv3.0.1",
+      "producer_ord": 49,
+      "shape": [
+        64,
+        40,
+        40
+      ],
+      "kind": "conv",
+      "root": null,
+      "root_off": null
+    },
+    "91": {
+      "off": 5926400,
+      "size": 11200,
+      "producer": "model.22.cv3.0.2",
+      "producer_ord": 50,
+      "shape": [
+        7,
+        40,
+        40
+      ],
+      "kind": "conv",
+      "root": null,
+      "root_off": null
+    },
+    "92": {
+      "off": 5937600,
+      "size": 25600,
+      "producer": "model.22.cv2.1.0",
+      "producer_ord": 51,
+      "shape": [
+        64,
+        20,
+        20
+      ],
+      "kind": "conv",
+      "root": null,
+      "root_off": null
+    },
+    "93": {
+      "off": 5963200,
+      "size": 25600,
+      "producer": "model.22.cv2.1.1",
+      "producer_ord": 52,
+      "shape": [
+        64,
+        20,
+        20
+      ],
+      "kind": "conv",
+      "root": null,
+      "root_off": null
+    },
+    "94": {
+      "off": 5988800,
+      "size": 25600,
+      "producer": "model.22.cv2.1.2",
+      "producer_ord": 53,
+      "shape": [
+        64,
+        20,
+        20
+      ],
+      "kind": "conv",
+      "root": null,
+      "root_off": null
+    },
+    "95": {
+      "off": 6014400,
+      "size": 25600,
+      "producer": "model.22.cv3.1.0",
+      "producer_ord": 54,
+      "shape": [
+        64,
+        20,
+        20
+      ],
+      "kind": "conv",
+      "root": null,
+      "root_off": null
+    },
+    "96": {
+      "off": 6040000,
+      "size": 25600,
+      "producer": "model.22.cv3.1.1",
+      "producer_ord": 55,
+      "shape": [
+        64,
+        20,
+        20
+      ],
+      "kind": "conv",
+      "root": null,
+      "root_off": null
+    },
+    "97": {
+      "off": 6065600,
+      "size": 2800,
+      "producer": "model.22.cv3.1.2",
+      "producer_ord": 56,
+      "shape": [
+        7,
+        20,
+        20
+      ],
+      "kind": "conv",
+      "root": null,
+      "root_off": null
+    },
+    "98": {
+      "off": 6068400,
+      "size": 6400,
+      "producer": "model.22.cv2.2.0",
+      "producer_ord": 57,
+      "shape": [
+        64,
+        10,
+        10
+      ],
+      "kind": "conv",
+      "root": null,
+      "root_off": null
+    },
+    "99": {
+      "off": 6074800,
+      "size": 6400,
+      "producer": "model.22.cv2.2.1",
+      "producer_ord": 58,
+      "shape": [
+        64,
+        10,
+        10
+      ],
+      "kind": "conv",
+      "root": null,
+      "root_off": null
+    },
+    "100": {
+      "off": 6081200,
+      "size": 6400,
+      "producer": "model.22.cv2.2.2",
+      "producer_ord": 59,
+      "shape": [
+        64,
+        10,
+        10
+      ],
+      "kind": "conv",
+      "root": null,
+      "root_off": null
+    },
+    "101": {
+      "off": 6087600,
+      "size": 6400,
+      "producer": "model.22.cv3.2.0",
+      "producer_ord": 60,
+      "shape": [
+        64,
+        10,
+        10
+      ],
+      "kind": "conv",
+      "root": null,
+      "root_off": null
+    },
+    "102": {
+      "off": 6094000,
+      "size": 6400,
+      "producer": "model.22.cv3.2.1",
+      "producer_ord": 61,
+      "shape": [
+        64,
+        10,
+        10
+      ],
+      "kind": "conv",
+      "root": null,
+      "root_off": null
+    },
+    "103": {
+      "off": 6100400,
+      "size": 700,
+      "producer": "model.22.cv3.2.2",
+      "producer_ord": 62,
+      "shape": [
+        7,
+        10,
+        10
+      ],
+      "kind": "conv",
+      "root": null,
+      "root_off": null
+    }
+  },
+  "convs": {
+    "model.22.cv2.0.0": {
+      "slot": 51,
+      "page": 3,
+      "page_local": 14,
+      "obuf_off": 5414400,
+      "xbase_off": 4812800,
+      "wbase_off": 8351776,
+      "w_bytes": 36864,
+      "y_size": 102400,
+      "di": 85
+    },
+    "model.22.cv2.0.1": {
+      "slot": 52,
+      "page": 3,
+      "page_local": 15,
+      "obuf_off": 5516800,
+      "xbase_off": 5414400,
+      "wbase_off": 8388640,
+      "w_bytes": 36864,
+      "y_size": 102400,
+      "di": 86
+    },
+    "model.22.cv2.0.2": {
+      "slot": 53,
+      "page": 4,
+      "page_local": 0,
+      "obuf_off": 5619200,
+      "xbase_off": 5516800,
+      "wbase_off": 8425504,
+      "w_bytes": 4096,
+      "y_size": 102400,
+      "di": 87
+    },
+    "model.22.cv3.0.0": {
+      "slot": 54,
+      "page": 4,
+      "page_local": 1,
+      "obuf_off": 5721600,
+      "xbase_off": 4812800,
+      "wbase_off": 8429600,
+      "w_bytes": 36864,
+      "y_size": 102400,
+      "di": 88
+    },
+    "model.22.cv3.0.1": {
+      "slot": 55,
+      "page": 4,
+      "page_local": 2,
+      "obuf_off": 5824000,
+      "xbase_off": 5721600,
+      "wbase_off": 8466464,
+      "w_bytes": 36864,
+      "y_size": 102400,
+      "di": 89
+    },
+    "model.22.cv3.0.2": {
+      "slot": 56,
+      "page": 4,
+      "page_local": 3,
+      "obuf_off": 5926400,
+      "xbase_off": 5824000,
+      "wbase_off": 8503328,
+      "w_bytes": 512,
+      "y_size": 11200,
+      "di": 90
+    },
+    "model.22.cv2.1.0": {
+      "slot": 57,
+      "page": 4,
+      "page_local": 4,
+      "obuf_off": 5937600,
+      "xbase_off": 5196800,
+      "wbase_off": 8503840,
+      "w_bytes": 73728,
+      "y_size": 25600,
+      "di": 91
+    },
+    "model.22.cv2.1.1": {
+      "slot": 58,
+      "page": 4,
+      "page_local": 5,
+      "obuf_off": 5963200,
+      "xbase_off": 5937600,
+      "wbase_off": 8577568,
+      "w_bytes": 36864,
+      "y_size": 25600,
+      "di": 92
+    },
+    "model.22.cv2.1.2": {
+      "slot": 59,
+      "page": 4,
+      "page_local": 6,
+      "obuf_off": 5988800,
+      "xbase_off": 5963200,
+      "wbase_off": 8614432,
+      "w_bytes": 4096,
+      "y_size": 25600,
+      "di": 93
+    },
+    "model.22.cv3.1.0": {
+      "slot": 60,
+      "page": 4,
+      "page_local": 7,
+      "obuf_off": 6014400,
+      "xbase_off": 5196800,
+      "wbase_off": 8618528,
+      "w_bytes": 73728,
+      "y_size": 25600,
+      "di": 94
+    },
+    "model.22.cv3.1.1": {
+      "slot": 61,
+      "page": 4,
+      "page_local": 8,
+      "obuf_off": 6040000,
+      "xbase_off": 6014400,
+      "wbase_off": 8692256,
+      "w_bytes": 36864,
+      "y_size": 25600,
+      "di": 95
+    },
+    "model.22.cv3.1.2": {
+      "slot": 62,
+      "page": 4,
+      "page_local": 9,
+      "obuf_off": 6065600,
+      "xbase_off": 6040000,
+      "wbase_off": 8729120,
+      "w_bytes": 512,
+      "y_size": 2800,
+      "di": 96
+    },
+    "model.22.cv2.2.0": {
+      "slot": 63,
+      "page": 4,
+      "page_local": 10,
+      "obuf_off": 6068400,
+      "xbase_off": 5388800,
+      "wbase_off": 8729632,
+      "w_bytes": 147456,
+      "y_size": 6400,
+      "di": 97
+    },
+    "model.22.cv2.2.1": {
+      "slot": 64,
+      "page": 4,
+      "page_local": 11,
+      "obuf_off": 6074800,
+      "xbase_off": 6068400,
+      "wbase_off": 8877088,
+      "w_bytes": 36864,
+      "y_size": 6400,
+      "di": 98
+    },
+    "model.22.cv2.2.2": {
+      "slot": 65,
+      "page": 4,
+      "page_local": 12,
+      "obuf_off": 6081200,
+      "xbase_off": 6074800,
+      "wbase_off": 8913952,
+      "w_bytes": 4096,
+      "y_size": 6400,
+      "di": 99
+    },
+    "model.22.cv3.2.0": {
+      "slot": 66,
+      "page": 4,
+      "page_local": 13,
+      "obuf_off": 6087600,
+      "xbase_off": 5388800,
+      "wbase_off": 8918048,
+      "w_bytes": 147456,
+      "y_size": 6400,
+      "di": 100
+    },
+    "model.22.cv3.2.1": {
+      "slot": 67,
+      "page": 4,
+      "page_local": 14,
+      "obuf_off": 6094000,
+      "xbase_off": 6087600,
+      "wbase_off": 9065504,
+      "w_bytes": 36864,
+      "y_size": 6400,
+      "di": 101
+    },
+    "model.22.cv3.2.2": {
+      "slot": 68,
+      "page": 4,
+      "page_local": 15,
+      "obuf_off": 6100400,
+      "xbase_off": 6094000,
+      "wbase_off": 9102368,
+      "w_bytes": 512,
+      "y_size": 700,
+      "di": 102
+    }
+  },
+  "ppp_windows": [
+    {
+      "page": 0,
+      "row": 0,
+      "words": [
+        {
+          "word": "0x00000131",
+          "op": "add",
+          "node": "model.2.m.0",
+          "trigger_local": 9,
+          "desc_idx": 0,
+          "ppp_last": 0,
+          "seg_di": 7,
+          "status": "active"
+        },
+        {
+          "word": "0x00040532",
+          "op": "concat",
+          "node": "model.2.cat",
+          "trigger_local": 9,
+          "desc_idx": 1,
+          "ppp_last": 1,
+          "seg_di": 8,
+          "status": "active"
+        },
+        {
+          "word": "0x00040A31",
+          "op": "add",
+          "node": "model.4.m.0",
+          "trigger_local": 17,
+          "desc_idx": 2,
+          "ppp_last": 1,
+          "seg_di": 16,
+          "status": "active"
+        },
+        {
+          "word": "0x00000EB1",
+          "op": "add",
+          "node": "model.4.m.1",
+          "trigger_local": 21,
+          "desc_idx": 3,
+          "ppp_last": 0,
+          "seg_di": 19,
+          "status": "active"
+        },
+        {
+          "word": "0x000412B2",
+          "op": "concat",
+          "node": "model.4.cat",
+          "trigger_local": 21,
+          "desc_idx": 4,
+          "ppp_last": 1,
+          "seg_di": 20,
+          "status": "active"
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "row": 1,
+      "words": [
+        {
+          "word": "0x00041451",
+          "op": "add",
+          "node": "model.6.m.0",
+          "trigger_local": 2,
+          "desc_idx": 5,
+          "ppp_last": 1,
+          "seg_di": 28,
+          "status": "active"
+        },
+        {
+          "word": "0x000018D1",
+          "op": "add",
+          "node": "model.6.m.1",
+          "trigger_local": 6,
+          "desc_idx": 6,
+          "ppp_last": 0,
+          "seg_di": 31,
+          "status": "active"
+        },
+        {
+          "word": "0x00041CD2",
+          "op": "concat",
+          "node": "model.6.cat",
+          "trigger_local": 6,
+          "desc_idx": 7,
+          "ppp_last": 1,
+          "seg_di": 32,
+          "status": "active"
+        },
+        {
+          "word": "0x000021F1",
+          "op": "add",
+          "node": "model.8.m.0",
+          "trigger_local": 15,
+          "desc_idx": 8,
+          "ppp_last": 0,
+          "seg_di": 40,
+          "status": "active"
+        },
+        {
+          "word": "0x000425F2",
+          "op": "concat",
+          "node": "model.8.cat",
+          "trigger_local": 15,
+          "desc_idx": 9,
+          "ppp_last": 1,
+          "seg_di": 41,
+          "status": "active"
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "row": 2,
+      "words": [
+        {
+          "word": "0x00002813",
+          "op": "maxpool5",
+          "node": "model.9.pool0",
+          "trigger_local": 0,
+          "desc_idx": 10,
+          "ppp_last": 0,
+          "seg_di": 44,
+          "status": "active"
+        },
+        {
+          "word": "0x00002C13",
+          "op": "maxpool5",
+          "node": "model.9.pool1",
+          "trigger_local": 0,
+          "desc_idx": 11,
+          "ppp_last": 0,
+          "seg_di": 45,
+          "status": "active"
+        },
+        {
+          "word": "0x00003013",
+          "op": "maxpool5",
+          "node": "model.9.pool2",
+          "trigger_local": 0,
+          "desc_idx": 12,
+          "ppp_last": 0,
+          "seg_di": 46,
+          "status": "active"
+        },
+        {
+          "word": "0x00043412",
+          "op": "concat",
+          "node": "model.9.cat",
+          "trigger_local": 0,
+          "desc_idx": 13,
+          "ppp_last": 1,
+          "seg_di": 47,
+          "status": "active"
+        },
+        {
+          "word": "0x00043872",
+          "op": "concat",
+          "node": "model.11",
+          "trigger_local": 3,
+          "desc_idx": 14,
+          "ppp_last": 1,
+          "seg_di": 50,
+          "status": "active"
+        },
+        {
+          "word": "0x00043D32",
+          "op": "concat",
+          "node": "model.12.cat",
+          "trigger_local": 9,
+          "desc_idx": 15,
+          "ppp_last": 1,
+          "seg_di": 56,
+          "status": "active"
+        }
+      ]
+    },
+    {
+      "page": 3,
+      "row": 3,
+      "words": [
+        {
+          "word": "0x00044012",
+          "op": "concat",
+          "node": "model.14",
+          "trigger_local": 0,
+          "desc_idx": 16,
+          "ppp_last": 1,
+          "seg_di": 59,
+          "status": "active"
+        },
+        {
+          "word": "0x000444D2",
+          "op": "concat",
+          "node": "model.15.cat",
+          "trigger_local": 6,
+          "desc_idx": 17,
+          "ppp_last": 1,
+          "seg_di": 65,
+          "status": "active"
+        },
+        {
+          "word": "0x00044932",
+          "op": "concat",
+          "node": "model.17",
+          "trigger_local": 9,
+          "desc_idx": 18,
+          "ppp_last": 1,
+          "seg_di": 68,
+          "status": "active"
+        },
+        {
+          "word": "0x00044DF2",
+          "op": "concat",
+          "node": "model.18.cat",
+          "trigger_local": 15,
+          "desc_idx": 19,
+          "ppp_last": 1,
+          "seg_di": 74,
+          "status": "active"
+        },
+        {
+          "word": "0x00045252",
+          "op": "concat",
+          "node": "model.20",
+          "trigger_local": 18,
+          "desc_idx": 20,
+          "ppp_last": 1,
+          "seg_di": 77,
+          "status": "active"
+        },
+        {
+          "word": "0x00045712",
+          "op": "concat",
+          "node": "model.21.cat",
+          "trigger_local": 24,
+          "desc_idx": 21,
+          "ppp_last": 1,
+          "seg_di": 83,
+          "status": "active"
+        }
+      ]
+    },
+    {
+      "page": 4,
+      "row": 4,
+      "words": []
+    }
+  ],
+  "page_descs": [
+    {
+      "page": 0,
+      "word": "0x0000000F",
+      "nconv": 16,
+      "ppp_row": 0,
+      "edge_row": 0,
+      "join_row": 0
+    },
+    {
+      "page": 1,
+      "word": "0x00108409",
+      "nconv": 10,
+      "ppp_row": 1,
+      "edge_row": 1,
+      "join_row": 1
+    },
+    {
+      "page": 2,
+      "word": "0x00210804",
+      "nconv": 5,
+      "ppp_row": 2,
+      "edge_row": 2,
+      "join_row": 2
+    },
+    {
+      "page": 3,
+      "word": "0x00318C0F",
+      "nconv": 16,
+      "ppp_row": 3,
+      "edge_row": 3,
+      "join_row": 3
+    },
+    {
+      "page": 4,
+      "word": "0x0042100F",
+      "nconv": 16,
+      "ppp_row": 4,
+      "edge_row": 4,
+      "join_row": 4
+    }
+  ],
+  "desc_slots": [],
+  "buf_table": [],
+  "quant_table": [],
+  "heads_cfg": {
+    "mode": "0x114_frame_end",
+    "head_base": 277538336,
+    "head_lens": [
+      102400,
+      25600,
+      6400,
+      11200,
+      2800,
+      700
+    ]
+  },
+  "heads_region": {
+    "off": 9102880,
+    "size": 149100,
+    "kind": "ps_0x114",
+    "producer": null,
+    "note": "R35: frame-end via s2_axi 0x114; not in any load table"
+  },
+  "up2x_cfg": {
+    "segs": []
+  },
+  "segments": [
+    {
+      "seg": "S1",
+      "de": "0x00000000",
+      "pages": [
+        0,
+        1,
+        2
+      ],
+      "cv_table": "full",
+      "ppp_windows": [],
+      "walked_convs": [],
+      "expected_y_bytes": 2291200,
+      "m2_y_bytes": 2291200
+    },
+    {
+      "seg": "S2",
+      "de": "0x00000011",
+      "pages": [
+        2
+      ],
+      "cv_table": "p2_rows_to_0_4",
+      "ppp_windows": [],
+      "walked_convs": [],
+      "expected_y_bytes": 179200,
+      "m2_y_bytes": 409600
+    },
+    {
+      "seg": "S3",
+      "de": "0x00000000",
+      "pages": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "cv_table": "full",
+      "ppp_windows": [],
+      "walked_convs": [
+        {
+          "node": "model.22.cv2.0.0",
+          "di": 85,
+          "ord": 45,
+          "y_size": 102400,
+          "walks_4x": false
+        },
+        {
+          "node": "model.22.cv2.0.1",
+          "di": 86,
+          "ord": 46,
+          "y_size": 102400,
+          "walks_4x": false
+        },
+        {
+          "node": "model.22.cv2.0.2",
+          "di": 87,
+          "ord": 47,
+          "y_size": 102400,
+          "walks_4x": false
+        },
+        {
+          "node": "model.22.cv3.0.0",
+          "di": 88,
+          "ord": 48,
+          "y_size": 102400,
+          "walks_4x": false
+        },
+        {
+          "node": "model.22.cv3.0.1",
+          "di": 89,
+          "ord": 49,
+          "y_size": 102400,
+          "walks_4x": false
+        },
+        {
+          "node": "model.22.cv3.0.2",
+          "di": 90,
+          "ord": 50,
+          "y_size": 11200,
+          "walks_4x": false
+        },
+        {
+          "node": "model.22.cv2.1.0",
+          "di": 91,
+          "ord": 51,
+          "y_size": 25600,
+          "walks_4x": false
+        },
+        {
+          "node": "model.22.cv2.1.1",
+          "di": 92,
+          "ord": 52,
+          "y_size": 25600,
+          "walks_4x": false
+        },
+        {
+          "node": "model.22.cv2.1.2",
+          "di": 93,
+          "ord": 53,
+          "y_size": 25600,
+          "walks_4x": false
+        },
+        {
+          "node": "model.22.cv3.1.0",
+          "di": 94,
+          "ord": 54,
+          "y_size": 25600,
+          "walks_4x": false
+        },
+        {
+          "node": "model.22.cv3.1.1",
+          "di": 95,
+          "ord": 55,
+          "y_size": 25600,
+          "walks_4x": false
+        },
+        {
+          "node": "model.22.cv3.1.2",
+          "di": 96,
+          "ord": 56,
+          "y_size": 2800,
+          "walks_4x": false
+        },
+        {
+          "node": "model.22.cv2.2.0",
+          "di": 97,
+          "ord": 57,
+          "y_size": 6400,
+          "walks_4x": false
+        },
+        {
+          "node": "model.22.cv2.2.1",
+          "di": 98,
+          "ord": 58,
+          "y_size": 6400,
+          "walks_4x": false
+        },
+        {
+          "node": "model.22.cv2.2.2",
+          "di": 99,
+          "ord": 59,
+          "y_size": 6400,
+          "walks_4x": false
+        },
+        {
+          "node": "model.22.cv3.2.0",
+          "di": 100,
+          "ord": 60,
+          "y_size": 6400,
+          "walks_4x": false
+        },
+        {
+          "node": "model.22.cv3.2.1",
+          "di": 101,
+          "ord": 61,
+          "y_size": 6400,
+          "walks_4x": false
+        },
+        {
+          "node": "model.22.cv3.2.2",
+          "di": 102,
+          "ord": 62,
+          "y_size": 700,
+          "walks_4x": false
+        }
+      ],
+      "expected_y_bytes": 3553900,
+      "m2_y_bytes": 3553900
+    }
+  ],
+  "ppp_counts": {
+    "total": 0,
+    "by_segment": {}
+  },
+  "invariants": {
+    "ppp_0x14_count": 0,
+    "plan_hex_0x14_candidates": 0,
+    "plan_hex_0x14_info_chunks": 77
+  },
+  "head_only_note": "Draft heads-only plan: 18 convs, no unrelated PPU tasks. Static validation required before board use."
+}

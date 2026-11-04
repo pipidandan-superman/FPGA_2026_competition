@@ -1,0 +1,810 @@
+/************************************************************************
+ * File Name       : m9_v25_top_v3.v
+ * Developer       : M9.3 V3 issuer redesign line
+ * Date            : 2026-10-13
+ * Project Name    : YOLO object accel (M9.3 V3, 2026-10-13_yolo_m93_issuer_v3_run01)
+ * Module Name     : m9_v25_top_v3
+ * Description     :
+ *   M9.3 V3 sibling of m9_v25_top (V1.2) -- pure composition swap:
+ *   m9_abi_v2_csr stays BYTE-IDENTICAL (V3.0); the engine wrapper is
+ *   m9_intra_axi_top_v3 (V3 feeders + m9_axi_rd_v3 line loaders + H2'
+ *   array-active tap).  ABI face, PS frame law, done law, and plan
+ *   faces are UNCHANGED -- every V2.5 ladder TB compiles against this
+ *   sibling unchanged.  The only port addition is the observe-only
+ *   tr_array_active output (spec 2.5 H2' tap).
+ *
+ *   V3.1 (M10.1, 2026-10-14): ABI v2.1 layer_chain wiring -- CSR
+ *   CHAIN_MASK (0x58) -> engine, CHAIN_CNT (0x5C) <- engine; CAP0
+ *   reads 0x4D39_0210.  Composition only; no new top-level ports (the
+ *   board shim/BD face is untouched).
+ *
+ * Dependencies    : m9_abi_v2_csr.v (V1.2), m9_intra_axi_top_v3.v (V3.1)
+ * Revision History:
+ *   - V3.0 (2026-10-13) : sibling of m9_v25_top V1.2 (axi_top_v3 swap +
+ *                         H2' tap passthrough).  Inherited history
+ *                         V1.0-V1.2 applies to all else.
+ *   - V3.1 (2026-10-14) : M10.1 layer_chain wiring (CHAIN_MASK/CHAIN_CNT
+ *                         + CAP0 v2.1).
+ *   - V3.2 (2026-10-14) : M10.1-v2 phase 2b edge-table plumbing
+ *                         (CHAIN_NEDGE/EDGE_IDX/EDGE_NODE/EDGE_WIN 0xD0-
+ *                         0xDC -> engine; CAP1 0xCC RO; composition only,
+ *                         no new top-level ports).
+ *   - V3.3-M10.3 (2026-10-17): PPU island activation switch (default OFF).
+ *     Everything island-related is inside `ifdef PPU_ISLAND: new top
+ *     ports (s2_axi AXI-Lite slave + m3_axi 64b master), the u_ppu
+ *     island instance (src/rtl_ppu/ppu_f7_top.v V1.9-M10.3), and the
+ *     u_eng four-input tie-off replaced by the real three-line face.
+ *     OFF state: the tie-off text below is the ORIGINAL g3r9 text
+ *     VERBATIM (byte-preserved inside the `else branch) -- compiled
+ *     netlist and port face are structurally identical to silicon
+ *     (T7 identity law, PPU_ACTIVATION_PLAN section 5-R3/C1).
+ *   - V3.4-R160 (2026-10-26) : candidate-only M11_REPACK-gated m04
+ *         read-only passthrough from repack glue to the BD shim.
+ *   - V3.5-StageB (2026-10-28) : Candidate-only atomic CSR acceptance,
+ *         full DE fields, and 16-bit progress.  Parent rejected/recovery
+ *         and bind/ARN wiring remains an explicit integration dependency.
+ *   - V3.6-Closure (2026-10-28) : Candidate-only normal/rejected/recovery
+ *         separation, real commit-fence done gating, integration fault
+ *         aggregation, and complete PPU/shim status/event routing.
+ *   - V3.7-HBUFClosure (2026-10-28) by LSL : Candidate-only accepted-normal
+ *         HBUF start and accepted-mode descriptor/legacy geometry routing;
+ *         CSR page/restart controls routed with observations explicitly open.
+ *         Unused GEMM-stub secondary-master requests are explicitly open.
+ *   - V3.8-PortRepair (2026-10-28) by LSL : Remove the duplicate u_eng
+ *         cfg_nedge named connection; retain the original single connection.
+ *   - V3.9-WidthRepair (2026-10-28) by LSL : Carry all 16 page-local
+ *         three-bit layout entries from CSR to the engine without truncation.
+ ***********************************************************************/
+`timescale 1ns / 1ps
+
+module m9_v25_top_v3 (
+    input  wire        clk           ,
+    input  wire        rst_n         ,
+    // ---- ABI v2 AXI4-Lite slave (PS GP face) ----
+    // 装载 FSM 呈批件 V2 §2.4②：8→16bit 端口拓宽（shim 切片 [15:0] 透传；
+    // 高位为零时 CSR 旧译码逐位不变）
+    input  wire [15:0] s_awaddr      ,
+    input  wire [2:0]  s_awprot      ,
+    input  wire        s_awvalid     ,
+    output wire        s_awready     ,
+    input  wire [31:0] s_wdata       ,
+    input  wire [3:0]  s_wstrb       ,
+    input  wire        s_wvalid      ,
+    output wire        s_wready      ,
+    output wire [1:0]  s_bresp       ,
+    output wire        s_bvalid      ,
+    input  wire        s_bready      ,
+    input  wire [15:0] s_araddr      ,
+    input  wire [2:0]  s_arprot      ,
+    input  wire        s_arvalid     ,
+    output wire        s_arready     ,
+    output wire [31:0] s_rdata       ,
+    output wire [1:0]  s_rresp       ,
+    output wire        s_rvalid      ,
+    input  wire        s_rready      ,
+    // ---- plan ROM faces (BD plan BRAM; registered read) ----
+    // r12 widths (2026-10-21, M11a/D4 slot-doubling): pctl 14b / strip 11b
+    // / lut 15b, cv 6b (69 slots x 128/16/256 rows = 8832/1104/17664;
+    // was r10 12b/9b/13b/5b).  Legacy low-bit values unchanged (zero-ext).
+    output wire [13:0] pctl_addr     ,
+    input  wire [95:0] pctl_data     ,
+    output wire [10:0] strip_addr    ,
+    input  wire [20:0] strip_data    ,
+    output wire [14:0] lut_addr      ,
+    input  wire [7:0]  lut_data      ,
+    output wire [6:0]  cv_addr       ,
+    input  wire [255:0] cv_iss       ,
+    input  wire [105:0] cv_geo       ,
+    // 2a: m9_bm_wlay widened 136->168 (ch_stride tail)
+    input  wire [167:0] cv_wlay      ,
+    // r12 (M11a/D4): per-conv plan slot base from the new cv_slot ROM face
+    // (64 x 7b; roms BD cell output -> top -> issuer; legacy floats Z and
+    // the issuer cv_slot_g guard zeroes it, npages=1 legacy unaffected)
+    input  wire [6:0]  cv_slot       ,
+    // ---- HP0 read master: x window ----
+    output wire [31:0] m0_araddr     ,
+    output wire [3:0]  m0_arlen      ,
+    output wire        m0_arvalid    ,
+    input  wire        m0_arready    ,
+    input  wire [63:0] m0_rdata      ,
+    input  wire [1:0]  m0_rresp      ,
+    input  wire        m0_rvalid     ,
+    input  wire        m0_rlast      ,
+    output wire        m0_rready     ,
+    // ---- HP3 read master: w feeder ----
+    output wire [31:0] m1_araddr     ,
+    output wire [3:0]  m1_arlen      ,
+    output wire        m1_arvalid    ,
+    input  wire        m1_arready    ,
+    input  wire [63:0] m1_rdata      ,
+    input  wire [1:0]  m1_rresp      ,
+    input  wire        m1_rvalid     ,
+    input  wire        m1_rlast      ,
+    output wire        m1_rready     ,
+    // ---- HP0 write master: y scatter ----
+    output wire [31:0] m2_awaddr     ,
+    output wire [3:0]  m2_awlen      ,
+    output wire        m2_awvalid    ,
+    input  wire        m2_awready    ,
+    output wire [63:0] m2_wdata      ,
+    output wire [7:0]  m2_wstrb      ,
+    output wire        m2_wvalid     ,
+    input  wire        m2_wready     ,
+    input  wire [1:0]  m2_bresp      ,
+    input  wire        m2_bvalid     ,
+    output wire        m2_bready     ,
+    // ---- V3 spec 2.5: H2' array-active tap (observe-only) ----
+    output wire        tr_array_active,
+    input  wire        all_master_response_fault_i
+`ifdef PPU_ISLAND
+    // ---- M10.3 activation (switch-gated): PPU island CSR face ----
+    // s2: island AXI4-Lite slave (BD GP0 second segment, 0x43C2_0000)
+    ,input  wire [31:0] s2_axi_awaddr  ,
+    input  wire [2:0]  s2_axi_awprot  ,
+    input  wire        s2_axi_awvalid ,
+    output wire        s2_axi_awready ,
+    input  wire [31:0] s2_axi_wdata   ,
+    input  wire [3:0]  s2_axi_wstrb   ,
+    input  wire        s2_axi_wvalid  ,
+    output wire        s2_axi_wready  ,
+    output wire [1:0]  s2_axi_bresp   ,
+    output wire        s2_axi_bvalid  ,
+    input  wire        s2_axi_bready  ,
+    input  wire [31:0] s2_axi_araddr  ,
+    input  wire [2:0]  s2_axi_arprot  ,
+    input  wire        s2_axi_arvalid ,
+    output wire        s2_axi_arready ,
+    output wire [31:0] s2_axi_rdata   ,
+    output wire [1:0]  s2_axi_rresp   ,
+    output wire        s2_axi_rvalid  ,
+    input  wire        s2_axi_rready  ,
+    // m3: island shell-DMA AXI4 master (BD -> PS7 HP1 via interconnect)
+    output wire [31:0] m3_axi_araddr  ,
+    output wire [3:0]  m3_axi_arlen   ,
+    output wire [2:0]  m3_axi_arsize  ,
+    output wire [1:0]  m3_axi_arburst ,
+    output wire        m3_axi_arvalid ,
+    input  wire        m3_axi_arready ,
+    input  wire [63:0] m3_axi_rdata   ,
+    input  wire [1:0]  m3_axi_rresp   ,
+    input  wire        m3_axi_rlast   ,
+    input  wire        m3_axi_rvalid  ,
+    output wire        m3_axi_rready  ,
+    output wire [31:0] m3_axi_awaddr  ,
+    output wire [3:0]  m3_axi_awlen   ,
+    output wire [2:0]  m3_axi_awsize  ,
+    output wire [1:0]  m3_axi_awburst ,
+    output wire        m3_axi_awvalid ,
+    input  wire        m3_axi_awready ,
+    output wire [63:0] m3_axi_wdata   ,
+    output wire [7:0]  m3_axi_wstrb   ,
+    output wire        m3_axi_wlast   ,
+    output wire        m3_axi_wvalid  ,
+    input  wire        m3_axi_wready  ,
+    input  wire [1:0]  m3_axi_bresp   ,
+    input  wire        m3_axi_bvalid  ,
+    output wire        m3_axi_bready  ,
+    output wire [31:0] m03_b_timeout_limit_o,
+    output wire        heads_start_accepted_o,
+    output wire        heads_epoch_active_o,
+    output wire        heads_epoch_profile_accepted_o,
+    output wire        heads_epoch_cfg0_o,
+    output wire        heads_live_dma_cfg0_o,
+    output wire        heads_profile_fault_o,
+    output wire        ppu_error_any_o,
+    output wire        epoch_invalid_o,
+    output wire        heads_gated_done_event_o,
+    output wire        heads_frame_done_allowed_o,
+    input  wire        hw_m03_heads_commit_fence_i,
+    input  wire        heads_transaction_fault_i,
+    input  wire        m03_idle_quiescent_i
+`endif
+`ifdef M11_REPACK
+    ,output wire [31:0] m4_axi_araddr
+    ,output wire [3:0]  m4_axi_arlen
+    ,output wire        m4_axi_arvalid
+    ,input  wire        m4_axi_arready
+    ,input  wire [63:0] m4_axi_rdata
+    ,input  wire [1:0]  m4_axi_rresp
+    ,input  wire        m4_axi_rlast
+    ,input  wire        m4_axi_rvalid
+    ,output wire        m4_axi_rready
+`endif
+);
+
+    // ---- CSR config outputs -> intra top cfg inputs ----
+    wire [31:0] plan_base, arena_base, w_base;
+    wire [9:0]  cfg_nb;   wire [5:0]  cfg_rc;
+    wire [3:0]  cfg_ns;   wire [1:0]  cfg_nseg;
+    wire [4:0]  cfg_nconv;
+    wire [15:0] cfg_ic, cfg_h, cfg_w;
+    wire [3:0]  cfg_kh, cfg_kw, cfg_sh, cfg_sw, cfg_ph, cfg_pw;
+    wire        cfg_first, cfg_law_fetch, cfg_overlap;
+    wire [7:0]  cfg_oc;
+    wire [10:0] cfg_s0_k; wire [7:0] cfg_s0_jc; wire [1:0] cfg_s0_g;
+    wire [31:0] cfg_stride, cfg_obuf, cfg_slab, cfg_rc_stride,
+                cfg_oc_stride;
+    wire [15:0] cfg_chain_mask;          // M10.1 ABI v2.1 (CSR 0x58)
+    wire [3:0]  cfg_nedge;               // 2b: CHAIN_NEDGE (CSR 0xD0)
+    wire [63:0] cfg_edge_node;           // 2b: edge table nodes
+    wire [63:0] cfg_edge_prod;           // 2d: edge table producer fields
+    wire [127:0] cfg_edge_win;           // 2b: edge table windows
+    wire [639:0] cfg_join_tab;           // 5b: join-region table (20 words)
+    wire        db_start;
+    wire        accept_start;
+    wire        accept_normal;
+    wire        accept_rejected_frame;
+    wire        recovery_accept;
+    wire [1:0]  start_mode;
+    wire [1:0]  candidate_start_mode;
+    wire        raw_db_req;
+    wire        db_req_pending;
+    wire        request_reject;
+    wire [7:0]  request_status;
+    // v2.3 (M10.2 m8): PPP segment table + generation + three-line face
+    wire [255:0] cfg_ppp_tab;            // CSR 8x32b (0xE9/0xEA window)
+    wire [47:0]  cfg_layout_id;          // CSR 16x3b (0xEB/0xEE)
+    wire [7:0]   frame_gen;              // doorbell wdata[7:0] latch
+    wire         frame_token;            // pulse face for the PPU walker
+    wire         ppu_start_w;            // issuer->walker (conv-only bits:
+    wire [17:0]  ppu_start_payload_w;    //   unused; see u_eng tie-off)
+    // v2.5 (r12 B 裁定): M11a page face CSR<->engine 环跳线（b6 终裁最小
+    // 作用域：npages>1 多页走帧激活，63-conv/16-per-page 装箱律硬需求）
+    wire [2:0]   cfg_npages_w;
+    wire         cfg_pgauto_w;
+    wire [2:0]   cfg_schedule_page;
+    wire [5:0]   cfg_gconv_base;
+    wire         cfg_hbuf_restart;
+    wire [5:0]   cfg_de_reserved;
+    wire [31:0]  pg_desc_w;
+    wire         pg_win_rdy_w;
+    wire [2:0]   page_r_w;
+    wire         pg_pref_w;
+    wire         hbuf_start_w;
+    wire [4:0]   hbuf_nconv_w;
+    wire [3:0]   hbuf_nedge_w;
+    wire         hbuf_segmented_mode_w;
+    wire [31:0]  iss_tmo_max_w;
+    wire         start_paged;
+    wire         axi_epoch_invalid;
+    wire         eng_epoch_invalid;
+    wire         epoch_invalid_w;
+    wire         engine_quiescent_w;
+    wire         hw_axi_commit_fence_w;
+    wire         cfg_prequal_ok_w;
+    wire         nonlocal_cfg_prequal_ok_w;
+    wire         sppf_prequal_ok_w;
+    wire         sppf_pending_empty_w;
+    wire         ybase_prequal_ok_w;
+    wire         nonlocal_error_start_block_w;
+    wire         local_reject_now_w;
+    wire [2:0]   local_reject_flags_w;
+    wire         axi_account_sticky_w;
+    wire         axi_fifo_overflow_sticky_w;
+    wire         axi_b_timeout_sticky_w;
+    wire         axi_bresp_error_sticky_w;
+    wire         rp_skid_overflow_sticky_w;
+    reg          integration_fault_q;
+    wire         integration_fault_event_w;
+    localparam [1:0] SPPF_NONE   = 2'd0;
+    localparam [1:0] SPPF_MANUAL = 2'd2;
+    assign start_paged = (cfg_nconv > 5'd1) &&
+                         ((cfg_npages_w != 3'd0) ||
+                          (cfg_schedule_page != 3'd0) ||
+                          (cfg_gconv_base != 6'd0));
+    // HBUF consumes geometry only with the accepted-normal start pulse.
+    // start_mode is the CSR register updated on that same acceptance; the
+    // candidate mode and raw doorbell never select live HBUF geometry.
+    // Paged geometry mirrors the selected descriptor, while legacy keeps
+    // the original CSR fields.  Rejected/recovery class stays orthogonal:
+    // only accept_normal can launch the HBUF checked builder.
+    assign hbuf_start_w = accept_normal;
+    assign hbuf_nconv_w = (start_mode == SPPF_NONE) ? cfg_nconv :
+                          ({1'b0, pg_desc_w[3:0]} + 5'd1);
+    assign hbuf_nedge_w = (start_mode == SPPF_NONE) ? cfg_nedge :
+                          {1'b0, pg_desc_w[6:4]};
+    assign hbuf_segmented_mode_w = (start_mode == SPPF_MANUAL);
+    assign epoch_invalid_w = axi_epoch_invalid | eng_epoch_invalid |
+                             integration_fault_q;
+
+    // ---- engine status (pre-done-gate) + counters ----
+    wire        eng_busy;
+    wire        eng_done;
+    wire        eng_normal_done;
+    wire        eng_rejected_done;
+    wire [7:0]  eng_err;
+    wire [7:0]  err;
+    wire [15:0] progress_blk;
+    wire [31:0] cnt_beats;
+    wire [31:0] cnt_stall;
+    wire [15:0] cnt_csr_w;
+    wire [19:0] cnt_y_bytes;
+    wire [9:0]  cnt_y_blocks;
+    wire [31:0] cnt_chain_bytes;         // M10.1: HBUF ledger (CSR 0x5C)
+    wire         cfg_chain_rel;          // 2e: CHAIN_REL mode bit (CSR 0xE0)
+    wire [15:0]  cfg_up2x;               // 5b: CHAIN_UP2X bitmap (CSR 0xDE)
+    wire [31:0]  iss_s2l_cnt;            // 2e: issuer S2L counter (CSR 0xE4)
+    wire [31:0]  hb_skew_max;            // 2e: hbuf skew max (CSR 0xE8)
+    wire [511:0] hb_dbg;                 // r7 debug aperture (cursor 0xF8/0xFC)
+    wire [5:0]  conv_idx_w;              // M10.1: connected (was dangling);
+                                         // r12 6b (63-conv D4 face; was 5b)
+    wire         tr_we;
+    wire [11:0]  tr_waddr, tr_raddr;
+    wire [31:0]  tr_wdata, tr_rdata;
+    wire         tr_ring_ovr;
+    wire         tr_last_compute;
+    reg          issuer_done_seen, final_token_seen;
+    wire         tr_steady_end =
+        (tr_last_compute && (issuer_done_seen || eng_normal_done)) ||
+        (eng_normal_done && final_token_seen);
+
+    // Reuse the existing 0x3C error domain; no new readback address or field.
+    // Leaf AXI diagnostic codes are 01=config/account, 02=overflow,
+    // 03=B-timeout and 04=response.  Engine first-error-wins has priority.
+    assign err = (eng_err != 8'd0) ? eng_err :
+                 axi_b_timeout_sticky_w ? 8'h03 :
+                 (axi_fifo_overflow_sticky_w || rp_skid_overflow_sticky_w) ?
+                 8'h02 :
+                 (axi_bresp_error_sticky_w || all_master_response_fault_i) ?
+                 8'h04 :
+                 (axi_account_sticky_w || integration_fault_q) ? 8'h01 :
+                 8'h00;
+
+    reg accepted_normal_active_q;
+    reg rejected_frame_active_q;
+    reg rejected_done_seen_q;
+    reg rejected_done_l;
+    reg normal_done_l;
+    reg [1:0] rejected_mode_q;
+    reg initial_safe_q;
+    reg previous_db_complete_q;
+    wire busy_v25;
+    wire done_v25;
+
+    wire ywr_act = m2_awvalid || m2_wvalid || m2_bvalid;
+    wire nonlocal_start_block = nonlocal_error_start_block_w ||
+        epoch_invalid_w || integration_fault_event_w ||
+        axi_account_sticky_w || axi_fifo_overflow_sticky_w ||
+        axi_b_timeout_sticky_w || axi_bresp_error_sticky_w ||
+        rp_skid_overflow_sticky_w;
+    wire legacy_local_reject_now = local_reject_now_w &&
+                                   (candidate_start_mode != SPPF_MANUAL);
+    wire rejected_frame_quiescent = rejected_frame_active_q &&
+        rejected_done_seen_q && engine_quiescent_w && !eng_busy && !ywr_act &&
+        hw_axi_commit_fence_w && !integration_fault_event_w;
+    wire serial_ok = initial_safe_q || rejected_frame_quiescent ||
+                     (previous_db_complete_q && engine_quiescent_w);
+    wire common_static_ok = serial_ok && !nonlocal_start_block;
+    wire accept_static_available = common_static_ok && cfg_prequal_ok_w &&
+                                   sppf_prequal_ok_w && ybase_prequal_ok_w;
+    wire local_reject_static_available = common_static_ok &&
+        nonlocal_cfg_prequal_ok_w && sppf_prequal_ok_w &&
+        sppf_pending_empty_w && ybase_prequal_ok_w;
+    wire accept_quiescent_available = engine_quiescent_w && !ywr_act &&
+        !accepted_normal_active_q &&
+        (!rejected_frame_active_q || rejected_frame_quiescent) &&
+        !integration_fault_event_w;
+    wire recoverable_reject = rejected_frame_active_q &&
+        rejected_done_seen_q && (rejected_mode_q != SPPF_MANUAL) &&
+        !nonlocal_start_block;
+    wire recovery_static_available = recoverable_reject &&
+        rejected_frame_quiescent && sppf_pending_empty_w &&
+        sppf_prequal_ok_w && ybase_prequal_ok_w &&
+        (legacy_local_reject_now ? nonlocal_cfg_prequal_ok_w :
+                                   cfg_prequal_ok_w);
+
+    wire normal_success_qual = accepted_normal_active_q &&
+        !rejected_frame_active_q && eng_normal_done &&
+        engine_quiescent_w && !eng_busy && !ywr_act &&
+        hw_axi_commit_fence_w && (err == 8'd0) &&
+        !nonlocal_start_block;
+    wire normal_close_event = normal_success_qual && !normal_done_l;
+    wire rejected_done_event = rejected_frame_active_q &&
+        eng_rejected_done && !rejected_done_seen_q;
+
+    assign busy_v25 = eng_busy ||
+        (accepted_normal_active_q && !normal_done_l) ||
+        (rejected_frame_active_q && !rejected_done_l);
+    assign done_v25 = normal_done_l | rejected_done_l;
+
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            accepted_normal_active_q <= 1'b0;
+            rejected_frame_active_q <= 1'b0;
+            rejected_done_seen_q <= 1'b0;
+            rejected_done_l <= 1'b0;
+            normal_done_l <= 1'b0;
+            rejected_mode_q <= 2'd0;
+            initial_safe_q <= 1'b1;
+            previous_db_complete_q <= 1'b0;
+            issuer_done_seen <= 1'b0;
+            final_token_seen <= 1'b0;
+        end else begin
+            if (accept_start) begin
+                accepted_normal_active_q <= accept_normal;
+                rejected_frame_active_q <= accept_rejected_frame;
+                rejected_done_seen_q <= 1'b0;
+                rejected_done_l <= 1'b0;
+                normal_done_l <= 1'b0;
+                initial_safe_q <= 1'b0;
+                previous_db_complete_q <= 1'b0;
+                issuer_done_seen <= 1'b0;
+                final_token_seen <= 1'b0;
+                if (accept_rejected_frame) begin
+                    rejected_mode_q <= candidate_start_mode;
+                end
+            end else begin
+                if (eng_normal_done && accepted_normal_active_q) begin
+                    issuer_done_seen <= 1'b1;
+                end
+                if (tr_last_compute) begin
+                    final_token_seen <= 1'b1;
+                end
+                if (rejected_done_event) begin
+                    rejected_done_seen_q <= 1'b1;
+                    rejected_done_l <= 1'b1;
+                end
+                if (normal_close_event) begin
+                    accepted_normal_active_q <= 1'b0;
+                    normal_done_l <= 1'b1;
+                    previous_db_complete_q <= 1'b1;
+                end
+            end
+        end
+    end
+
+    m9_abi_v2_csr u_csr (
+        .clk(clk), .rst_n(rst_n),
+        .s_awaddr(s_awaddr), .s_awprot(s_awprot),
+        .s_awvalid(s_awvalid), .s_awready(s_awready),
+        .s_wdata(s_wdata), .s_wstrb(s_wstrb),
+        .s_wvalid(s_wvalid), .s_wready(s_wready),
+        .s_bresp(s_bresp), .s_bvalid(s_bvalid), .s_bready(s_bready),
+        .s_araddr(s_araddr), .s_arprot(s_arprot),
+        .s_arvalid(s_arvalid), .s_arready(s_arready),
+        .s_rdata(s_rdata), .s_rresp(s_rresp),
+        .s_rvalid(s_rvalid), .s_rready(s_rready),
+        .busy(busy_v25), .done(done_v25), .err(err),
+        .progress_blk(progress_blk),
+        .cnt_beats(cnt_beats), .cnt_csr_w(cnt_csr_w),
+        .cnt_y_bytes(cnt_y_bytes), .cnt_y_blocks(cnt_y_blocks),
+        .cnt_stall(cnt_stall), .cnt_chain_bytes(cnt_chain_bytes),
+        .s2l_cnt(iss_s2l_cnt), .skew_max(hb_skew_max), .hb_dbg(hb_dbg),
+        // dbg_cur is consumed by CSR 0xF8/0xFC readback; no top-level fanout.
+        .dbg_cur(),
+        // G3: OVF AW-capture tap (observe-only; the only DDR write master)
+        .mon_awvalid(m2_awvalid), .mon_awready(m2_awready),
+        .mon_awaddr(m2_awaddr),
+        .plan_base(plan_base), .arena_base(arena_base), .w_base(w_base),
+        .cfg_nb(cfg_nb), .cfg_rc(cfg_rc), .cfg_ns(cfg_ns),
+        .cfg_nseg(cfg_nseg), .cfg_nconv(cfg_nconv),
+        .cfg_ic(cfg_ic), .cfg_h(cfg_h), .cfg_w(cfg_w),
+        .cfg_kh(cfg_kh), .cfg_kw(cfg_kw),
+        .cfg_sh(cfg_sh), .cfg_sw(cfg_sw),
+        .cfg_ph(cfg_ph), .cfg_pw(cfg_pw),
+        .cfg_first(cfg_first), .cfg_law_fetch(cfg_law_fetch),
+        .cfg_overlap(cfg_overlap), .cfg_oc(cfg_oc),
+        .cfg_s0_k(cfg_s0_k), .cfg_s0_jc(cfg_s0_jc), .cfg_s0_g(cfg_s0_g),
+        .cfg_stride(cfg_stride), .cfg_obuf(cfg_obuf), .cfg_slab(cfg_slab),
+        .cfg_rc_stride(cfg_rc_stride), .cfg_oc_stride(cfg_oc_stride),
+        .cfg_chain_mask(cfg_chain_mask),   // M10.1 ABI v2.1
+        .cfg_nedge(cfg_nedge),             // 2b edge table
+        .cfg_edge_node(cfg_edge_node),
+        .cfg_edge_prod(cfg_edge_prod),   // 2d producer field
+        .cfg_edge_win(cfg_edge_win),
+        .cfg_join_tab(cfg_join_tab),
+        .cfg_chain_rel(cfg_chain_rel),   // 2e
+        .cfg_up2x(cfg_up2x),             // 5b
+        .cfg_schedule_page(cfg_schedule_page),
+        .cfg_gconv_base(cfg_gconv_base),
+        .cfg_hbuf_restart(cfg_hbuf_restart),
+        .cfg_de_reserved(cfg_de_reserved),
+        .cfg_ppp_tab(cfg_ppp_tab),       // v2.3 (M10.2 m8)
+        .cfg_layout_id(cfg_layout_id),   // v2.3
+        .frame_gen(frame_gen),           // v2.3: doorbell gen latch
+        .frame_token(frame_token),       // v2.3: walker-side token face
+        .start(db_start),
+        .accept_start(accept_start),
+        .accept_normal(accept_normal),
+        .accept_rejected_frame(accept_rejected_frame),
+        .recovery_accept(recovery_accept),
+        .start_mode(start_mode),
+        .candidate_start_mode(candidate_start_mode),
+        .raw_db_req(raw_db_req),
+        .db_req_pending(db_req_pending),
+        .request_reject(request_reject),
+        .request_status(request_status),
+        .accept_static_ok_i(accept_static_available),
+        .accept_quiescent_ok_i(accept_quiescent_available),
+        .local_reject_static_ok_i(local_reject_static_available),
+        .recovery_static_ok_i(recovery_static_available),
+        .rejected_frame_quiescent_i(rejected_frame_quiescent),
+        .recoverable_reject_i(recoverable_reject),
+        .legacy_local_reject_now_i(legacy_local_reject_now),
+        .rejected_frame_active_i(rejected_frame_active_q),
+        .rejected_done_seen_i(rejected_done_seen_q),
+        .local_reject_flags_i(local_reject_flags_w),
+        // v2.5 (r12 B 裁定): M11a page face 环（CSR <-> engine）
+        .pg_raddr(page_r_w),
+        .pg_pref(pg_pref_w),
+        .cfg_npages(cfg_npages_w), .cfg_pgauto(cfg_pgauto_w),
+        .pg_desc_o(pg_desc_w),
+        .pg_win_rdy(pg_win_rdy_w),
+        .tr_we(tr_we), .tr_waddr(tr_waddr), .tr_wdata(tr_wdata),
+        .tr_raddr(tr_raddr), .tr_rdata(tr_rdata)
+    );
+
+`ifdef PPU_ISLAND
+    // M10.3 activation: island verdict/count nets (declared HERE, above
+    // u_eng, so the port connections below reference declared wires --
+    // port-connection implicit nets cannot be re-declared later).
+    wire        ppu_done_w;              // walker arbiter verdict pulse
+    wire        ppu_done_abort_w;        // 1 = token/engine failure
+    wire [7:0]  ppu_done_err_w;          // abort err code (with pulse)
+    wire [6:0]  ppu_desc_count_w;        // island loaded-DESC count
+    wire        heads_start_accepted_w;
+    wire        heads_gated_done_event_w;
+    wire        heads_frame_done_allowed_w;
+    wire        heads_epoch_active_w;
+    wire        heads_epoch_profile_accepted_w;
+    wire        heads_epoch_cfg0_w;
+    wire        heads_live_dma_cfg0_w;
+    wire        heads_profile_fault_w;
+    wire        ppu_error_any_w;
+    assign m03_b_timeout_limit_o = iss_tmo_max_w;
+    assign heads_start_accepted_o = heads_start_accepted_w;
+    assign heads_epoch_active_o = heads_epoch_active_w;
+    assign heads_epoch_profile_accepted_o = heads_epoch_profile_accepted_w;
+    assign heads_epoch_cfg0_o = heads_epoch_cfg0_w;
+    assign heads_live_dma_cfg0_o = heads_live_dma_cfg0_w;
+    assign heads_profile_fault_o = heads_profile_fault_w;
+    assign ppu_error_any_o = ppu_error_any_w;
+    assign epoch_invalid_o = epoch_invalid_w;
+    assign heads_gated_done_event_o = heads_gated_done_event_w;
+    assign heads_frame_done_allowed_o = heads_frame_done_allowed_w;
+    assign integration_fault_event_w = all_master_response_fault_i ||
+        heads_transaction_fault_i || heads_profile_fault_w || ppu_error_any_w;
+`else
+    assign integration_fault_event_w = all_master_response_fault_i;
+`endif
+
+    // Integration faults are reset-only at this boundary.  Registering the
+    // combined PPU/shim sources avoids a combinational epoch-invalid loop.
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            integration_fault_q <= 1'b0;
+        end else if (integration_fault_event_w) begin
+            integration_fault_q <= 1'b1;
+        end
+    end
+
+    m9_intra_axi_top_v3 u_eng (
+        .clk(clk), .rst_n(rst_n),
+        .cfg_nb(cfg_nb), .cfg_rc(cfg_rc), .cfg_ns(cfg_ns),
+        .cfg_nseg(cfg_nseg), .cfg_s0_k(cfg_s0_k), .cfg_s0_jc(cfg_s0_jc),
+        .cfg_s0_g(cfg_s0_g), .cfg_stride(cfg_stride), .cfg_obuf(cfg_obuf),
+        .cfg_ybase(plan_base),    // M9.5c: CSR 0x04 = y-arena runtime base
+        .cfg_overlap(cfg_overlap), .cfg_nconv(cfg_nconv),
+        .cfg_ic(cfg_ic), .cfg_h(cfg_h), .cfg_w(cfg_w),
+        .cfg_kh(cfg_kh), .cfg_kw(cfg_kw), .cfg_sh(cfg_sh), .cfg_sw(cfg_sw),
+        .cfg_ph(cfg_ph), .cfg_pw(cfg_pw),
+        .cfg_first(cfg_first), .cfg_law_fetch(cfg_law_fetch),
+        .cfg_xbase(arena_base),
+        .cfg_wbase(w_base), .cfg_slab(cfg_slab),
+        .cfg_rc_stride(cfg_rc_stride), .cfg_oc_stride(cfg_oc_stride),
+        .cfg_oc(cfg_oc), .cfg_chain_mask(cfg_chain_mask),
+        .cfg_nedge(cfg_nedge), .cfg_edge_node(cfg_edge_node),
+        .cfg_edge_prod(cfg_edge_prod),
+        .cfg_edge_win(cfg_edge_win),
+        .cfg_join_tab(cfg_join_tab),
+        .cfg_chain_rel(cfg_chain_rel),   // 2e
+        .cfg_up2x(cfg_up2x),             // 5b
+        // ---- v2.3 three-line face: PPU-side tie-off law (G3 identity) --
+        // Conv-only bits have no PPU island: ppu_done* and ppu_desc_count
+        // are tied off HERE (single integration point).  desc_count=0
+        // makes any non-empty PPP table refuse with E_PPP_DESC (fail-fast
+        // "PPU island absent"); the empty table keeps the v1 path
+        // byte-identical (G3 T7 gate).  The two-island combined top
+        // (M10.2 G4/G5 batch) replaces this tie-off with the real
+        // ppu_start/ppu_done/frame_token PL lines.
+`ifdef PPU_ISLAND
+        // ---- M10.3 activation: real island verdict/count face (u_ppu).
+        //      Issuer ppu_start/ppu_start_payload below now have the
+        //      island as their consumer (ppu_start_w wires, L131 law). ----
+        .ppu_done(ppu_done_w), .ppu_done_abort(ppu_done_abort_w),
+        .ppu_done_err(ppu_done_err_w), .ppu_desc_count(ppu_desc_count_w),
+`else
+        .ppu_done(1'b0), .ppu_done_abort(1'b0), .ppu_done_err(8'd0),
+        .ppu_desc_count(7'd0),
+`endif
+        // G2: doorbell token pulse still reaches the trace anchor composer
+        // (observe-only; PPP FIFO gains one TOKEN_LATCH entry per frame).
+        .tr_token_latch(frame_token),
+        .cfg_ppp_tab(cfg_ppp_tab), .cfg_layout_id(cfg_layout_id),
+        .frame_gen(frame_gen),
+        .ppu_start(ppu_start_w), .ppu_start_payload(ppu_start_payload_w),
+        .start(db_start), .accept_normal(accept_normal),
+        .accept_rejected_frame(accept_rejected_frame),
+        .recovery_accept(recovery_accept),
+        .accepted_start_mode(start_mode),
+        .normal_done(eng_normal_done),
+        .rejected_done(eng_rejected_done),
+        .engine_quiescent(engine_quiescent_w),
+        .cfg_prequal_ok(cfg_prequal_ok_w),
+        .nonlocal_cfg_prequal_ok(nonlocal_cfg_prequal_ok_w),
+        .sppf_prequal_ok(sppf_prequal_ok_w),
+        .sppf_pending_empty(sppf_pending_empty_w),
+        .ybase_prequal_ok(ybase_prequal_ok_w),
+        .nonlocal_error_start_block(nonlocal_error_start_block_w),
+        .local_reject_now(local_reject_now_w),
+        .local_reject_flags(local_reject_flags_w),
+        .start_paged(start_paged), .tmo_max_w(iss_tmo_max_w),
+`ifdef PPU_ISLAND
+        .m03_b_timeout_limit_o(iss_tmo_max_w),
+`endif
+        .axi_epoch_invalid(axi_epoch_invalid),
+        .epoch_invalid_o(eng_epoch_invalid),
+        .hw_axi_commit_fence(hw_axi_commit_fence_w),
+        .axi_account_sticky(axi_account_sticky_w),
+        .axi_fifo_overflow_sticky(axi_fifo_overflow_sticky_w),
+        .axi_b_timeout_sticky(axi_b_timeout_sticky_w),
+        .axi_bresp_error_sticky(axi_bresp_error_sticky_w),
+        .rp_skid_overflow_sticky(rp_skid_overflow_sticky_w),
+        .busy(eng_busy), .done(eng_done), .err(eng_err),
+        .progress_blk(progress_blk),
+        .pctl_addr(pctl_addr), .pctl_data(pctl_data),
+        .strip_addr(strip_addr), .strip_data(strip_data),
+        .lut_addr(lut_addr), .lut_data(lut_data),
+        .cv_addr(cv_addr), .cv_iss(cv_iss), .cv_geo(cv_geo),
+        .cv_wlay(cv_wlay), .cv_slot(cv_slot), .conv_idx(conv_idx_w),
+        // v2.5 (r12 B 裁定): M11a page face 环（engine 侧透传口）
+        .cfg_npages(cfg_npages_w), .cfg_pgauto(cfg_pgauto_w),
+        .cfg_schedule_page(cfg_schedule_page),
+        .cfg_gconv_base(cfg_gconv_base),
+        .cfg_hbuf_restart(cfg_hbuf_restart),
+        .pg_desc(pg_desc_w), .pg_win_rdy_i(pg_win_rdy_w),
+        .hbuf_start(hbuf_start_w), .hbuf_nconv(hbuf_nconv_w),
+        .hbuf_nedge(hbuf_nedge_w),
+        .hbuf_segmented_mode(hbuf_segmented_mode_w),
+        // These are observations only at this boundary.  Functional fault,
+        // fence, quiescence, and completion consumers use the aggregated
+        // routes above; no new CSR/ABI observation fanout is invented here.
+        .dense_addr_err_o(),
+        .bind_done_o(),
+        .bind_err_o(),
+        .bind_ready_o(),
+        .execution_enable_o(),
+        .rearm_ovf_o(),
+        .epoch_ybase_q(),
+        .epoch_ybase_valid(),
+        .epoch_ybase_fault(),
+        .epoch_native_enqueue_bytes(),
+        .merged_enqueue_bytes(),
+        .axi_w_accepted_bytes(),
+        .aw_accepted_txns(),
+        .w_accepted_txns(),
+        .b_returned_txns(),
+        .b_okay_txns(),
+        .b_bad_txns(),
+        .axi_w_pending_txns(),
+        .b_debt(),
+        .page_r(page_r_w), .pg_pref(pg_pref_w),
+        .cnt_beats(cnt_beats), .cnt_stall(cnt_stall),
+        .cnt_csr_w(cnt_csr_w), .cnt_y_bytes(cnt_y_bytes),
+        .cnt_y_blocks(cnt_y_blocks), .cnt_chain_bytes(cnt_chain_bytes),
+        .m0_araddr(m0_araddr), .m0_arlen(m0_arlen),
+        .m0_arvalid(m0_arvalid), .m0_arready(m0_arready),
+        .m0_rdata(m0_rdata), .m0_rresp(m0_rresp),
+        .m0_rvalid(m0_rvalid), .m0_rlast(m0_rlast), .m0_rready(m0_rready),
+        .m1_araddr(m1_araddr), .m1_arlen(m1_arlen),
+        .m1_arvalid(m1_arvalid), .m1_arready(m1_arready),
+        .m1_rdata(m1_rdata), .m1_rresp(m1_rresp),
+        .m1_rvalid(m1_rvalid), .m1_rlast(m1_rlast), .m1_rready(m1_rready),
+        .m2_awaddr(m2_awaddr), .m2_awlen(m2_awlen),
+        .m2_awvalid(m2_awvalid), .m2_awready(m2_awready),
+        .m2_wdata(m2_wdata), .m2_wstrb(m2_wstrb),
+        .m2_wvalid(m2_wvalid), .m2_wready(m2_wready),
+        .m2_bresp(m2_bresp), .m2_bvalid(m2_bvalid), .m2_bready(m2_bready),
+        .tr_we(tr_we), .tr_waddr(tr_waddr), .tr_wdata(tr_wdata),
+        .tr_raddr(tr_raddr), .tr_rdata(tr_rdata),
+        .tr_ring_ovr(tr_ring_ovr), .tr_steady_end(tr_steady_end),
+        .tr_last_compute(tr_last_compute),
+        .tr_array_active(tr_array_active),
+        .s2l_cnt(iss_s2l_cnt), .skew_max(hb_skew_max), .hb_dbg(hb_dbg)
+`ifdef M11_REPACK
+        ,.m4_araddr(m4_axi_araddr), .m4_arlen(m4_axi_arlen),
+        .m4_arvalid(m4_axi_arvalid), .m4_arready(m4_axi_arready),
+        .m4_rdata(m4_axi_rdata), .m4_rresp(m4_axi_rresp),
+        .m4_rvalid(m4_axi_rvalid), .m4_rlast(m4_axi_rlast),
+        .m4_rready(m4_axi_rready)
+`endif
+    );
+
+`ifdef PPU_ISLAND
+    // ================= M10.3: PPU island (activation state only) ========
+    // Island = src/rtl_ppu/ppu_f7_top.v (V1.9-M10.3: main-tree V1.8 byte
+    // copy + PL face export). Three-line wiring (DESIGN_m8_v23 section 3.1):
+    //   CSR frame_gen/frame_token (V3.0 outputs, unmodified) -> walker gen
+    //   latch; issuer ppu_start/ppu_start_payload -> walker PL entry;
+    //   walker verdict -> issuer. GEMM stub m1_axi = zero-flow face, tied
+    //   (v23b BD precedent: only m_axi was wired; stub law section 1.3).
+    // (verdict/count wires declared above u_eng -- see that site.)
+    ppu_f7_top u_ppu (
+        .s_axi_aclk    (clk),
+        .s_axi_aresetn (rst_n),
+        // AXI4-Lite slave: BD GP0 second segment (0x43C2_0000/64K)
+        .s_axi_awaddr  (s2_axi_awaddr),  .s_axi_awprot(s2_axi_awprot),
+        .s_axi_awvalid (s2_axi_awvalid), .s_axi_awready(s2_axi_awready),
+        .s_axi_wdata   (s2_axi_wdata),   .s_axi_wstrb  (s2_axi_wstrb),
+        .s_axi_wvalid  (s2_axi_wvalid),  .s_axi_wready (s2_axi_wready),
+        .s_axi_bresp   (s2_axi_bresp),   .s_axi_bvalid (s2_axi_bvalid),
+        .s_axi_bready  (s2_axi_bready),
+        .s_axi_araddr  (s2_axi_araddr),  .s_axi_arprot(s2_axi_arprot),
+        .s_axi_arvalid (s2_axi_arvalid), .s_axi_arready(s2_axi_arready),
+        .s_axi_rdata   (s2_axi_rdata),   .s_axi_rresp  (s2_axi_rresp),
+        .s_axi_rvalid  (s2_axi_rvalid),  .s_axi_rready (s2_axi_rready),
+        // AXI4 master: shell DMA -> BD -> PS7 HP1
+        .m_axi_araddr  (m3_axi_araddr),  .m_axi_arlen  (m3_axi_arlen),
+        .m_axi_arsize  (m3_axi_arsize),  .m_axi_arburst(m3_axi_arburst),
+        .m_axi_arvalid (m3_axi_arvalid), .m_axi_arready(m3_axi_arready),
+        .m_axi_rdata   (m3_axi_rdata),   .m_axi_rresp  (m3_axi_rresp),
+        .m_axi_rlast   (m3_axi_rlast),   .m_axi_rvalid (m3_axi_rvalid),
+        .m_axi_rready  (m3_axi_rready),
+        .m_axi_awaddr  (m3_axi_awaddr),  .m_axi_awlen  (m3_axi_awlen),
+        .m_axi_awsize  (m3_axi_awsize),  .m_axi_awburst(m3_axi_awburst),
+        .m_axi_awvalid (m3_axi_awvalid), .m_axi_awready(m3_axi_awready),
+        .m_axi_wdata   (m3_axi_wdata),   .m_axi_wstrb  (m3_axi_wstrb),
+        .m_axi_wlast   (m3_axi_wlast),   .m_axi_wvalid (m3_axi_wvalid),
+        .m_axi_wready  (m3_axi_wready),
+        .m_axi_bresp   (m3_axi_bresp),   .m_axi_bvalid (m3_axi_bvalid),
+        .m_axi_bready  (m3_axi_bready),
+        // GEMM stub second DMA master: zero-flow (u_gemm stubbed V1.8,
+        // u_gdma user face tied all-zero inside the island) -- response
+        // side tied here, request side explicitly open (v23b BD same law).
+        .m1_axi_araddr(),
+        .m1_axi_arlen(),
+        .m1_axi_arsize(),
+        .m1_axi_arburst(),
+        .m1_axi_arvalid(),
+        .m1_axi_rready(),
+        .m1_axi_awaddr(),
+        .m1_axi_awlen(),
+        .m1_axi_awsize(),
+        .m1_axi_awburst(),
+        .m1_axi_awvalid(),
+        .m1_axi_wdata(),
+        .m1_axi_wstrb(),
+        .m1_axi_wlast(),
+        .m1_axi_wvalid(),
+        .m1_axi_bready(),
+        .m1_axi_arready(1'b0), .m1_axi_rdata(64'd0), .m1_axi_rresp(2'b00),
+        .m1_axi_rlast  (1'b0), .m1_axi_rvalid(1'b0),
+        .m1_axi_awready(1'b0), .m1_axi_wready(1'b0),
+        .m1_axi_bresp  (2'b00), .m1_axi_bvalid(1'b0),
+        .irq_o         (),
+        // ---- v2.3 three-line PL face (walker f6, M10.2 blood) ----
+        .ppu_start_pl_i     (ppu_start_w),
+        .ppp_payload_pl_i   (ppu_start_payload_w),
+        .frame_token_pl_i   (frame_gen),
+        .token_valid_pl_i   (frame_token),
+        .ppu_done_pl_o      (ppu_done_w),
+        .ppp_done_abort_pl_o(ppu_done_abort_w),
+        .ppp_done_err_pl_o  (ppu_done_err_w),
+        .ppu_desc_count_pl_o(ppu_desc_count_w),
+        .hw_m03_heads_commit_fence_i(hw_m03_heads_commit_fence_i),
+        .heads_transaction_fault_i(heads_transaction_fault_i),
+        .m03_idle_quiescent_i(m03_idle_quiescent_i),
+        .epoch_invalid_i(epoch_invalid_w),
+        .heads_start_accepted_o(heads_start_accepted_w),
+        .heads_gated_done_event_o(heads_gated_done_event_w),
+        .heads_frame_done_allowed_o(heads_frame_done_allowed_w),
+        .heads_epoch_active_o(heads_epoch_active_w),
+        .heads_epoch_profile_accepted_o(heads_epoch_profile_accepted_w),
+        .heads_epoch_cfg0_o(heads_epoch_cfg0_w),
+        .heads_live_dma_cfg0_o(heads_live_dma_cfg0_w),
+        .heads_profile_fault_o(heads_profile_fault_w),
+        .ppu_error_any_o(ppu_error_any_w)
+    );
+`endif
+
+endmodule
