@@ -17,7 +17,7 @@
 
 - V8 正式报告含 **18 张嵌入图**，图内不重复标号，图下保留编号；开发板实物位于 2.2.1，工程二注明与图 2-6 同架构；2.6.5 含锁布局消融分组表和结果对比图。
 - DOCX 完整结构验证通过；40 页 PDF 全部检查，无空白页、内容丢失、裁切或重叠；九项模板限字全部通过。
-- 最终 MinerU 结果为 `MINERU_PARSE_PASS`，输入 SHA-256、Markdown 和 content JSON 在 `2026-11-04_report_v8_review_apply_run02` 留档。
+- 最终 MinerU 结果为 `MINERU_PARSE_PASS`，输入 SHA-256、Markdown 和 content JSON 在 `2026-11-04_report_v8_reference_format_run02` 留档。
 - 报告区分历史板测、本次 Vivado 工程验证、完整 BIT 重建和未执行项目；纯 PL 连续日志只覆盖六类，缺 Down；多网络不同任务切换仍属未验证方向。
 
 ## 协作记录口径
