@@ -4,6 +4,8 @@
 
 公开仓库：https://github.com/pipidandan-superman/FPGA_2026_competition
 
+原始研发仓库：https://github.com/pipidandan-superman/FPGA2026_competition 。需要查阅完整研发过程、历史工程版本和原始实验证据时，可访问该仓库。当前仓库是专门面向 AMD §3.3.5 的整理提交版，与原始研发仓库分开维护，不能用历史版本替代本包的验证结论。
+
 系统包含 PS ncnn 三网络/三任务演示、PL 网络计算，以及 PS 主干/颈部加 PL 检测头的驻留混合路径。PS 三模型切换已经展示；多网络由同一个 PL 加速器执行仍属在研目标。纯 PL 路径的 PS 仍承担归一化、量化、控制和解码/NMS。
 
 **最新验收状态以 [build/validation_status.md](build/validation_status.md) 为准。** 历史板测、本次工程验证、完整 BIT 重建和当前部署板测分别记录，不能互相替代。
