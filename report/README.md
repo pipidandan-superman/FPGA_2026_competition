@@ -6,7 +6,8 @@
 
 | 文件/目录 | 内容 |
 |---|---|
-| `technical_report_v4.docx` | 正式技术报告：背景与创新、系统框图、软硬件划分、优化对比、AI 协作、Skill 提炼和从零复现说明 |
+| `technical_report_v8.docx` / `.pdf` | 当前正式报告：OPU 编译器与自定义指令体系、五类工程、优化对比、AI 协作、Skill 提炼和复现入口；37 页、17 图、15 表 |
+| `technical_report_v4.docx` | 历史技术报告，保留用于版本追溯 |
 | `ai_collaboration_records_summary.md` / `.docx` | 多平台大模型协作归纳，含提示词、回答、失败观察、自我纠错和证据边界 |
 | `amd_ross_reflections.md` | AMD ROSS 使用心得 |
 | `figures/` | 报告架构、微架构、调度、训练、性能、资源和协作机制图件 |
@@ -14,10 +15,10 @@
 
 ## 当前验证
 
-- 正式报告含 **13 张嵌入图**，无文字占位图。
-- DOCX 完整结构验证通过；19 页全部渲染，无空白页、内容丢失或页面裁切。
-- 最新 MinerU pipeline 结果、输入 SHA-256、Markdown 和 content JSON 在独立证据目录留档。
-- 报告区分历史板测、本次 Vivado 工程验证、完整 BIT 重建和未执行项目；纯 PL 连续日志只覆盖六类，缺 Down。
+- V8 正式报告含 **17 张嵌入图**，图内不重复标号，图下保留编号；开发板实物位于 2.2.1，工程二注明与图 2-6 同架构。
+- DOCX 完整结构验证通过；37 页 PDF 全部检查，无空白页、内容丢失、裁切或重叠；九项模板限字全部通过。
+- 最终 MinerU 结果为 `MINERU_PARSE_PASS`，输入 SHA-256、Markdown 和 content JSON 在 `2026-11-04_report_v8_figures_tasks_run02` 留档。
+- 报告区分历史板测、本次 Vivado 工程验证、完整 BIT 重建和未执行项目；纯 PL 连续日志只覆盖六类，缺 Down；多网络不同任务切换仍属未验证方向。
 
 ## 协作记录口径
 

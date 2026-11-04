@@ -86,7 +86,7 @@ python build/fetch_board_evidence.py --output C:/fpga_runs/<new_test>
 
 ## 文档、许可与发布
 
-- 技术报告：[technical_report_v4.docx](report/technical_report_v4.docx)，含 13 张实图和完整复现说明。
+- 当前技术报告：[technical_report_v8.docx](report/technical_report_v8.docx) 及 [PDF](report/technical_report_v8.pdf)，37 页、17 图、15 表，含 OPU 体系、五类工程和复现入口；[V4 历史报告](report/technical_report_v4.docx) 保留用于追溯。
 - 大模型协作记录：[ai_collaboration_records_summary.md](report/ai_collaboration_records_summary.md) 及同名 DOCX。
 - 技能验证矩阵：[validation_matrix.md](skill/validation_matrix.md)。
 - 原创代码和原创文档采用 [MIT](license.txt)。
