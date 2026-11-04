@@ -34,6 +34,8 @@ vivado -mode batch -source C:/fpga_runs/<new_run>/run.tcl -log C:/fpga_runs/<new
 
 AC1 的 `module_ref` XCI 是 BD 接口合同，构建器会保留；普通厂商 IP 输出则在隔离目录重新生成。不要删除这类模块引用配置。
 
+Windows 克隆需要处理长 BD 路径时，先执行 `git config --global core.longpaths true`。输出目录应短且位于仓库之外，例如 `C:/fpga_runs/<new_run>`。不要批量转换源文件行尾；全量清单按原始字节计算。
+
 ## 2. OSD 仿真
 
 ```powershell

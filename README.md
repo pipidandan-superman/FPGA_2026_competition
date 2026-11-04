@@ -51,6 +51,8 @@ vivado -mode batch -source C:/fpga_runs/<new_run>/run.tcl -log C:/fpga_runs/<new
 
 在 Git Bash 启动 Windows Vivado 时，如遇到启动器静默退出，可在调用前设置 `PROCESSOR_ARCHITECTURE=AMD64`；远程 Linux 路径参数应避免被 Git Bash 自动转换，可设置 `MSYS_NO_PATHCONV=1`。
 
+Windows 克隆若提示 `Filename too long`，先执行 `git config --global core.longpaths true` 再重新克隆；Vivado 输出目录也应使用较短路径，例如 `C:/fpga_runs`。仓库通过 `.gitattributes` 禁止文本行尾转换，提交、克隆和本地清单必须保持相同字节，不能用编辑器批量转换 CRLF/LF。
+
 ## 仿真
 
 ```powershell
