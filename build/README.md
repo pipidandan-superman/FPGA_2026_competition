@@ -32,7 +32,7 @@ vivado -mode batch -source C:/fpga_runs/<new_run>/run.tcl -log C:/fpga_runs/<new
 
 进程退出码为零不能替代这些检查。未约束 I/O、CDC 和时钟关系告警仍需人工分析。新 BIT 与历史 BIT 分开管理，不机械要求重建哈希相同。
 
-AC1 的 `module_ref` XCI 是 BD 接口合同，构建器会保留；普通厂商 IP 输出则在隔离目录重新生成。不要删除这类模块引用配置。
+AC1 的 `module_ref` XCI 是 BD 接口合同，构建器会保留；普通厂商 IP 输出则在隔离目录重新生成。不要删除这类模块引用配置。BD 自动协议转换器（`*_imp_auto_pc_*`、`*_imp_auto_us_*`）的 XCI 不作为源交付，打开原 XPR 时 Vivado 可能提示重新生成，这是预期行为；隔离构建会跳过旧输出并由 BD 重建。
 
 Windows 克隆需要处理长 BD 路径时，先执行 `git config --global core.longpaths true`。输出目录应短且位于仓库之外，例如 `C:/fpga_runs/<new_run>`。不要批量转换源文件行尾；全量清单按原始字节计算。
 
